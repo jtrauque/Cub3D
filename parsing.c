@@ -17,7 +17,7 @@ int  ft_identify_type(char c)
   return (-1);
 }
 
-void ft_resolution(t_params params, char *elements, t_pars *pars)
+void ft_resolution(t_params *params, char *elements, t_pars *pars)
 {
   int i;
 

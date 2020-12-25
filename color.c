@@ -32,7 +32,7 @@ int ft_rgb(char *elements)
   return (65536 * R + 256 * G + B);
 }
 
-void  ft_color(t_params params, char *elements, t_pars *pars)
+void  ft_color(t_params *params, char *elements, t_pars *pars)
 {
   int i;
 
