@@ -34,7 +34,7 @@ int  main(int argc, char ** argv)
     }
     i = ft_identify_type(elements[n]);
  //   printf("elements[%d] = %c\n", n, elements[n]);
-    printf("i = %d\n", i);
+    // printf("i = %d\n", i);
     if (i == 7)
       g_parsing[i](&params,elements, &pars);
     else if (i != - 1)
@@ -43,12 +43,25 @@ int  main(int argc, char ** argv)
       ft_error("error elements\n");
     free(elements);
   }
-  printf("map.width main = %d\n", params.map_w);
+  params.win_ptr = mlx_new_window(params.mlx_ptr, pars.width, pars.height, "Cub3D");
+  params.data.img = mlx_new_image(params.mlx_ptr, pars.width, pars.height);
+  params.data.data = (unsigned int *)mlx_get_data_addr(params.data.img, &params.data.bpp, &params.data.size_line, &params.data.endian);
+  // params.img = mlx_new_image();
+  // printf("map.width main = %d\n", params.map_w);
   map = ft_global_map_check(&pars, &params);
   int k = 0;
-  while(map[k])
-    printf("\n%s\n", map[k++]);
+  while(map[k]) {
+    int t = 0;
+    while (t < params.map_w) {
+      printf("%s", map[k][t] == '1' ? "\033[30m█" :"\033[31m█");
+    ++t;
+    }
+    printf("\n\033[0m");
+    ++k;
+    // printf("%s\n", map[k++]);
+  }
   ft_location_player(&pars,map);
+  ft_look_at(pars, params, map);
   printf("map.width = %d\n", params.map_w);
   printf("map.height = %d\n", params.map_h);
   printf("width = %d\n", pars.width);
@@ -57,7 +70,6 @@ int  main(int argc, char ** argv)
   printf("py = %f\n", pars.py);
   printf("dx = %f\n", pars.dx);
   printf("dy = %f\n", pars.dy);
-  params.win_ptr = mlx_new_window(params.mlx_ptr, pars.height, pars.width, "Cub3D");
   printf("color floor = %d\n", pars.color_f);
   printf("color sky = %d\n", pars.color_c);
  // printf("map = \n%s\n", pars.map);

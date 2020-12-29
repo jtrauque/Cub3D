@@ -10,7 +10,7 @@ DEP       = ${OBJS:.o=.d}
 
 CC        = gcc
 
-CFLAGS    = -I gnl -I libft -Iincludes -Llibft -lft -lmlx -lX11 -lXext -Wall -Wextra -Werror -fsanitize=address -Wno-unused-result -g -MMD
+CFLAGS    = -I gnl -I libft -Iincludes -Llibft -lft -lmlx -lm -lX11 -lXext -Wall -Wextra -Werror -fsanitize=address -Wno-unused-result -g -MMD
 
 RM        = rm -f
 

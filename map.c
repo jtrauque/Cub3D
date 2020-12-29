@@ -47,9 +47,9 @@ char  *ft_map_valide(char *elements, t_pars *pars, t_params *params )
     if (temp[i] == ' ')
     {
       temp[i] = '1';
-      printf("WHAT\n");
+ //     printf("WHAT\n");
     }
-    printf("before temp[%d] = [%c]\n", i, temp[i]);
+  //  printf("before temp[%d] = [%c]\n", i, temp[i]);
     if (ft_find(temp[i], caracteres) == 0)
     {
       printf("erreur find elements[%d] = [%c]\n", i, temp[i]);
@@ -70,7 +70,7 @@ char  *ft_map_valide(char *elements, t_pars *pars, t_params *params )
   }
   if (i > params->map_w)
     params->map_w = i;
-  printf("sortie de map [%s]\n", temp);
+//  printf("sortie de map [%s]\n", temp);
   //  printf("elements [%s]\n", elements);
   return (temp);
 }
@@ -101,6 +101,7 @@ void ft_map_save(t_params *params, char *elements, t_pars *pars)
 char **ft_global_map_check(t_pars *pars, t_params *params)
 {
   int j;
+  int i;
   char *obs;
   int count;
   char **map;
@@ -108,6 +109,7 @@ char **ft_global_map_check(t_pars *pars, t_params *params)
   obs = "NSWE";
   j = 0;
   count = 0;
+  i= 0;
   while (obs[j])
   {
     if(ft_find(obs[j], pars->map) == 1)
@@ -119,8 +121,22 @@ char **ft_global_map_check(t_pars *pars, t_params *params)
     j++;
   }
   if (count > 1 || count == 0)
-    ft_error_map("map error\n", pars);
+    ft_error_map("map error - too much or no players\n", pars);
   map = ft_split_one(pars->map,'\n', params);
+  while (map[0][i])
+  {
+    if (map[0][i] != '1')
+     ft_error_map("map error - wall missing\n", pars);
+    i++;
+  }
+  i= 0;
+  printf("map h : %d\n", params->map_h);
+  while (map[params->map_h - 1][i])
+  {
+    if (map[params->map_h - 1][i] != '1')
+     ft_error_map("map error - wall missing\n", pars);
+    i++;
+  }
   return (map);
 }
 
@@ -128,27 +144,35 @@ void  ft_direction(t_pars *pars, char c)
 {
   if(c == 'N')
   {
-    printf("di pars->px : %f\n", pars->px);
-    printf("di pars->py : %f\n", pars->py);
-    pars->dx = pars->px;
-    pars->dy = pars->py + 1.0;
-    printf("di pars->dx : %f\n", pars->dx);
-    printf("di pars->dy : %f\n", pars->dy);
+ //   printf("di pars->px : %f\n", pars->px);
+ //   printf("di pars->py : %f\n", pars->py);
+    pars->dx = 0;
+    pars->dy = -1.0;
+    pars->plane_x = 1;
+    pars->plane_y = 0;
+  //  printf("di pars->dx : %f\n", pars->dx);
+ //   printf("di pars->dy : %f\n", pars->dy);
   }
   else if(c == 'S')
   {
     pars->dx = pars->px;
-    pars->dy = pars->py - 1.0;
+    pars->dy = pars->py + 1.0;
+    pars->plane_x = 1;
+    pars->plane_y = 0;
   }
   else if(c == 'W')
   {
     pars->dx = pars->px - 1.0;
     pars->dy = pars->py;
+    pars->plane_x = 0;
+    pars->plane_y = 1;
   } 
   else if(c == 'E')
   {
     pars->dx = pars->px + 1.0;
     pars->dy = pars->py;
+    pars->plane_x = 0;
+    pars->plane_y = 1;
   }
 }
 

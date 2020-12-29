@@ -10,10 +10,11 @@ void ft_text_n(t_params *params, char *elements, t_pars *pars)
   i = 1;
   if (elements[i] == 'O' && elements[i + 1] == ' ')
   {
-//    ft_xpm_to_image(params, elements, pars->text_n);
+    //    ft_xpm_to_image(params, elements, pars->text_n);
     i += ft_space(elements + i);
-  relative_path = elements + i;
-   pars->text_n = mlx_xpm_file_to_image(params->mlx_ptr, relative_path, &img_width, &img_height);
+    relative_path = elements + i;
+    pars->text_n.img = mlx_xpm_file_to_image(params->mlx_ptr, relative_path, &img_width, &img_height);
+    pars->text_n.data = (unsigned int *)mlx_get_data_addr(pars->text_n.img, &pars->text_n.bpp, &pars->text_n.size_line, &pars->text_n.endian);
   }
   else 
     ft_error("error texture\n");
@@ -29,7 +30,7 @@ void ft_text_s(t_params *params, char *elements, t_pars *pars)
   i = 1;
   if (elements[i] == 'O' && elements[i + 1] == ' ')
   {
-  //  ft_xpm_to_image(params, elements, pars->text_s);
+    //  ft_xpm_to_image(params, elements, pars->text_s);
     i += ft_space(elements + i);
     relative_path = elements + i;
     pars->text_s = mlx_xpm_file_to_image(params->mlx_ptr, relative_path, &img_width, &img_height);
@@ -37,27 +38,27 @@ void ft_text_s(t_params *params, char *elements, t_pars *pars)
   else if (elements[i] == ' ') 
   {
     //ft_xpm_to_image(params, elements, pars->text_sprite);
-   i += ft_space(elements + i);
-  relative_path = elements + i;
-   pars->text_sprite = mlx_xpm_file_to_image(params->mlx_ptr, relative_path, &img_width, &img_height);
+    i += ft_space(elements + i);
+    relative_path = elements + i;
+    pars->text_sprite = mlx_xpm_file_to_image(params->mlx_ptr, relative_path, &img_width, &img_height);
   }
   else 
     ft_error("error texture\n");
 }
 
 /*
-void  ft_xpm_to_image(t_params params, char *elements, void **text)
-{
-  char *relative_path;
-  int img_width;
-  int img_height;
-  int i;
+   void  ft_xpm_to_image(t_params params, char *elements, void **text)
+   {
+   char *relative_path;
+   int img_width;
+   int img_height;
+   int i;
 
-  i = 1;
-  i += ft_space(elements + i);
-  relative_path = elements + i;
-  *text = mlx_xpm_file_to_image(params.mlx_ptr, relative_path, &img_width, &img_height);
-}*/
+   i = 1;
+   i += ft_space(elements + i);
+   relative_path = elements + i;
+ *text = mlx_xpm_file_to_image(params.mlx_ptr, relative_path, &img_width, &img_height);
+ }*/
 
 void ft_text_w(t_params *params, char *elements, t_pars *pars)
 {
