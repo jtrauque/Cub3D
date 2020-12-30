@@ -88,9 +88,9 @@ void ft_map_save(t_params *params, char *elements, t_pars *pars)
     //  printf("retour map valide : %d\n", n);
     //   printf("tmpsave : %s\n", tmp);
     //  printf("pars->map : %s\n", pars->map);
-    if (!(pars->map = ft_strnjoin(pars->map, tmp, ft_strlen(tmp))))
+    if (!(pars->map_tmp = ft_strnjoin(pars->map_tmp, tmp, ft_strlen(tmp))))
       return;
-    if (!(pars->map = ft_strnjoin(pars->map, "\n", 1)))
+    if (!(pars->map_tmp = ft_strnjoin(pars->map_tmp, "\n", 1)))
       return;
     // printf("pars->map : %s\n", pars->map);
   }
@@ -112,17 +112,17 @@ char **ft_global_map_check(t_pars *pars, t_params *params)
   i= 0;
   while (obs[j])
   {
-    if(ft_find(obs[j], pars->map) == 1)
+    if(ft_find(obs[j], pars->map_tmp) == 1)
     {
       count++;
     }
-    if(ft_find(obs[j], pars->map) > 1)
+    if(ft_find(obs[j], pars->map_tmp) > 1)
       ft_error_map("map error\n", pars);
     j++;
   }
   if (count > 1 || count == 0)
     ft_error_map("map error - too much or no players\n", pars);
-  map = ft_split_one(pars->map,'\n', params);
+  map = ft_split_one(pars->map_tmp,'\n', params);
   while (map[0][i])
   {
     if (map[0][i] != '1')

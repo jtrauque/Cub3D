@@ -20,26 +20,6 @@ typedef struct      s_data
   int endian;
 }                   t_data;
 
-typedef struct        s_pars
-{
-  int width;
-  int height;
-  t_data text_n;
-  void *text_s;
-  void *text_w;
-  void *text_e;
-  void *text_sprite;
-  int color_f;
-  int color_c;
-  char *map;
-  float px;
-  float py;
-  float dx;
-  float dy;
-  float plane_x;
-  float plane_y;
-}                      t_pars;
-
 typedef struct      s_params
 {
   void *mlx_ptr;
@@ -48,6 +28,27 @@ typedef struct      s_params
   int map_h;
   int map_w;
 }                   t_params;
+typedef struct        s_pars
+{
+  int width;
+  int height;
+  char **map;
+  t_data text_n;
+  void *text_s;
+  void *text_w;
+  void *text_e;
+  void *text_sprite;
+  int color_f;
+  int color_c;
+  char *map_tmp;
+  float px;
+  float py;
+  float dx;
+  float dy;
+  float plane_x;
+  float plane_y;
+  t_params *params;
+}                      t_pars;
 
 //typedef struct      s_size_map
 //{
@@ -89,13 +90,13 @@ void  ft_error_map(char *str, t_pars *pars);
 void  ft_xpm_to_image(t_params params, char *elements, void **text);
 void  ft_putchar(char c);
 void  ft_putnbr(int n);
-int  deal_key(int key, t_params params);
+int  deal_key(int key, t_pars *pars);
 int  ft_identify_type(char c);
 char			**ft_split_one(char *s, char c, t_params *params);
 char **ft_global_map_check(t_pars *pars, t_params *params);
 void  ft_direction(t_pars *pars, char c);
 void  ft_location_player(t_pars *pars, char **map); 
-void ft_look_at(t_pars pars, t_params params, char **map);
+void ft_look_at(t_pars *pars, t_params *params);
 // void  ft_put_image(t_params params, t_pars pars);
 void  ft_put_px_in_image(t_data *data, int x, int y, int color);
 
