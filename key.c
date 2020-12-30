@@ -1,6 +1,5 @@
 #include "cub3d.h"
 
-void  ft_move(int key, t_pars *pars);
 
 int  deal_key(int key, t_pars *pars)
 {

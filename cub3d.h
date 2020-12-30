@@ -6,6 +6,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 #include "libft.h"
 #include "get_next_line.h"
@@ -49,10 +50,6 @@ typedef struct        s_pars
   float plane_y;
   t_params *params;
 }                      t_pars;
-
-//typedef struct      s_size_map
-//{
-//}                   t_size_map;
 
 typedef struct      s_obs
 {
@@ -99,5 +96,6 @@ void  ft_location_player(t_pars *pars, char **map);
 void ft_look_at(t_pars *pars, t_params *params);
 // void  ft_put_image(t_params params, t_pars pars);
 void  ft_put_px_in_image(t_data *data, int x, int y, int color);
+void  ft_move(int key, t_pars *pars);
 
 #endif

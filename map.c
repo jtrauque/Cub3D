@@ -27,11 +27,6 @@ char  *ft_map_valide(char *elements, t_pars *pars, t_params *params )
   temp = elements;
 
   i = 0;
-  //  printf("arrivee dans map [%s]\n", elements);
-  //  printf("elements[%d] = [%c]\n", i, elements[i]);
-  //  printf("temp[%d] = [%c]\n", i, temp[i]);
-  //  while (temp[i] == ' ')
-  //   temp[i++] = 1;
   if (temp[i] != '1' && temp[i] != ' ')
   {
     printf("diff de 1 ? elements[%d] = %c\n", i, elements[i]);
