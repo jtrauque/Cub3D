@@ -12,7 +12,6 @@ int  main(int argc, char ** argv)
   int i;
   int n;
   int len;
-  // char **map;
 
   ft_memset(&params, 0, sizeof(t_params));
   params.mlx_ptr = mlx_init();
@@ -48,19 +47,19 @@ int  main(int argc, char ** argv)
   params.data.data = (unsigned int *)mlx_get_data_addr(params.data.img, &params.data.bpp, &params.data.size_line, &params.data.endian);
   // params.img = mlx_new_image();
   // printf("map.width main = %d\n", params.map_w);
-  pars.map = ft_global_map_check(&pars, &params);
-  int k = 0;
-  while(pars.map[k]) {
-    int t = 0;
-    while (t < params.map_w) {
-      printf("%s", pars.map[k][t] == '1' ? "\033[30m█" :"\033[31m█");
-    ++t;
-    }
-    printf("\n\033[0m");
-    ++k;
-    // printf("%s\n", map[k++]);
-  }
-  ft_location_player(&pars, pars.map);
+  ft_global_map_check(&pars, &params);
+  // // int k = 0;
+  // while(pars.map[k]) {
+  //   int t = 0;
+  //   while (t < params.map_w) {
+  //     printf("%s", pars.map[k][t] == '1' ? "\033[30m█" :"\033[31m█");
+  //   ++t;
+  //   }
+  //   printf("\n\033[0m");
+  //   ++k;
+  //   // printf("%s\n", map[k++]);
+  // }
+  ft_location_player(&pars);
   ft_look_at(&pars, &params);
   printf("map.width = %d\n", params.map_w);
   printf("map.height = %d\n", params.map_h);
@@ -75,10 +74,12 @@ int  main(int argc, char ** argv)
   printf("color sky = %d\n", pars.color_c);
  // printf("map = \n%s\n", pars.map);
   pars.params = &params;
+  // mlx_hook(params.win_ptr, 2 , 1, deal_key, &pars);
   mlx_key_hook(params.win_ptr, deal_key, &pars);
   mlx_loop(params.mlx_ptr);
   free(pars.map_tmp);
   free(pars.map);
+  free(params.mlx_ptr);
   return (0);
 }
 

@@ -26,6 +26,7 @@ char  *ft_map_valide(char *elements, t_pars *pars, t_params *params )
   caracteres = "012NSEW ";
   temp = elements;
 
+  (void)pars;
   i = 0;
   if (temp[i] != '1' && temp[i] != ' ')
   {
@@ -50,10 +51,8 @@ char  *ft_map_valide(char *elements, t_pars *pars, t_params *params )
       printf("erreur find elements[%d] = [%c]\n", i, temp[i]);
       return (NULL);
     }
-    if (ft_find(temp[i], caracteres + 3) != 0)
-    {
-      pars->py = i;
-    }
+    // if (ft_find(temp[i], caracteres + 3) != 0)
+      // pars->py = i;
     // printf("while - elements[%d] = %c\n", i, elements[i]);
     //    printf("temp[%d] = %c\n", i, temp[i]);
     i++;
@@ -72,22 +71,14 @@ char  *ft_map_valide(char *elements, t_pars *pars, t_params *params )
 
 void ft_map_save(t_params *params, char *elements, t_pars *pars)
 {
-  //  int n;
   char *tmp;
-  //  char *tmp_s;
-  //  int i;
 
-  //  i = 0;
   if ((tmp = ft_map_valide(elements, pars, params)) != NULL)
   {
-    //  printf("retour map valide : %d\n", n);
-    //   printf("tmpsave : %s\n", tmp);
-    //  printf("pars->map : %s\n", pars->map);
     if (!(pars->map_tmp = ft_strnjoin(pars->map_tmp, tmp, ft_strlen(tmp))))
       return;
     if (!(pars->map_tmp = ft_strnjoin(pars->map_tmp, "\n", 1)))
       return;
-    // printf("pars->map : %s\n", pars->map);
   }
   else 
     ft_error_map("map error\n", pars);
@@ -99,7 +90,7 @@ char **ft_global_map_check(t_pars *pars, t_params *params)
   int i;
   char *obs;
   int count;
-  char **map;
+  // char **map;
 
   obs = "NSWE";
   j = 0;
@@ -117,61 +108,57 @@ char **ft_global_map_check(t_pars *pars, t_params *params)
   }
   if (count > 1 || count == 0)
     ft_error_map("map error - too much or no players\n", pars);
-  map = ft_split_one(pars->map_tmp,'\n', params);
-  while (map[0][i])
+  pars->map = ft_split_one(pars->map_tmp,'\n', params);
+  while (pars->map[0][i])
   {
-    if (map[0][i] != '1')
+    if (pars->map[0][i] != '1')
      ft_error_map("map error - wall missing\n", pars);
     i++;
   }
   i= 0;
   printf("map h : %d\n", params->map_h);
-  while (map[params->map_h - 1][i])
+  while (pars->map[params->map_h - 1][i])
   {
-    if (map[params->map_h - 1][i] != '1')
+    if (pars->map[params->map_h - 1][i] != '1')
      ft_error_map("map error - wall missing\n", pars);
     i++;
   }
-  return (map);
+  return (pars->map);
 }
 
 void  ft_direction(t_pars *pars, char c)
 {
   if(c == 'N')
   {
- //   printf("di pars->px : %f\n", pars->px);
- //   printf("di pars->py : %f\n", pars->py);
     pars->dx = 0;
     pars->dy = -1.0;
     pars->plane_x = 1;
     pars->plane_y = 0;
-  //  printf("di pars->dx : %f\n", pars->dx);
- //   printf("di pars->dy : %f\n", pars->dy);
   }
   else if(c == 'S')
   {
-    pars->dx = pars->px;
-    pars->dy = pars->py + 1.0;
+    pars->dx = 0;
+    pars->dy = 1.0;
     pars->plane_x = 1;
     pars->plane_y = 0;
   }
   else if(c == 'W')
   {
-    pars->dx = pars->px - 1.0;
-    pars->dy = pars->py;
+    pars->dx = -1.0;
+    pars->dy = 0;
     pars->plane_x = 0;
     pars->plane_y = 1;
   } 
   else if(c == 'E')
   {
-    pars->dx = pars->px + 1.0;
+    pars->dx = 1.0;
     pars->dy = pars->py;
     pars->plane_x = 0;
     pars->plane_y = 1;
   }
 }
 
-void  ft_location_player(t_pars *pars, char **map) 
+void  ft_location_player(t_pars *pars) 
 {
   int x;
   int y;
@@ -179,17 +166,26 @@ void  ft_location_player(t_pars *pars, char **map)
 
   y = 0;
   obs = "NSWE";
-  while (map[y])
+  while (pars->map[y])
   {
     x = 0;
-    while (map[y][x])
+    while (pars->map[y][x])
     {
-      if(ft_find(map[y][x], obs) == 1)
+      if(ft_find(pars->map[y][x], obs) == 1)
       {
+        printf("location x = %d\n", x);
+        printf("location y = %d\n", y);
         pars->py = y;
         pars->px = x;
-        ft_direction(pars,map[y][x]);
-        return;
+        ft_direction(pars,pars->map[y][x]);
+      }
+      if(pars->map[y][x] == '2')
+      {
+        pars->sprite_y = y;
+        pars->sprite_x = x;
+        // ft_sprite_init(pars);
+        printf("sprit x = %f\n", pars->sprite_x);
+        printf("sprit y = %f\n", pars->sprite_y);
       }
       x++;
     }

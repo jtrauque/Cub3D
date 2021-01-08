@@ -13,7 +13,6 @@ int  deal_key(int key, t_pars *pars)
     exit(1);
   ft_move(key, pars);
   ft_look_at(pars, pars->params);
-  //  mlx_pixel_put(params.mlx_ptr, params.mlx_ptr, 100, 100, 0x16A81D);
   return (0);
 }
 

@@ -19,6 +19,8 @@ typedef struct      s_data
   int bpp;
   int size_line;
   int endian;
+  int img_width;
+  int img_height;
 }                   t_data;
 
 typedef struct      s_params
@@ -35,10 +37,10 @@ typedef struct        s_pars
   int height;
   char **map;
   t_data text_n;
-  void *text_s;
-  void *text_w;
-  void *text_e;
-  void *text_sprite;
+  t_data text_s;
+  t_data text_w;
+  t_data text_e;
+  t_data text_sprite;
   int color_f;
   int color_c;
   char *map_tmp;
@@ -46,6 +48,8 @@ typedef struct        s_pars
   float py;
   float dx;
   float dy;
+  float sprite_x;
+  float sprite_y;
   float plane_x;
   float plane_y;
   t_params *params;
@@ -55,21 +59,22 @@ typedef struct      s_obs
 {
   float ox;
   float oy;
-  int   dist;
-  float dist_screen;
   double true_dist;
-  float rayon_angle;
-  int   heigth_wall;
-  int   heigth_column_PJ;
   double raydir_x;
   double raydir_y;
   double camera;
+  int   heigth_column_PJ;
   int   draw_start;
   int   draw_end;
   int   side;
   int   pix;
   int   map_x;
   int   map_y;
+  int step_x;
+  int step_y;
+  int text_x;
+  int text_y;
+  t_data *text;
 }                   t_obs;
 
 
@@ -92,10 +97,11 @@ int  ft_identify_type(char c);
 char			**ft_split_one(char *s, char c, t_params *params);
 char **ft_global_map_check(t_pars *pars, t_params *params);
 void  ft_direction(t_pars *pars, char c);
-void  ft_location_player(t_pars *pars, char **map); 
+void  ft_location_player(t_pars *pars); 
 void ft_look_at(t_pars *pars, t_params *params);
 // void  ft_put_image(t_params params, t_pars pars);
 void  ft_put_px_in_image(t_data *data, int x, int y, int color);
 void  ft_move(int key, t_pars *pars);
+int  ft_get_px_from_image(t_data *data, int x, int y);
 
 #endif
