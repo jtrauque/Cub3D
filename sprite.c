@@ -33,17 +33,42 @@ void  ft_sprite_init(t_pars *pars, t_sprite *sprite)
   printf("sprite width draw_end = %d\n", sprite->width_draw_end);
 }
 
+void  ft_sort_sprite(t_pars *pars)
+{
+  int i;
+  int first;
+  int second;
+  t_vecteur tmp;
+
+  i = 0;
+  while (i < pars->sprite_nbr) // && i + 1 != pars->sprite_nbr
+  {
+    first = ((pars->px - pars->sprite[i].x) * (pars->px - pars->sprite[i].x) + (pars->py - pars->sprite[i].y) * (pars->py - pars->sprite[i].y));
+    second = ((pars->px - pars->sprite[i + 1].x) * (pars->px - pars->sprite[i + 1].x) + (pars->py - pars->sprite[i + 1].y) * (pars->py - pars->sprite[i + 1].y));
+    if (first < second)
+    {
+      tmp = pars->sprite[i];
+      pars->sprite[i] = pars->sprite[i + 1];
+      pars->sprite[i + 1] = tmp;
+      i = 0;
+    }
+    else
+      i++;
+  }
+}
+
 void  ft_sprite_loop(t_pars *pars, t_sprite *sprite, t_params *params)
 {
   int stripe;
   int start;
   int color;
   int n;
- 
+
   // sprite->sprite_x = pars->sprite[sprite->n].x - (pars->px - 0.5);
   // sprite->sprite_y = pars->sprite[sprite->n].y - (pars->py - 0.5);
-  sprite->sprite_x = pars->sprite[0].x - (pars->px) ; // - 0.5);
-  sprite->sprite_y = pars->sprite[0].y - (pars->py) ; // - 0.5);
+  printf("numero sprite = %d\n", sprite->n);
+  sprite->sprite_x = pars->sprite[sprite->n].x - (pars->px) ; // - 0.5);
+  sprite->sprite_y = pars->sprite[sprite->n].y - (pars->py) ; // - 0.5);
   ft_sprite_init(pars, sprite);
   stripe = sprite->width_draw_start;
   printf("stripe = %d\n", stripe);
@@ -58,11 +83,12 @@ void  ft_sprite_loop(t_pars *pars, t_sprite *sprite, t_params *params)
       while (start < sprite->draw_end)
       {
         n = start * pars->text_sprite.size_line - pars->height * (pars->text_sprite.size_line / 2) + sprite->heigth_column_PJ * (pars->text_sprite.size_line / 2);
-    printf("n = %d\n", n);
+        printf("n = %d\n", n);
         sprite->draw_y = ((n * pars->text_sprite.img_height) / sprite->heigth_column_PJ) / pars->text_sprite.size_line; 
-    printf("draw y = %d\n", sprite->draw_y);
+        printf("draw y = %d\n", sprite->draw_y);
         color = ft_get_px_from_image(&pars->text_sprite, sprite->draw_x , sprite->draw_y);
-        ft_put_px_in_image(&params->data, stripe , start , color);
+        if (color != 0)
+          ft_put_px_in_image(&params->data, stripe , start , color);
         start++;
       }
     }

@@ -148,5 +148,6 @@ void  ft_put_px_in_image(t_data *data, int x, int y, int color);
 void  ft_sprite_init(t_pars *pars, t_sprite *sprite);
 void ft_apply_text_on_wall(t_pars *pars, t_obs *obs, t_data *text);
 void  ft_sprite_loop(t_pars *pars, t_sprite *sprite, t_params *params);
+void  ft_sort_sprite(t_pars *pars);
 
 #endif

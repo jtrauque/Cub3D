@@ -81,8 +81,15 @@ void ft_look_at(t_pars *pars, t_params *params)
   }
   if (pars->is_a_sprite == 1)
   {
-    printf("SPRITE PRINTED\n");
-    ft_sprite_loop(pars, &sprite, params);
+    sprite.n = 0;
+    ft_sort_sprite(pars);
+    while (sprite.n < pars->sprite_nbr)
+    {
+      printf("SPRITE PRINTED\n");
+      ft_sprite_loop(pars, &sprite, params);
+      sprite.n++;
+    }
+    // ft_sprite_loop(pars, &sprite, params);
   }
   mlx_put_image_to_window(params->mlx_ptr, params->win_ptr, params->data.img, 0, 0);
 }
