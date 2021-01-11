@@ -43,16 +43,16 @@ char  *ft_map_valide(char *elements, t_pars *pars, t_params *params )
     if (temp[i] == ' ')
     {
       temp[i] = '1';
- //     printf("WHAT\n");
+      //     printf("WHAT\n");
     }
-  //  printf("before temp[%d] = [%c]\n", i, temp[i]);
+    //  printf("before temp[%d] = [%c]\n", i, temp[i]);
     if (ft_find(temp[i], caracteres) == 0)
     {
       printf("erreur find elements[%d] = [%c]\n", i, temp[i]);
       return (NULL);
     }
     // if (ft_find(temp[i], caracteres + 3) != 0)
-      // pars->py = i;
+    // pars->py = i;
     // printf("while - elements[%d] = %c\n", i, elements[i]);
     //    printf("temp[%d] = %c\n", i, temp[i]);
     i++;
@@ -64,7 +64,7 @@ char  *ft_map_valide(char *elements, t_pars *pars, t_params *params )
   }
   if (i > params->map_w)
     params->map_w = i;
-//  printf("sortie de map [%s]\n", temp);
+  //  printf("sortie de map [%s]\n", temp);
   //  printf("elements [%s]\n", elements);
   return (temp);
 }
@@ -112,7 +112,7 @@ char **ft_global_map_check(t_pars *pars, t_params *params)
   while (pars->map[0][i])
   {
     if (pars->map[0][i] != '1')
-     ft_error_map("map error - wall missing\n", pars);
+      ft_error_map("map error - wall missing\n", pars);
     i++;
   }
   i= 0;
@@ -120,7 +120,7 @@ char **ft_global_map_check(t_pars *pars, t_params *params)
   while (pars->map[params->map_h - 1][i])
   {
     if (pars->map[params->map_h - 1][i] != '1')
-     ft_error_map("map error - wall missing\n", pars);
+      ft_error_map("map error - wall missing\n", pars);
     i++;
   }
   return (pars->map);
@@ -158,13 +158,42 @@ void  ft_direction(t_pars *pars, char c)
   }
 }
 
+void   ft_count_sprite(t_pars *pars)
+{
+  int x;
+  int y;
+  int i;
+
+  y = 0;
+  i = 0;
+  while (pars->map[y])
+  {
+    x = 0;
+    while (pars->map[y][x])
+    {
+      if(pars->map[y][x] == '2')
+      {
+        i++;
+      }
+      x++;
+    }
+    y++;
+  }
+  pars->sprite_nbr = i;
+}
+
 void  ft_location_player(t_pars *pars) 
 {
   int x;
   int y;
   char *obs;
+  int i;
 
+  ft_count_sprite(pars);
+  if (!(pars->sprite = malloc(sizeof(t_vecteur) * (pars->sprite_nbr + 1))))
+    return;
   y = 0;
+  i = 0;
   obs = "NSWE";
   while (pars->map[y])
   {
@@ -173,19 +202,19 @@ void  ft_location_player(t_pars *pars)
     {
       if(ft_find(pars->map[y][x], obs) == 1)
       {
-        printf("location x = %d\n", x);
-        printf("location y = %d\n", y);
+        printf("player x = %d\n", x);
+        printf("player y = %d\n", y);
         pars->py = y;
         pars->px = x;
         ft_direction(pars,pars->map[y][x]);
       }
       if(pars->map[y][x] == '2')
       {
-        pars->sprite_y = y;
-        pars->sprite_x = x;
-        // ft_sprite_init(pars);
-        printf("sprit x = %f\n", pars->sprite_x);
-        printf("sprit y = %f\n", pars->sprite_y);
+        pars->sprite[i].y = y;
+        pars->sprite[i].x = x;
+          printf("sprit[%d] x = %d\n", i, pars->sprite[i].x);
+          printf("sprit[%d] y = %d\n", i, pars->sprite[i].y);
+        i++;
       }
       x++;
     }

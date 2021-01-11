@@ -2,7 +2,7 @@
 
 NAME      = Cub3D
 
-SRCS      = main.c color.c map.c parsing.c text.c tools.c graph.c key.c ft_split.c
+SRCS      = main.c color.c map.c parsing.c text.c tools.c graph.c key.c ft_split.c raycasting.c sprite.c
 
 OBJS      = ${SRCS:.c=.o}
 
