@@ -33,6 +33,7 @@ void  ft_error(char *str)
 
 void  ft_error_map(char *str, t_pars *pars)
 {
+  ft_putstr("Error\n");
   ft_putstr(str);
   free(pars->map);
   exit(1); 

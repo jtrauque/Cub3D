@@ -36,34 +36,38 @@ void  ft_move(int key, t_pars *pars)
 {
   float speed;
   speed = 0.1;
-  if (key == 65364) // fleche bas
+  if (key == 115) // fleche bas
   {
     if (pars->map[(int)pars->py][(int)(pars->px - pars->dx * speed)] == '0')
       pars->px -= pars->dx * speed;
     if (pars->map[(int)(pars->py - pars->dy * speed)][(int)pars->px] == '0')
       pars->py -= pars->dy * speed;
   }
-  if (key == 65362) // fleche haut
+  if (key == 119) // fleche haut
   {
     if (pars->map[(int)pars->py][(int)(pars->px + pars->dx * speed)] == '0')
       pars->px += pars->dx * speed;
     if (pars->map[(int)(pars->py + pars->dy * speed)][(int)pars->px] == '0')
       pars->py += pars->dy * speed;
   }
-  if (key == 65363) // fleche droite
-  {
+  if (key == 100) // fleche droite
     ft_rotate(pars, 1.);
-    // if (pars->map[(int)pars->py][(int)(pars->px + pars->plane_x * speed)] == '0')
-    //   pars->px += pars->plane_x * speed;
-    // if (pars->map[(int)(pars->py + pars->plane_y * speed)][(int)pars->px] == '0')
-    //   pars->py += pars->plane_y * speed;
-  }
-  if (key == 65361) // fleche gauche
-  {
+  if (key == 97) // fleche gauche
     ft_rotate(pars, -1.);
-    // if (pars->map[(int)pars->py][(int)(pars->px - pars->plane_x * speed)] == '0')
-    //   pars->px -= pars->plane_x * speed;
-    // if (pars->map[(int)(pars->py - pars->plane_y * speed)][(int)pars->px] == '0')
-    //   pars->py -= pars->plane_y * speed;
-  }
+  // if (key == 113) // fleche droite
+  // {
+  //   ft_rotate(pars, 1.);
+  //   if (pars->map[(int)pars->py][(int)(pars->px + pars->plane_x * speed)] == '0')
+  //     pars->px += pars->plane_x * speed;
+  //   if (pars->map[(int)(pars->py + pars->plane_y * speed)][(int)pars->px] == '0')
+  //     pars->py += pars->plane_y * speed;
+  // }
+  // if (key == 101) // fleche gauche
+  // {
+  //   ft_rotate(pars, -1.);
+  //   if (pars->map[(int)pars->py][(int)(pars->px - pars->plane_x * speed)] == '0')
+  //     pars->px -= pars->plane_x * speed;
+  //   if (pars->map[(int)(pars->py - pars->plane_y * speed)][(int)pars->px] == '0')
+  //     pars->py -= pars->plane_y * speed;
+  // }
 }

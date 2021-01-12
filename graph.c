@@ -41,8 +41,8 @@ void ft_background(t_pars *pars, t_params *params)
   while (f < pars->width) {
     y2 = 0;
     while (y2 < pars->height / 2) {
-      ft_put_px_in_image(&params->data, f, middle_screen + y2 , pars->color_c);
-      ft_put_px_in_image(&params->data, f, middle_screen - y2 , pars->color_f);
+      ft_put_px_in_image(&params->data, f, middle_screen + y2 , pars->color_f);
+      ft_put_px_in_image(&params->data, f, middle_screen - y2 , pars->color_c);
       y2++;
     }
     f += 1;

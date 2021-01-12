@@ -52,20 +52,6 @@ void ft_text_s(t_params *params, char *elements, t_pars *pars)
     ft_error("error texture\n");
 }
 
-/*
-   void  ft_xpm_to_image(t_params params, char *elements, void **text)
-   {
-   char *relative_path;
-   int img_width;
-   int img_height;
-   int i;
-
-   i = 1;
-   i += ft_space(elements + i);
-   relative_path = elements + i;
- *text = mlx_xpm_file_to_image(params.mlx_ptr, relative_path, &img_width, &img_height);
- }*/
-
 void ft_text_w(t_params *params, char *elements, t_pars *pars)
 {
   char *relative_path;

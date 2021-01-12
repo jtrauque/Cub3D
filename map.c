@@ -96,6 +96,8 @@ char **ft_global_map_check(t_pars *pars, t_params *params)
   j = 0;
   count = 0;
   i= 0;
+  if (!pars->map_tmp)
+    ft_error_map("No Map ???\n", pars);
   while (obs[j])
   {
     if(ft_find(obs[j], pars->map_tmp) == 1)

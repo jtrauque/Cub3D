@@ -3,6 +3,13 @@
 typedef void (*t_fn_parsing_t)(t_params *params, char *str,t_pars *p);
 t_fn_parsing_t g_parsing[8] = {ft_resolution, ft_text_n, ft_text_s, ft_text_w, ft_text_e, ft_color, ft_color, ft_map_save};
 
+// int  ft_close(t_params *params)
+// {
+//   mlx_destroy_window(params->mlx_ptr, params->win_ptr);
+//   exit(1);
+//   return 0;
+// }
+
 int  main(int argc, char ** argv)
 {
   int fd;
@@ -45,8 +52,6 @@ int  main(int argc, char ** argv)
   params.win_ptr = mlx_new_window(params.mlx_ptr, pars.width, pars.height, "Cub3D");
   params.data.img = mlx_new_image(params.mlx_ptr, pars.width, pars.height);
   params.data.data = (unsigned int *)mlx_get_data_addr(params.data.img, &params.data.bpp, &params.data.size_line, &params.data.endian);
-  // params.img = mlx_new_image();
-  // printf("map.width main = %d\n", params.map_w);
   ft_global_map_check(&pars, &params);
   // // int k = 0;
   // while(pars.map[k]) {
@@ -74,9 +79,14 @@ int  main(int argc, char ** argv)
   printf("color sky = %d\n", pars.color_c);
  // printf("map = \n%s\n", pars.map);
   pars.params = &params;
-  // mlx_hook(params.win_ptr, 2 , 1, deal_key, &pars);
+  mlx_hook(params.win_ptr, 2 , 1, deal_key, &pars);
   mlx_key_hook(params.win_ptr, deal_key, &pars);
+  // mlx_hook(params.win_ptr, 4, 1L<<2, ft_close, &params);
+  printf("AVANT\n");
   mlx_loop(params.mlx_ptr);
+  printf("APRES\n");
+  // mlx_destroy_image(params.mlx_ptr, params.data.img);
+  // ft_destroy_image(t_pars *pars);
   free(pars.map_tmp);
   free(pars.map);
   free(params.mlx_ptr);
