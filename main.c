@@ -3,13 +3,6 @@
 typedef void (*t_fn_parsing_t)(t_params *params, char *str,t_pars *p);
 t_fn_parsing_t g_parsing[8] = {ft_resolution, ft_text_n, ft_text_s, ft_text_w, ft_text_e, ft_color, ft_color, ft_map_save};
 
-// int  ft_close(t_params *params)
-// {
-//   mlx_destroy_window(params->mlx_ptr, params->win_ptr);
-//   exit(1);
-//   return 0;
-// }
-
 int  main(int argc, char ** argv)
 {
   int fd;
@@ -32,14 +25,14 @@ int  main(int argc, char ** argv)
   ft_memset(&pars,0, sizeof(t_pars));
   while ((len = get_next_line(fd, &elements)) > 0)
   {
-  //  printf("len = %d\n", len);
+    //  printf("len = %d\n", len);
     if ((n = ft_space(elements)) == -1)
     {
       free(elements);
       continue;
     }
     i = ft_identify_type(elements[n]);
- //   printf("elements[%d] = %c\n", n, elements[n]);
+    //   printf("elements[%d] = %c\n", n, elements[n]);
     // printf("i = %d\n", i);
     if (i == 7)
       g_parsing[i](&params,elements, &pars);
@@ -74,22 +67,35 @@ int  main(int argc, char ** argv)
   printf("py = %f\n", pars.py);
   printf("dx = %f\n", pars.dx);
   printf("dy = %f\n", pars.dy);
-     printf("valeur a 27/10 = %c\n", pars.map[(int)pars.py][(int)(pars.px + pars.dx)]);
+  printf("valeur a 27/10 = %c\n", pars.map[(int)pars.py][(int)(pars.px + pars.dx)]);
   printf("color floor = %d\n", pars.color_f);
   printf("color sky = %d\n", pars.color_c);
- // printf("map = \n%s\n", pars.map);
+  // printf("map = \n%s\n", pars.map);
   pars.params = &params;
-  mlx_hook(params.win_ptr, 2 , 1, deal_key, &pars);
-  mlx_key_hook(params.win_ptr, deal_key, &pars);
+  ft_manage_mlx(&params, &pars);
+  // mlx_hook(params.win_ptr, 2 , 1<<0, deal_key, &pars);
+  // mlx_hook(params.win_ptr, 3 , 1L<<1, deal_key_release, &pars);
+  // mlx_hook(params.win_ptr, 12 , 1L<<15, minimize_win, &pars);
+  // mlx_hook(params.win_ptr, 35 ,0, toto3, &pars);
+  // mlx_key_hook(params.win_ptr, deal_key, &pars);
   // mlx_hook(params.win_ptr, 4, 1L<<2, ft_close, &params);
   printf("AVANT\n");
+  // mlx_do_key_autorepeatoff(params.mlx_ptr);
+  // mlx_loop_hook(params.mlx_ptr, game_loop, &pars);
+  printf("MILIEU\n");
   mlx_loop(params.mlx_ptr);
   printf("APRES\n");
-  // mlx_destroy_image(params.mlx_ptr, params.data.img);
-  // ft_destroy_image(t_pars *pars);
+  mlx_destroy_window(params.mlx_ptr, params.win_ptr);
+  ft_manage_mlx_destroy(&params, &pars);
   free(pars.map_tmp);
+  i = 0;
+  while (pars.map[i]) {
+    free(pars.map[i]);
+    i++;
+  }
   free(pars.map);
   free(params.mlx_ptr);
+  free(pars.sprite);
   return (0);
 }
 

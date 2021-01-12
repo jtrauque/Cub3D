@@ -33,9 +33,16 @@ void  ft_error(char *str)
 
 void  ft_error_map(char *str, t_pars *pars)
 {
+  int i;
+
+  i = 0;
   ft_putstr("Error\n");
   ft_putstr(str);
-  free(pars->map);
+  while (pars->map[i]) 
+  {
+    free(pars->map[i]);
+    i++;
+  }
   exit(1); 
 }
 

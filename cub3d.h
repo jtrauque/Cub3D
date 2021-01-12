@@ -12,6 +12,11 @@
 #include "get_next_line.h"
 #include "mlx.h"
 
+#define  GO_FORWARD 119
+#define  GO_BACKWARD 115
+#define  TURN_LEFT 97
+#define  TURN_RIGHT 100
+
 typedef struct      s_data
 {
   void *img;
@@ -55,8 +60,6 @@ typedef struct        s_pars
   float py;
   float dx;
   float dy;
-  // float sprite_x;
-  // float sprite_y;
   float plane_x;
   float plane_y;
   t_params *params;
@@ -65,6 +68,11 @@ typedef struct        s_pars
   int is_a_sprite;
   int is_a_sprite_x;
   int is_a_sprite_y;
+  int forward;
+  int backward;
+  int left;
+  int right;
+  float speed;
 }                      t_pars;
 
 typedef struct      s_obs
@@ -133,6 +141,9 @@ void  ft_xpm_to_image(t_params params, char *elements, void **text);
 void  ft_putchar(char c);
 void  ft_putnbr(int n);
 int  deal_key(int key, t_pars *pars);
+int  deal_key_release(int key, t_pars *pars);
+void  ft_manage_mlx(t_params *params, t_pars *pars);
+void ft_manage_mlx_destroy(t_params *params, t_pars *pars);
 int  ft_identify_type(char c);
 char			**ft_split_one(char *s, char c, t_params *params);
 char **ft_global_map_check(t_pars *pars, t_params *params);
@@ -141,6 +152,7 @@ void  ft_location_player(t_pars *pars);
 void ft_look_at(t_pars *pars, t_params *params);
 void  ft_put_px_in_image(t_data *data, int x, int y, int color);
 void  ft_move(int key, t_pars *pars);
+void  ft_rotate(t_pars *pars, float n);
 void  ft_detect_obs(t_pars *pars, t_obs *obs);
 void ft_distance_init(t_obs *obs, t_pars *pars);
 int  ft_get_px_from_image(t_data *data, int x, int y);
