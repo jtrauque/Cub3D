@@ -54,7 +54,7 @@ void  ft_create_bmp(t_pars *pars)
   close(fd);
 }
 
-void ft_save_bmp(char *argv)
+void ft_save_bmp(char *argv, t_pars *pars)
 {
   size_t n;
 
@@ -62,5 +62,6 @@ void ft_save_bmp(char *argv)
     ft_error("The second argument is not valid\n");
   if (ft_strncmp("--save", argv, n) != 0)
     ft_error("The second argument is not valid\n");
+  pars->save = 1;
   printf("C est bien save\n");
 }

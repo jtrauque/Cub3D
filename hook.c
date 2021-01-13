@@ -54,4 +54,7 @@ void ft_manage_mlx_destroy(t_params *params, t_pars *pars)
   mlx_destroy_image(params->mlx_ptr, pars->text_e.img);
   mlx_destroy_image(params->mlx_ptr, pars->text_w.img);
   mlx_destroy_image(params->mlx_ptr, pars->text_sprite.img);
+  mlx_do_key_autorepeaton(params->mlx_ptr);
+  mlx_do_sync(params->mlx_ptr);
+  mlx_destroy_window(params->mlx_ptr, params->win_ptr);
 }

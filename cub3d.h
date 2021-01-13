@@ -194,7 +194,7 @@ void  ft_sprite_init(t_pars *pars, t_sprite *sprite);
 void ft_apply_text_on_wall(t_pars *pars, t_obs *obs, t_data *text);
 void  ft_sprite_loop(t_pars *pars, t_sprite *sprite, t_params *params);
 void  ft_sort_sprite(t_pars *pars);
-void ft_save_bmp(char *argv);
+void ft_save_bmp(char *argv, t_pars *pars);
 void  ft_create_bmp(t_pars *pars);
 
 #endif
