@@ -3,8 +3,7 @@
 int  cross_exit(t_pars *pars) 
 {
   mlx_loop_end(pars->params->mlx_ptr);
-  // exit(0);
-  return printf("GOT A DELETE << < < < < <<< \n");
+  return (0);
 }
 
 int  minimize_win(t_pars *pars) 
@@ -42,7 +41,7 @@ void  ft_manage_mlx(t_params *params, t_pars *pars)
   mlx_hook(params->win_ptr, 2 , 1<<0, deal_key, pars);
   mlx_hook(params->win_ptr, 3 , 1L<<1, deal_key_release, pars);
   mlx_hook(params->win_ptr, 12 , 1L<<15, minimize_win, pars);
-  mlx_hook(params->win_ptr, 17 , 1L<<17, cross_exit, pars);
+  mlx_hook(params->win_ptr, 33 , 1L<<0, cross_exit, pars);
   mlx_do_key_autorepeatoff(params->mlx_ptr);
   mlx_loop_hook(params->mlx_ptr, game_loop, pars);
 }

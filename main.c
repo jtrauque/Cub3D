@@ -31,15 +31,15 @@ int  main(int argc, char **argv)
     ft_error("No arguments\n");
   fd = open(argv[1], O_RDONLY);
   if (argc > 3)
-    return (1);
+    ft_error("To much arguments\n");
   if (fd < 0)
-    return (1);
+    ft_error("No arguments valid\n");
+    // return (1);
   ft_memset(&pars,0, sizeof(t_pars));
   if (argc == 3)
   {
     ft_save_bmp(argv[2]);
     pars.save = 1;
-    // return (0);
   }
   if (argc == 2)
     ft_check_ext(argv[1]);
