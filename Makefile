@@ -2,7 +2,7 @@
 
 NAME      = Cub3D
 
-SRCS      = main.c color.c map.c parsing.c text.c tools.c graph.c key.c ft_split.c raycasting.c sprite.c hook.c
+SRCS      = main.c color.c map.c parsing.c text.c tools.c graph.c key.c ft_split.c raycasting.c sprite.c hook.c bitmap.c
 
 OBJS      = ${SRCS:.c=.o}
 
@@ -10,7 +10,13 @@ DEP       = ${OBJS:.o=.d}
 
 CC        = gcc
 
-CFLAGS    = -I libft -Iincludes -Llibft -lft -lmlx -lm -lX11 -lXext -Wall -Wextra -Werror -fsanitize=address -Wno-unused-result -g -MMD
+CFLAGS    = -I libft -Iincludes -Wall -Wextra -Werror -fsanitize=address -Wno-unused-result -g -MMD
+
+
+LDFLAGS    = -Llibft
+
+LDLIBS    = -lm -lmlx -lXext -lX11 -lft
+
 
 RM        = rm -f
 
@@ -19,11 +25,8 @@ all :     libft2 ${NAME}
 libft2 : 
 		make -C libft
 
-.c.o :
-		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
-
 $(NAME) : ${OBJS}
-		  ${CC} -o ${NAME} ${OBJS} ${CFLAGS} 
+		  ${CC} -o ${NAME} ${OBJS} ${CFLAGS} ${LDFLAGS} ${LDLIBS}
 
 clean :   
 					${RM} ${OBJS} ${DEP}

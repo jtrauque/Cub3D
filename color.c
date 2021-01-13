@@ -45,6 +45,7 @@ void  ft_color(t_params *params, char *elements, t_pars *pars)
   int i;
 
   i = 1;
+  pars->count += 1;
   (void)params;
   // printf("elements[%d] = %c\n", i, elements[i]);
   if (elements[0] == 'F' && elements[1] == ' ')

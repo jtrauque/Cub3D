@@ -72,7 +72,7 @@ void  ft_detect_obs(t_pars *pars, t_obs *obs)
     obs->true_dist = (obs->map_x - pars->px + (1 - obs->step_x) / 2) / obs->raydir_x;
   else
     obs->true_dist = (obs->map_y - pars->py + (1 - obs->step_y) / 2) / obs->raydir_y;
-  printf("distance = %f\n", obs->true_dist);
+  // printf("distance = %f\n", obs->true_dist);
 }
 
 void ft_distance_init(t_obs *obs, t_pars *pars)

@@ -1,47 +1,48 @@
 #include "cub3d.h"
 
-typedef void (*t_fn_parsing_t)(t_params *params, char *str,t_pars *p);
-t_fn_parsing_t g_parsing[8] = {ft_resolution, ft_text_n, ft_text_s, ft_text_w, ft_text_e, ft_color, ft_color, ft_map_save};
+void ft_check_ext(char *argv)
+{
+  char *tmp;
 
-int  main(int argc, char ** argv)
+  tmp = ft_strchr(argv, '.');
+  if (!tmp)
+    ft_error("Wrong extension - please use a .cub\n");
+  if (ft_strlen(tmp) != ft_strlen(".cub"))
+    ft_error("Wrong extension - please use a .cub\n");
+  if (ft_strncmp(".cub", tmp, 4) != 0)
+    ft_error("Wrong extension - please use a .cub\n");
+}
+
+int  main(int argc, char **argv)
 {
   int fd;
-  char *elements;
+  // char *elements;
   t_pars pars;
   t_params params;
   int i;
-  int n;
-  int len;
+  // int n;
+  // int len;
 
   ft_memset(&params, 0, sizeof(t_params));
   params.mlx_ptr = mlx_init();
-  elements = NULL;
-  n = 0;
+  // elements = NULL;
+  // n = 0;
   fd = open(argv[1], O_RDONLY);
-  if (argc != 2)
+  if (argc > 3)
     return (1);
   if (fd < 0)
     return (1);
   ft_memset(&pars,0, sizeof(t_pars));
-  while ((len = get_next_line(fd, &elements)) > 0)
+  if (argc == 3)
   {
-    //  printf("len = %d\n", len);
-    if ((n = ft_space(elements)) == -1)
-    {
-      free(elements);
-      continue;
-    }
-    i = ft_identify_type(elements[n]);
-    //   printf("elements[%d] = %c\n", n, elements[n]);
-    // printf("i = %d\n", i);
-    if (i == 7)
-      g_parsing[i](&params,elements, &pars);
-    else if (i != - 1)
-      g_parsing[i](&params,elements + n, &pars);
-    else
-      ft_error("error elements\n");
-    free(elements);
+    ft_save_bmp(argv[2]);
+    pars.save = 1;
+    // return (0);
   }
+  if (argc == 2)
+    ft_check_ext(argv[1]);
+  ft_parsing(fd, &pars, &params);
+
   params.win_ptr = mlx_new_window(params.mlx_ptr, pars.width, pars.height, "Cub3D");
   params.data.img = mlx_new_image(params.mlx_ptr, pars.width, pars.height);
   params.data.data = (unsigned int *)mlx_get_data_addr(params.data.img, &params.data.bpp, &params.data.size_line, &params.data.endian);
@@ -72,6 +73,7 @@ int  main(int argc, char ** argv)
   printf("color sky = %d\n", pars.color_c);
   // printf("map = \n%s\n", pars.map);
   pars.params = &params;
+  printf("data.img_width MAIN = %d\n", pars.params->data.img_width);
   ft_manage_mlx(&params, &pars);
   // mlx_hook(params.win_ptr, 2 , 1<<0, deal_key, &pars);
   // mlx_hook(params.win_ptr, 3 , 1L<<1, deal_key_release, &pars);
@@ -83,7 +85,10 @@ int  main(int argc, char ** argv)
   // mlx_do_key_autorepeatoff(params.mlx_ptr);
   // mlx_loop_hook(params.mlx_ptr, game_loop, &pars);
   printf("MILIEU\n");
-  mlx_loop(params.mlx_ptr);
+  if (pars.save != 1)
+    mlx_loop(params.mlx_ptr);
+  else
+    ft_create_bmp(&pars);
   printf("APRES\n");
   mlx_destroy_window(params.mlx_ptr, params.win_ptr);
   ft_manage_mlx_destroy(&params, &pars);

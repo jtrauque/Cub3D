@@ -5,6 +5,7 @@ void ft_text_n(t_params *params, char *elements, t_pars *pars)
   char *relative_path;
   int i;
 
+  pars->count += 1;
   i = 1;
   if (elements[i] == 'O' && elements[i + 1] == ' ')
   {
@@ -27,6 +28,7 @@ void ft_text_s(t_params *params, char *elements, t_pars *pars)
   char *relative_path;
   int i;
 
+  pars->count += 1;
   i = 1;
   if (elements[i] == 'O' && elements[i + 1] == ' ')
   {
@@ -57,6 +59,7 @@ void ft_text_w(t_params *params, char *elements, t_pars *pars)
   char *relative_path;
   int i;
 
+  pars->count += 1;
   i = 1;
   if (elements[i] == 'E' && elements[i + 1] == ' ')
   {
@@ -77,6 +80,7 @@ void ft_text_e(t_params *params, char *elements, t_pars *pars)
   char *relative_path;
   int i;
 
+  pars->count += 1;
   i = 1;
   if (elements[i] == 'A' && elements[i + 1] == ' ')
   {

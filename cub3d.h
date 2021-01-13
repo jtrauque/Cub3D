@@ -45,6 +45,7 @@ typedef struct     s_vecteur
 
 typedef struct        s_pars
 {
+  int count;
   int width;
   int height;
   char **map;
@@ -73,6 +74,7 @@ typedef struct        s_pars
   int left;
   int right;
   float speed;
+  int save;
 }                      t_pars;
 
 typedef struct      s_obs
@@ -126,6 +128,37 @@ typedef struct      s_sprite
   int sprite_screen;
 }                   t_sprite;
 
+typedef struct __attribute__((__packed__)) s_pixel 
+{
+  unsigned char b;
+  unsigned char g;
+  unsigned char r;
+}                                          t_pixel;
+
+typedef struct __attribute__((__packed__)) s_file_header
+{
+    char signature[2];
+    unsigned int sizeinbytes;
+    unsigned int reserved;
+    unsigned int pixel_data;
+}                                          t_file_header;
+
+typedef struct __attribute__((__packed__)) s_info_header 
+{
+    unsigned int header_size;
+    int width;
+    int height;
+    unsigned short int nmb_color_planes;
+    unsigned short int color_depth;
+    unsigned int compression;
+    unsigned int image_size;
+    int horizontal_resolution;
+    int vertical_resolution; 
+    unsigned int color_table;
+    unsigned int important_colors;
+}                                         t_info_header;
+
+void ft_parsing(int fd, t_pars *pars, t_params *params);
 void ft_resolution(t_params *params, char *elements, t_pars *pars);
 void ft_text_n(t_params *params, char *elements, t_pars *pars);
 void ft_text_s(t_params *params, char *elements, t_pars *pars);
@@ -161,5 +194,7 @@ void  ft_sprite_init(t_pars *pars, t_sprite *sprite);
 void ft_apply_text_on_wall(t_pars *pars, t_obs *obs, t_data *text);
 void  ft_sprite_loop(t_pars *pars, t_sprite *sprite, t_params *params);
 void  ft_sort_sprite(t_pars *pars);
+void ft_save_bmp(char *argv);
+void  ft_create_bmp(t_pars *pars);
 
 #endif

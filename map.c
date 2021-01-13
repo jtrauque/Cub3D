@@ -72,7 +72,7 @@ char  *ft_map_valide(char *elements, t_pars *pars, t_params *params )
 void ft_map_save(t_params *params, char *elements, t_pars *pars)
 {
   char *tmp;
-
+  printf("MAP\n");
   if ((tmp = ft_map_valide(elements, pars, params)) != NULL)
   {
     if (!(pars->map_tmp = ft_strnjoin(pars->map_tmp, tmp, ft_strlen(tmp))))
@@ -206,9 +206,9 @@ void  ft_location_player(t_pars *pars)
       {
         printf("player x = %d\n", x);
         printf("player y = %d\n", y);
-        pars->py = (float)y + .5;
+        pars->py = (float)y; // + .5;
         // .5 pour etre au milieu de la case et pouvoir etre entoure de 1 mais bloque !
-        pars->px = (float)x + .5;
+        pars->px = (float)x; // + .5;
         ft_direction(pars,pars->map[y][x]);
       }
       if(pars->map[y][x] == '2')
