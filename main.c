@@ -27,6 +27,8 @@ int  main(int argc, char **argv)
   params.mlx_ptr = mlx_init();
   // elements = NULL;
   // n = 0;
+  if (!argv[1])
+    ft_error("No arguments\n");
   fd = open(argv[1], O_RDONLY);
   if (argc > 3)
     return (1);
