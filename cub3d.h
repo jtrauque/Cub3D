@@ -194,7 +194,7 @@ void  ft_location_player(t_pars *pars);
 void ft_look_at(t_pars *pars, t_params *params);
 void  ft_put_px_in_image(t_data *data, int x, int y, int color);
 void  ft_move(int key, t_pars *pars);
-void	ft_side_move(t_pars *pars, char c);
+void	ft_side_move(t_pars *pars);
 void  ft_rotate(t_pars *pars, float n);
 void  ft_detect_obs(t_pars *pars, t_obs *obs);
 void ft_distance_init(t_obs *obs, t_pars *pars);

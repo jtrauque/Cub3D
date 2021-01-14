@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:56:00 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/14 21:08:46 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/14 22:59:53 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int		deal_key(int key, t_pars *pars)
 	if (key == 65307)
 		mlx_loop_end(pars->params->mlx_ptr);
 	ft_move(key, pars);
-	ft_look_at(pars, pars->params);
 	return (0);
 }
 
@@ -72,8 +71,10 @@ void	ft_move(int key, t_pars *pars)
 		pars->move_left = 1;
 }
 
-void	ft_side_move(t_pars *pars, char c)
+void	ft_side_move(t_pars *pars)
 {
+	char c;
+
 	if (pars->left == 1)
 		ft_rotate(pars, -1.);
 	if (pars->right == 1)

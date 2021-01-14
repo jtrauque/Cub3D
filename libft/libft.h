@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 11:45:25 by jtrauque          #+#    #+#             */
-/*   Updated: 2020/11/17 11:32:26 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/14 23:35:03 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,8 @@ void			ft_lstclear(t_list **lst, void (*del)(void *));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 							void (*del)(void *));
+void			ft_putstr(char *str);
+void			ft_putchar(char c);
+void			ft_putnbr(int n);
 
 #endif

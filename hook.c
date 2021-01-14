@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:52:39 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/14 20:53:27 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/14 23:15:17 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,17 @@ int		game_loop(t_pars *pars)
 					[(int)pars->px]) != '1' && c != '2')
 			pars->py -= pars->dy * pars->speed;
 	}
-	ft_side_move(pars, c);
+	ft_side_move(pars);
 	ft_look_at(pars, pars->params);
 	return (0);
 }
 
 void	ft_manage_mlx(t_params *params, t_pars *pars)
 {
+	ft_global_map_check(pars, params);
+	ft_location_player(pars);
+	ft_look_at(pars, params);
+	pars->params = params;
 	mlx_hook(params->win_ptr, 2, 1 << 0, deal_key, pars);
 	mlx_hook(params->win_ptr, 3, 1L << 1, deal_key_release, pars);
 	mlx_hook(params->win_ptr, 12, 1L << 15, minimize_win, pars);
@@ -63,6 +67,9 @@ void	ft_manage_mlx(t_params *params, t_pars *pars)
 
 void	ft_manage_mlx_destroy(t_params *params, t_pars *pars)
 {
+	int i;
+
+	i = 0;
 	mlx_destroy_image(params->mlx_ptr, params->data.img);
 	mlx_destroy_image(params->mlx_ptr, pars->text_n.img);
 	mlx_destroy_image(params->mlx_ptr, pars->text_s.img);
@@ -72,4 +79,13 @@ void	ft_manage_mlx_destroy(t_params *params, t_pars *pars)
 	mlx_do_key_autorepeaton(params->mlx_ptr);
 	mlx_do_sync(params->mlx_ptr);
 	mlx_destroy_window(params->mlx_ptr, params->win_ptr);
+	free(pars->map_tmp);
+	while (pars->map[i])
+	{
+		free(pars->map[i]);
+		i++;
+	}
+	free(pars->map);
+	free(params->mlx_ptr);
+	free(pars->sprite);
 }
