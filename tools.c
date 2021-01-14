@@ -1,71 +1,84 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tools.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/14 16:36:07 by jtrauque          #+#    #+#             */
+/*   Updated: 2021/01/14 21:47:18 by jtrauque         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-void  ft_putstr(char *str)
+void	ft_putstr(char *str)
 {
-  int i;
+	int i;
 
-  i = 0;
-  while (str[i])
-    i++;
-  write(1, str, i);
+	i = 0;
+	while (str[i])
+		i++;
+	write(1, str, i);
 }
 
-int   ft_space(char *elements)
+int		ft_space(char *elements)
 {
-  int i;
+	int i;
 
-  i = 0;
-  while (elements[i])
-  {
-    if (elements[i] == ' ')
-      i++;
-    else 
-      return (i);
-  }
-  return (-1); 
+	i = 0;
+	while (elements[i])
+	{
+		if (elements[i] == ' ')
+			i++;
+		else
+			return (i);
+	}
+	return (-1);
 }
 
-void  ft_error(char *str)
+void	ft_error(char *str)
 {
-  ft_putstr("Error\n");
-  ft_putstr(str);
-  exit(1); 
+	ft_putstr("Error\n");
+	ft_putstr(str);
+	exit(1);
 }
 
-void  ft_error_map(char *str, t_pars *pars)
+void	ft_error_map(char *str, t_pars *pars)
 {
-  int i;
+	int i;
 
-  i = 0;
-  ft_putstr("Error\n");
-  ft_putstr(str);
-  while (pars->map[i]) 
-  {
-    free(pars->map[i]);
-    i++;
-  }
-  exit(1); 
+	i = 0;
+	ft_putstr("Error\n");
+	ft_putstr(str);
+	while (pars->map[i])
+	{
+		free(pars->map[i]);
+		i++;
+	}
+	exit(1);
 }
 
-void  ft_putchar(char c)
+void	ft_putchar(char c)
 {
-  write(1, &c, 1);
+	write(1, &c, 1);
 }
 
-void  ft_putnbr(int n)
+void	ft_putnbr(int n)
 {
-  unsigned long nb;
-  nb = n;
-  if (n < 0)
-  {
-    ft_putchar('-');
-    nb = -nb;
-  }
-  if (nb > 9)
-  {
-    ft_putnbr(nb / 10);
-    ft_putnbr(nb % 10);
-  }
-  else 
-    ft_putchar(nb + '0');
+	unsigned long nb;
+
+	nb = n;
+	if (n < 0)
+	{
+		ft_putchar('-');
+		nb = -nb;
+	}
+	if (nb > 9)
+	{
+		ft_putnbr(nb / 10);
+		ft_putnbr(nb % 10);
+	}
+	else
+		ft_putchar(nb + '0');
 }

@@ -6,20 +6,20 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 11:49:25 by jtrauque          #+#    #+#             */
-/*   Updated: 2020/11/18 14:10:25 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/14 14:40:28 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int		ft_equal(char a, char c)
+static int	ft_equal(char a, char c)
 {
 	if (a == c)
 		return (1);
 	return (0);
 }
 
-static int		ft_count_word(char const *s, char c)
+static int	ft_count_word(char const *s, char c)
 {
 	int i;
 	int count;
@@ -35,7 +35,7 @@ static int		ft_count_word(char const *s, char c)
 	return (count + 1);
 }
 
-int ft_memcpy_one(char *dst, char *src, int n)
+int			ft_memcpy_one(char *dst, char *src, int n)
 {
 	int i;
 	int count;
@@ -55,7 +55,7 @@ int ft_memcpy_one(char *dst, char *src, int n)
 	return (count);
 }
 
-char			**ft_split_one(char *s, char c, t_params *params)
+char		**ft_split_one(char *s, char c, t_params *params)
 {
 	int		i;
 	int		j;
@@ -64,8 +64,6 @@ char			**ft_split_one(char *s, char c, t_params *params)
 
 	i = 0;
 	j = 0;
-	if (!s)
-		return (NULL);
 	if (!(word = malloc(sizeof(char*) * (ft_count_word(s, c) + 1))))
 		return (NULL);
 	while (s[i])
