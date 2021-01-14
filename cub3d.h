@@ -57,12 +57,12 @@ typedef struct        s_pars
   int color_f;
   int color_c;
   char *map_tmp;
-  float px;
-  float py;
-  float dx;
-  float dy;
-  float plane_x;
-  float plane_y;
+  double px;
+  double py;
+  double dx;
+  double dy;
+  double plane_x;
+  double plane_y;
   t_params *params;
   t_vecteur *sprite;
   int sprite_nbr;
@@ -73,14 +73,14 @@ typedef struct        s_pars
   int backward;
   int left;
   int right;
-  float speed;
+  double speed;
   int save;
 }                      t_pars;
 
 typedef struct      s_obs
 {
-  float ox;
-  float oy;
+  // float ox;
+  // float oy;
   double true_dist;
   double sprite_true_dist;
   double raydir_x;
@@ -97,14 +97,12 @@ typedef struct      s_obs
   int step_x;
   int step_y;
   int text_x;
-  float dist_x;
-  float dist_y;
-  float xa;
-  float ya;
+  double dist_x;
+  double dist_y;
+  double xa;
+  double ya;
   t_data *text;
 }                   t_obs;
-
-
 
 typedef struct      s_sprite
 {

@@ -16,16 +16,20 @@ int  game_loop(t_pars *pars)
 {
   if (pars->forward == 1) 
   {
-    if (pars->map[(int)pars->py][(int)(pars->px + pars->dx * pars->speed)] == '0')
+    if (pars->map[(int)pars->py][(int)(pars->px + pars->dx * pars->speed)] != '1' &&
+    pars->map[(int)pars->py][(int)(pars->px + pars->dx * pars->speed)] != '2')
       pars->px += pars->dx * pars->speed;
-    if (pars->map[(int)(pars->py + pars->dy * pars->speed)][(int)pars->px] == '0')
+    if (pars->map[(int)(pars->py + pars->dy * pars->speed)][(int)pars->px] != '1' &&
+    pars->map[(int)(pars->py + pars->dy * pars->speed)][(int)pars->px] != '2')
       pars->py += pars->dy * pars->speed;
   }
   if (pars->backward == 1)
   {
-    if (pars->map[(int)pars->py][(int)(pars->px - pars->dx * pars->speed)] == '0')
+    if (pars->map[(int)pars->py][(int)(pars->px - pars->dx * pars->speed)] != '1' &&
+    pars->map[(int)pars->py][(int)(pars->px - pars->dx * pars->speed)] != '2')
       pars->px -= pars->dx * pars->speed;
-    if (pars->map[(int)(pars->py - pars->dy * pars->speed)][(int)pars->px] == '0')
+    if (pars->map[(int)(pars->py - pars->dy * pars->speed)][(int)pars->px] != '1' &&
+    pars->map[(int)(pars->py - pars->dy * pars->speed)][(int)pars->px] != '2')
       pars->py -= pars->dy * pars->speed;
   }
   if(pars->left == 1)
@@ -33,7 +37,7 @@ int  game_loop(t_pars *pars)
   if(pars->right == 1)
     ft_rotate(pars, 1.);
   ft_look_at(pars, pars->params);
-  return 0;
+  return (0);
 }
 
 void  ft_manage_mlx(t_params *params, t_pars *pars)

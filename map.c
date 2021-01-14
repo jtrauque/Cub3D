@@ -134,14 +134,14 @@ void  ft_direction(t_pars *pars, char c)
   {
     pars->dx = 0;
     pars->dy = -1.0;
-    pars->plane_x = 1;
+    pars->plane_x = 1.0;
     pars->plane_y = 0;
   }
   else if(c == 'S')
   {
     pars->dx = 0;
     pars->dy = 1.0;
-    pars->plane_x = 1;
+    pars->plane_x = -1.0;
     pars->plane_y = 0;
   }
   else if(c == 'W')
@@ -149,14 +149,14 @@ void  ft_direction(t_pars *pars, char c)
     pars->dx = -1.0;
     pars->dy = 0;
     pars->plane_x = 0;
-    pars->plane_y = 1;
+    pars->plane_y = -1.0;
   } 
   else if(c == 'E')
   {
     pars->dx = 1.0;
-    pars->dy = pars->py;
+    pars->dy = 0;
     pars->plane_x = 0;
-    pars->plane_y = 1;
+    pars->plane_y = 1.0;
   }
 }
 
@@ -188,35 +188,30 @@ void  ft_location_player(t_pars *pars)
 {
   int x;
   int y;
-  char *obs;
   int i;
 
+  y = 0;
+  i = 0;
   ft_count_sprite(pars);
   if (!(pars->sprite = malloc(sizeof(t_vecteur) * (pars->sprite_nbr + 1))))
     return;
-  y = 0;
-  i = 0;
-  obs = "NSWE";
   while (pars->map[y])
   {
     x = 0;
     while (pars->map[y][x])
     {
-      if(ft_find(pars->map[y][x], obs) == 1)
+      if(ft_find(pars->map[y][x], "NSWE") == 1)
       {
         printf("player x = %d\n", x);
         printf("player y = %d\n", y);
-        pars->py = (float)y; // + .5;
-        // .5 pour etre au milieu de la case et pouvoir etre entoure de 1 mais bloque !
-        pars->px = (float)x; // + .5;
+        pars->py = (float)y + .5;
+        pars->px = (float)x + .5;
         ft_direction(pars,pars->map[y][x]);
       }
       if(pars->map[y][x] == '2')
       {
         pars->sprite[i].y = y;
         pars->sprite[i].x = x;
-          printf("sprit[%d] x = %d\n", i, pars->sprite[i].x);
-          printf("sprit[%d] y = %d\n", i, pars->sprite[i].y);
         i++;
       }
       x++;

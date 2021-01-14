@@ -32,18 +32,12 @@ int   ft_hit(t_obs *obs, t_pars *pars)
   if (pars->map[obs->map_y][obs->map_x] == '1')
     return (1);
   if (pars->map[obs->map_y][obs->map_x] == '2')
-  {
     ft_sprite_distance(obs, pars);
-  }
   return (0);
 }
 
-void  ft_detect_obs(t_pars *pars, t_obs *obs)
+void  ft_step(t_obs *obs, t_pars *pars)
 {
-  int hit = 0;
-
-  obs->xa = fabs(1 / obs->raydir_x);
-  obs->ya = fabs(1 / obs->raydir_y);
   if (obs->raydir_x < 0)
   {
     obs->step_x = -1;
@@ -64,15 +58,21 @@ void  ft_detect_obs(t_pars *pars, t_obs *obs)
     obs->step_y = 1;
     obs->dist_y = (obs->map_y + 1.0 - pars->py) * obs->ya; 
   }
+}
+void  ft_detect_obs(t_pars *pars, t_obs *obs)
+{
+  int hit = 0;
+
+  obs->xa = fabs(1 / obs->raydir_x);
+  obs->ya = fabs(1 / obs->raydir_y);
+  ft_step(obs, pars);
   while (hit == 0)
-  {
     hit = ft_hit(obs, pars);
-  }
   if (obs->side == 0 || obs->side == 1)
     obs->true_dist = (obs->map_x - pars->px + (1 - obs->step_x) / 2) / obs->raydir_x;
   else
     obs->true_dist = (obs->map_y - pars->py + (1 - obs->step_y) / 2) / obs->raydir_y;
-  // printf("distance = %f\n", obs->true_dist);
+   // printf("distance = %f\n", obs->true_dist);
 }
 
 void ft_distance_init(t_obs *obs, t_pars *pars)

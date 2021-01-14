@@ -37,8 +37,8 @@ void ft_parsing(int fd, t_pars *pars, t_params *params)
     }
     i = ft_identify_type(elements[n]);
     //   printf("elements[%d] = %c\n", n, elements[n]);
-    printf("i = %d\n", i);
-    printf("pars->count = %d\n", pars->count);
+    // printf("i = %d\n", i);
+    // printf("pars->count = %d\n", pars->count);
     if (i == 7 && pars->count == 8)
       g_parsing[i](params,elements, pars);
     else if (i != - 1 && i != 7)
