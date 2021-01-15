@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:04:46 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/14 16:08:37 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/15 19:13:35 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,13 @@ void	ft_parsing(int fd, t_pars *pars, t_params *params)
 	{
 		if ((n = ft_space(elements)) == -1)
 		{
+			if (pars->count > 8)
+				ft_error("Empty lines in the map\n");
 			free(elements);
 			continue;
 		}
 		i = ft_identify_type(elements[n]);
-		if (i == 7 && pars->count == 8)
+		if (i == 7 && pars->count >= 8)
 			g_parsing[i](params, elements, pars);
 		else if (i != -1 && i != 7)
 			g_parsing[i](params, elements + n, pars);

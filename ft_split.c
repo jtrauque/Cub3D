@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 11:49:25 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/14 14:40:28 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/15 19:10:28 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int			ft_memcpy_one(char *dst, char *src, int n)
 	count = i;
 	while (i < n)
 	{
-		dst[i] = '1';
+		dst[i] = ' ';
 		i++;
 	}
 	return (count);

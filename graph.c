@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:41:12 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/14 21:12:13 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/15 13:19:17 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	ft_print_column(t_pars *pars, t_obs *obs, t_params *params)
 
 	ft_distance_init(obs, pars);
 	ft_detect_obs(pars, obs);
+	ft_distance_init(obs, pars);
 	obs->line = obs->draw_start;
 	ft_side_pick(pars, obs);
 	if (obs->heigth_column_PJ > pars->height)
@@ -111,6 +112,7 @@ void	ft_look_at(t_pars *pars, t_params *params)
 			sprite.n++;
 		}
 	}
-	mlx_put_image_to_window(params->mlx_ptr, params->win_ptr, params->data.img,
-			0, 0);
+	if (pars->save != 1)
+		mlx_put_image_to_window(params->mlx_ptr, params->win_ptr,
+				params->data.img, 0, 0);
 }

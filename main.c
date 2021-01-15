@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:38:44 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/14 23:18:32 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/15 13:17:12 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	ft_check_ext(char *argv)
 
 void	ft_check_arg(int argc, char **argv, int fd, t_pars *pars)
 {
+	ft_memset(pars, 0, sizeof(t_pars));
 	if (argc > 3)
 		ft_error("To much arguments\n");
 	if (fd < 0)
 		ft_error("No arguments valid\n");
-	ft_memset(pars, 0, sizeof(t_pars));
 	if (argc == 3)
 		ft_save_bmp(argv[2], pars);
 	if (argc == 2)
@@ -50,8 +50,10 @@ int		main(int argc, char **argv)
 		ft_error("No arguments\n");
 	fd = open(argv[1], O_RDONLY);
 	ft_check_arg(argc, argv, fd, &pars);
+	pars.params = &params;
 	ft_parsing(fd, &pars, &params);
-	params.win_ptr = mlx_new_window(params.mlx_ptr, pars.width, pars.height,
+	if (pars.save != 1)
+		params.win_ptr = mlx_new_window(params.mlx_ptr, pars.width, pars.height,
 "Cub3D");
 	params.data.img = mlx_new_image(params.mlx_ptr, pars.width, pars.height);
 	params.data.data = (unsigned int *)mlx_get_data_addr(params.data.img,

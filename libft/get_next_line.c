@@ -6,12 +6,13 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 13:19:07 by jtrauque          #+#    #+#             */
-/*   Updated: 2020/11/20 17:29:59 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/15 14:34:29 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #define BUFFER_SIZE 1048
+#include <stdio.h>
 
 char	*ft_strndup(const char *s1, int n)
 {
@@ -21,6 +22,7 @@ char	*ft_strndup(const char *s1, int n)
 	i = 0;
 	if (!s1)
 		return (NULL);
+	printf("%d\n", n);
 	if (!(s2 = malloc(sizeof(char) * (n + 1))))
 		return (NULL);
 	while (i < n)
@@ -68,13 +70,16 @@ int		ft_patch(char **line, char **save, char **tmp)
 	*next = '\0';
 	if (!(*line = ft_strnjoin(*line, *save, next - *save)))
 		return (-1);
-	if (!(next = ft_strndup(next + 1, ft_strlen(next + 1))))
+	if (!ft_strlen(next + 1))
+		next = NULL;
+	else if (!(next = ft_strndup(next + 1, ft_strlen(next + 1))))
 		return (-1);
 	free(*tmp);
 	*tmp = next;
 	return (1);
 }
 
+#include <stdio.h>
 int		ft_line(int fd, char *buffer, char **line)
 {
 	static char *tmp = NULL;

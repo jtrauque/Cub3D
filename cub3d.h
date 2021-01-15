@@ -1,25 +1,35 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/15 20:03:22 by jtrauque          #+#    #+#             */
+/*   Updated: 2021/01/15 20:11:20 by jtrauque         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include "libft.h"
-#include "get_next_line.h"
-#include "mlx.h"
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <math.h>
+# include "libft.h"
+# include "get_next_line.h"
+# include "mlx.h"
 
-#define  GO_FORWARD 119
-#define  GO_BACKWARD 115
-#define  TURN_LEFT 97
-#define  TURN_RIGHT 100
-#define  GO_LEFT 113
-#define  GO_RIGHT 101
+# define  GO_FORWARD 119
+# define  GO_BACKWARD 115
+# define  TURN_LEFT 97
+# define  TURN_RIGHT 100
+# define  GO_LEFT 113
+# define  GO_RIGHT 101
 
-typedef struct      s_data
+typedef struct		s_data
 {
 	void *img;
 	unsigned int *data;
@@ -28,24 +38,24 @@ typedef struct      s_data
 	int endian;
 	int img_width;
 	int img_height;
-}                   t_data;
+}					t_data;
 
-typedef struct      s_params
+typedef struct		s_params
 {
 	void *mlx_ptr;
 	void *win_ptr;
 	t_data data;
 	int map_h;
 	int map_w;
-}                   t_params;
+}					t_params;
 
-typedef struct     s_vecteur
+typedef struct		s_vecteur
 {
 	int x;
 	int y;
-}                  t_vecteur;
+}					t_vecteur;
 
-typedef struct        s_pars
+typedef struct		s_pars
 {
 	int count;
 	int width;
@@ -79,19 +89,17 @@ typedef struct        s_pars
 	int move_right;
 	double speed;
 	int save;
-}                      t_pars;
+}					t_pars;
 
-typedef struct      s_color
+typedef struct		s_color
 {
 	int R;
 	int G;
 	int B;
 }					t_color;
 
-typedef struct      s_obs
+typedef struct	s_obs
 {
-	// float ox;
-	// float oy;
 	double true_dist;
 	double sprite_true_dist;
 	double raydir_x;
@@ -113,9 +121,9 @@ typedef struct      s_obs
 	double xa;
 	double ya;
 	t_data *text;
-}                   t_obs;
+}				t_obs;
 
-typedef struct      s_sprite
+typedef struct	s_sprite
 {
 	int   heigth_column;
 	int   width_column;
@@ -134,24 +142,24 @@ typedef struct      s_sprite
 	double next_x;
 	double next_y;
 	int sprite_screen;
-}                   t_sprite;
+}				t_sprite;
 
-typedef struct __attribute__((__packed__)) s_pixel 
+typedef struct __attribute__((__packed__))	s_pixel
 {
 	unsigned char b;
 	unsigned char g;
 	unsigned char r;
-}                                          t_pixel;
+}											t_pixel;
 
-typedef struct __attribute__((__packed__)) s_file_header
+typedef struct __attribute__((__packed__))	s_file_header
 {
 	char signature[2];
 	unsigned int sizeinbytes;
 	unsigned int reserved;
 	unsigned int pixel_data;
-}                                          t_file_header;
+}											t_file_header;
 
-typedef struct __attribute__((__packed__)) s_info_header 
+typedef struct __attribute__((__packed__))	s_info_header
 {
 	unsigned int header_size;
 	int width;
@@ -161,50 +169,51 @@ typedef struct __attribute__((__packed__)) s_info_header
 	unsigned int compression;
 	unsigned int image_size;
 	int horizontal_resolution;
-	int vertical_resolution; 
+	int vertical_resolution;
 	unsigned int color_table;
 	unsigned int important_colors;
-}                                         t_info_header;
+}											t_info_header;
 
-void ft_parsing(int fd, t_pars *pars, t_params *params);
-int	ft_find_orientation(char c, char *str);
-void ft_resolution(t_params *params, char *elements, t_pars *pars);
-void ft_text_n(t_params *params, char *elements, t_pars *pars);
-void ft_text_s(t_params *params, char *elements, t_pars *pars);
-void ft_text_w(t_params *params, char *elements, t_pars *pars);
-void ft_text_e(t_params *params, char *elements, t_pars *pars);
-void  ft_color(t_params *params, char *elements, t_pars *pars);
-void  ft_putstr(char *str);
-int   ft_space(char *elements);
-void ft_map_save(t_params *params, char *elements, t_pars *pars);
-void  ft_error(char *str);
-void  ft_error_map(char *str, t_pars *pars);
-void  ft_xpm_to_image(t_params params, char *elements, void **text);
-void  ft_putchar(char c);
-void  ft_putnbr(int n);
-int  deal_key(int key, t_pars *pars);
-int  deal_key_release(int key, t_pars *pars);
-void  ft_manage_mlx(t_params *params, t_pars *pars);
-void ft_manage_mlx_destroy(t_params *params, t_pars *pars);
-int  ft_identify_type(char c);
-char			**ft_split_one(char *s, char c, t_params *params);
-char **ft_global_map_check(t_pars *pars, t_params *params);
-void  ft_direction(t_pars *pars, char c);
-void  ft_location_player(t_pars *pars); 
-void ft_look_at(t_pars *pars, t_params *params);
-void  ft_put_px_in_image(t_data *data, int x, int y, int color);
-void  ft_move(int key, t_pars *pars);
+void	ft_parsing(int fd, t_pars *pars, t_params *params);
+int		ft_find_orientation(char c, char *str);
+void	ft_resolution(t_params *params, char *elements, t_pars *pars);
+void	ft_text_n(t_params *params, char *elements, t_pars *pars);
+void	ft_text_s(t_params *params, char *elements, t_pars *pars);
+void	ft_text_w(t_params *params, char *elements, t_pars *pars);
+void	ft_text_e(t_params *params, char *elements, t_pars *pars);
+void	ft_color(t_params *params, char *elements, t_pars *pars);
+void	ft_putstr(char *str);
+int		ft_space(char *elements);
+void	ft_map_save(t_params *params, char *elements, t_pars *pars);
+void	ft_check_walls_column(t_pars *pars, t_params *params);
+void	ft_error(char *str);
+void	ft_error_map(char *str, t_pars *pars);
+void	ft_xpm_to_image(t_params params, char *elements, void **text);
+void	ft_putchar(char c);
+void	ft_putnbr(int n);
+int		deal_key(int key, t_pars *pars);
+int		deal_key_release(int key, t_pars *pars);
+void	ft_manage_mlx(t_params *params, t_pars *pars);
+void	ft_manage_mlx_destroy(t_params *params, t_pars *pars);
+int		ft_identify_type(char c);
+char	**ft_split_one(char *s, char c, t_params *params);
+char	**ft_global_map_check(t_pars *pars, t_params *params);
+void	ft_direction(t_pars *pars, char c);
+void	ft_location_player(t_pars *pars);
+void	ft_look_at(t_pars *pars, t_params *params);
+void	ft_put_px_in_image(t_data *data, int x, int y, int color);
+void	ft_move(int key, t_pars *pars);
 void	ft_side_move(t_pars *pars);
-void  ft_rotate(t_pars *pars, float n);
-void  ft_detect_obs(t_pars *pars, t_obs *obs);
-void ft_distance_init(t_obs *obs, t_pars *pars);
-int  ft_get_px_from_image(t_data *data, int x, int y);
-void  ft_put_px_in_image(t_data *data, int x, int y, int color);
-void  ft_sprite_init(t_pars *pars, t_sprite *sprite);
-void ft_apply_text_on_wall(t_pars *pars, t_obs *obs, t_data *text);
-void  ft_sprite_loop(t_pars *pars, t_sprite *sprite, t_params *params);
-void  ft_sort_sprite(t_pars *pars);
-void ft_save_bmp(char *argv, t_pars *pars);
-void  ft_create_bmp(t_pars *pars);
+void	ft_rotate(t_pars *pars, float n);
+void	ft_detect_obs(t_pars *pars, t_obs *obs);
+void	ft_distance_init(t_obs *obs, t_pars *pars);
+int		ft_get_px_from_image(t_data *data, int x, int y);
+void	ft_put_px_in_image(t_data *data, int x, int y, int color);
+void	ft_sprite_init(t_pars *pars, t_sprite *sprite);
+void	ft_apply_text_on_wall(t_pars *pars, t_obs *obs, t_data *text);
+void	ft_sprite_loop(t_pars *pars, t_sprite *sprite, t_params *params);
+void	ft_sort_sprite(t_pars *pars);
+void	ft_save_bmp(char *argv, t_pars *pars);
+void	ft_create_bmp(t_pars *pars);
 
 #endif

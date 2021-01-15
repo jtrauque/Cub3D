@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 15:54:15 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/14 22:09:59 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/15 19:59:25 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void		ft_map_save(t_params *params, char *elements, t_pars *pars)
 {
 	char *tmp;
 
+	pars->count += 1;
 	if ((tmp = ft_map_valide(elements, pars, params)) != NULL)
 	{
 		if (!(pars->map_tmp = ft_strnjoin(pars->map_tmp, tmp, ft_strlen(tmp))))
@@ -91,6 +92,7 @@ void		ft_check_walls(t_pars *pars, t_params *params)
 			ft_error_map("map error - wall missing\n", pars);
 		j++;
 	}
+	ft_check_walls_column(pars, params);
 }
 
 char		**ft_global_map_check(t_pars *pars, t_params *params)
