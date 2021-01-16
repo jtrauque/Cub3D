@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:38:44 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/16 17:58:22 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/16 18:25:07 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,6 @@ static int	ft_check_ext(char *argv)
 static int	ft_check_arg(int argc, char **argv, t_pars *pars)
 {
 	ft_memset(pars, 0, sizeof(t_pars));
-	if (!argv[1])
-		return (ft_error("No arguments\n"));
-	if (argc > 3)
-		return (ft_error("To much arguments\n"));
 	if (ft_check_ext(argv[1]) == 0)
 		return (0);
 	if (argc == 3)
@@ -68,6 +64,10 @@ int			main(int argc, char **argv)
 	t_params	params;
 	int			fd;
 
+	if (!argv[1])
+		return (ft_error("No arguments\n"));
+	if (argc > 3)
+		return (ft_error("To much arguments\n"));
 	ft_memset(&params, 0, sizeof(t_params));
 	params.mlx_ptr = mlx_init();
 	if (ft_check_arg(argc, argv, &pars) == 0)

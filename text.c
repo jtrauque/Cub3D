@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:28:56 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/16 17:42:14 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/16 19:20:10 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int		ft_text_n(t_params *params, char *elements, t_pars *pars)
 		pars->count += 1;
 		i += 1;
 		i += ft_space(elements + i);
-		relative_path = elements + i;
+		elements = ft_path(elements);
+		relative_path = elements + i ;
 		pars->text_n.img = mlx_xpm_file_to_image(params->mlx_ptr,
 				relative_path, &pars->text_n.img_width,
 				&pars->text_n.img_height);
@@ -35,6 +36,8 @@ int		ft_text_n(t_params *params, char *elements, t_pars *pars)
 	}
 	else
 		return (ft_error("error texture\n"));
+	if (!pars->text_n.img)
+		return (ft_error("texture not there\n"));
 	return (1);
 }
 
@@ -49,6 +52,7 @@ int		ft_text_sprite(t_params *params, char *elements, t_pars *pars)
 		return (ft_error("texture already existing\n"));
 	i += 1;
 	i += ft_space(elements + i);
+	elements = ft_path(elements);
 	relative_path = elements + i;
 	pars->text_sprite.img = mlx_xpm_file_to_image(params->mlx_ptr,
 			relative_path, &pars->text_sprite.img_width,
@@ -75,6 +79,7 @@ int		ft_text_s(t_params *params, char *elements, t_pars *pars)
 		i += 1;
 		pars->count += 1;
 		i += ft_space(elements + i);
+		elements = ft_path(elements);
 		relative_path = elements + i;
 		pars->text_s.img = mlx_xpm_file_to_image(params->mlx_ptr,
 				relative_path, &pars->text_s.img_width,
@@ -101,6 +106,7 @@ int		ft_text_w(t_params *params, char *elements, t_pars *pars)
 		pars->count += 1;
 		i += 1;
 		i += ft_space(elements + i);
+		elements = ft_path(elements);
 		relative_path = elements + i;
 		pars->text_w.img = mlx_xpm_file_to_image(params->mlx_ptr, relative_path,
 				&pars->text_w.img_width, &pars->text_w.img_height);
@@ -126,6 +132,7 @@ int		ft_text_e(t_params *params, char *elements, t_pars *pars)
 		pars->count += 1;
 		i += 1;
 		i += ft_space(elements + i);
+		elements = ft_path(elements);
 		relative_path = elements + i;
 		pars->text_e.img = mlx_xpm_file_to_image(params->mlx_ptr, relative_path,
 				&pars->text_e.img_width, &pars->text_e.img_height);

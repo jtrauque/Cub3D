@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:56:00 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/14 22:59:53 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/16 18:32:23 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,18 +82,18 @@ void	ft_side_move(t_pars *pars)
 	if (pars->move_right == 1)
 	{
 		if ((c = pars->map[(int)pars->py][(int)(pars->px + pars->plane_x *
-						pars->speed)]) != '1' && c != '2')
+						pars->speed * 2)]) != '1' && c != '2')
 			pars->px += pars->plane_x * pars->speed;
-		if ((c = pars->map[(int)(pars->py + pars->plane_x * pars->speed)]
+		if ((c = pars->map[(int)(pars->py + pars->plane_x * pars->speed * 2)]
 					[(int)pars->px]) != '1' && c != '2')
 			pars->py += pars->plane_y * pars->speed;
 	}
 	if (pars->move_left == 1)
 	{
 		if ((c = pars->map[(int)pars->py][(int)(pars->px - pars->plane_x *
-						pars->speed)]) != '1' && c != '2')
+						pars->speed * 2)]) != '1' && c != '2')
 			pars->px -= pars->plane_x * pars->speed;
-		if ((c = pars->map[(int)(pars->py - pars->plane_y * pars->speed)]
+		if ((c = pars->map[(int)(pars->py - pars->plane_y * pars->speed * 2)]
 					[(int)pars->px]) != '1' && c != '2')
 			pars->py -= pars->plane_y * pars->speed;
 	}

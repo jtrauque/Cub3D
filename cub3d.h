@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 20:03:22 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/16 17:47:01 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/16 19:21:07 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,13 +145,14 @@ typedef struct	s_sprite
 	int		sprite_screen;
 }				t_sprite;
 
-int			ft_parsing(int fd, t_pars *pars, t_params *params);
+int				ft_parsing(int fd, t_pars *pars, t_params *params);
 int				ft_find_orientation(char c, char *str);
 int				ft_resolution(t_params *params, char *elements, t_pars *pars);
 int				ft_text_n(t_params *params, char *elements, t_pars *pars);
 int				ft_text_s(t_params *params, char *elements, t_pars *pars);
 int				ft_text_w(t_params *params, char *elements, t_pars *pars);
 int 			ft_text_e(t_params *params, char *elements, t_pars *pars);
+char 			*ft_path(char *elements);
 int				ft_color(t_params *params, char *elements, t_pars *pars);
 void			ft_putstr(char *str);
 int				ft_space(char *elements);
@@ -160,7 +161,7 @@ int				ft_map_save(t_params *params, char *elements, t_pars *pars);
 int				ft_check_walls_column(t_pars *pars, t_params *params);
 int				ft_error(char *str);
 void			*ft_error_map(char *str);
-int		ft_free(t_params *params, t_pars *pars);
+int				ft_free(t_params *params, t_pars *pars);
 void			ft_xpm_to_image(t_params params, char *elements, void **text);
 void			ft_putchar(char c);
 void			ft_putnbr(int n);
@@ -172,7 +173,7 @@ int				ft_identify_type(char c);
 char			**ft_split_one(char *s, char c, t_params *params);
 char			**ft_global_map_check(t_pars *pars, t_params *params);
 void			ft_direction(t_pars *pars, char c);
-int			ft_location_player(t_pars *pars);
+int				ft_location_player(t_pars *pars);
 void			ft_look_at(t_pars *pars, t_params *params);
 void			ft_put_px_in_image(t_data *data, int x, int y, int color);
 void			ft_move(int key, t_pars *pars);

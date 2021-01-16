@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:52:39 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/16 17:43:13 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/16 18:31:55 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,18 @@ int		game_loop(t_pars *pars)
 	if (pars->forward == 1)
 	{
 		if ((c = pars->map[(int)pars->py][(int)(pars->px + pars->dx *
-						pars->speed)]) != '1' && c != '2')
+						pars->speed * 2)]) != '1' && c != '2')
 			pars->px += pars->dx * pars->speed;
-		if ((c = pars->map[(int)(pars->py + pars->dy * pars->speed)]
+		if ((c = pars->map[(int)(pars->py + pars->dy * pars->speed * 2)]
 					[(int)pars->px]) != '1' && c != '2')
 			pars->py += pars->dy * pars->speed;
 	}
 	if (pars->backward == 1)
 	{
 		if ((c = pars->map[(int)pars->py][(int)(pars->px - pars->dx *
-						pars->speed)]) != '1' && c != '2')
+						pars->speed * 2)]) != '1' && c != '2')
 			pars->px -= pars->dx * pars->speed;
-		if ((c = pars->map[(int)(pars->py - pars->dy * pars->speed)]
+		if ((c = pars->map[(int)(pars->py - pars->dy * pars->speed * 2)]
 					[(int)pars->px]) != '1' && c != '2')
 			pars->py -= pars->dy * pars->speed;
 	}
