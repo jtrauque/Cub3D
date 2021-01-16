@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 13:19:07 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/16 12:39:20 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/16 18:04:25 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,10 @@ int		get_next_line(int fd, char **line)
 {
 	char buffer[BUFFER_SIZE + 1];
 
-	if (BUFFER_SIZE < 1 || fd < 0 || !line)
+	if (!line)
 		return (-1);
 	*line = NULL;
+	if (BUFFER_SIZE < 1 || fd < 0 || !line)
+		return (-1);
 	return (ft_line(fd, buffer, line));
 }

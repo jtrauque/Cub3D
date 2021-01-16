@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:17:11 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/16 14:36:13 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/16 17:35:20 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ int		ft_save_bmp(char *argv, t_pars *pars)
 	size_t	n;
 
 	if (ft_strlen("--save") != (n = ft_strlen(argv)))
-		return(ft_error("The second argument is not valid\n"));
+		return (ft_error("The second argument is not valid\n"));
 	if (ft_strncmp("--save", argv, n) != 0)
-		return(ft_error("The second argument is not valid\n"));
+		return (ft_error("The second argument is not valid\n"));
 	pars->save = 1;
 	return (1);
 }

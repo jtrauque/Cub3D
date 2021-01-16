@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:04:46 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/16 16:01:21 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/16 18:12:47 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,25 @@ int		ft_parsing(int fd, t_pars *pars, t_params *params)
 	char	*elements;
 	int		i;
 	int		n;
-	int     r;
+	int		r;
 
-	elements = NULL;
 	r = 1;
 	while (r == 1 && (get_next_line(fd, &elements)) > 0)
 	{
 		if ((n = ft_space(elements)) == -1)
 		{
-			if (pars->count > 8)
-				return(ft_error("Empty lines in the map\n"));
 			free(elements);
+			if (pars->count > 8)
+				return (ft_error("Empty lines in the map\n"));
 			continue;
 		}
-		i = ft_identify_type(elements[n]);
-		if (i == 7 && pars->count >= 8 && r == 1)
+		if ((i = ft_identify_type(elements[n])) == 7 && pars->count >= 8)
 			r = g_parsing[i](params, elements, pars);
-		else if (i != -1 && i != 7 && r == 1)
+		else if (i != -1 && i != 7)
 			r = g_parsing[i](params, elements + n, pars);
-		else
-		{
-			free(elements);
-			return(ft_error("error elements\n"));
-		}
 		free(elements);
+		if (!(i == 7 && pars->count >= 8) && !(i != 7 && i != -1))
+			return (ft_error("error elements\n"));
 	}
 	return (r);
 }
@@ -75,22 +70,16 @@ int		ft_resolution(t_params *params, char *elements, t_pars *pars)
 	pars->count += 1;
 	i += ft_space(elements + i);
 	while (elements[i] && (elements[i] >= '0' && elements[i] <= '9'))
-	{
-		pars->width = pars->width * 10 + (elements[i] - '0');
-		i++;
-	}
+		pars->width = pars->width * 10 + (elements[i++] - '0');
 	i += ft_space(elements + i);
 	while (elements[i] && (elements[i] >= '0' && elements[i] <= '9'))
-	{
-		pars->height = pars->height * 10 + (elements[i] - '0');
-		i++;
-	}
+		pars->height = pars->height * 10 + (elements[i++] - '0');
 	mlx_get_screen_size(params->mlx_ptr, &width_max, &height_max);
 	if (pars->width > width_max)
 		pars->width = width_max;
 	if (pars->height > height_max)
 		pars->height = height_max;
 	if (pars->width == 0 || pars->height == 0)
-		return(ft_error("error resolution\n"));
+		return (ft_error("error resolution\n"));
 	return (1);
 }

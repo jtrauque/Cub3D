@@ -6,13 +6,13 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 19:58:18 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/16 16:16:57 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/16 17:39:27 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int		ft_check_column(t_pars *pars, t_params *params)
+static int	ft_check_column(t_pars *pars, t_params *params)
 {
 	int		i;
 	int		j;
@@ -36,7 +36,7 @@ static int		ft_check_column(t_pars *pars, t_params *params)
 	return (1);
 }
 
-int		ft_check_walls_column(t_pars *pars, t_params *params)
+int			ft_check_walls_column(t_pars *pars, t_params *params)
 {
 	int		i;
 	int		j;
@@ -55,5 +55,5 @@ int		ft_check_walls_column(t_pars *pars, t_params *params)
 			return (ft_error("map error - wall missing\n"));
 		j++;
 	}
-	return(ft_check_column(pars, params));
+	return (ft_check_column(pars, params));
 }

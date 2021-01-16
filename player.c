@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 22:04:22 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/16 17:21:44 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/16 17:41:17 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void		ft_save_location(t_pars *pars, int x, int y, int i)
 	}
 }
 
-int		ft_location_player(t_pars *pars)
+int			ft_location_player(t_pars *pars)
 {
 	int x;
 	int y;

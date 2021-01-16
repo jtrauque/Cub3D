@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:30:50 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/16 13:57:30 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/16 17:35:39 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int		ft_color(t_params *params, char *elements, t_pars *pars)
 		pars->color_c = ft_rgb(elements + i);
 	}
 	else
-		return(ft_error("error color\n"));
+		return (ft_error("error color\n"));
 	return (1);
 }
 

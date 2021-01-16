@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:28:56 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/16 13:38:39 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/16 17:42:14 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		ft_text_n(t_params *params, char *elements, t_pars *pars)
 
 	i = 1;
 	if (pars->text_n.img)
-		return(ft_error("texture already existing\n"));
+		return (ft_error("texture already existing\n"));
 	if (elements[i] == 'O' && elements[i + 1] == ' ')
 	{
 		pars->count += 1;
@@ -34,7 +34,7 @@ int		ft_text_n(t_params *params, char *elements, t_pars *pars)
 				&pars->text_n.endian);
 	}
 	else
-		return(ft_error("error texture\n"));
+		return (ft_error("error texture\n"));
 	return (1);
 }
 
@@ -46,7 +46,7 @@ int		ft_text_sprite(t_params *params, char *elements, t_pars *pars)
 	i = 1;
 	pars->count += 1;
 	if (pars->text_sprite.img)
-		return(ft_error("texture already existing\n"));
+		return (ft_error("texture already existing\n"));
 	i += 1;
 	i += ft_space(elements + i);
 	relative_path = elements + i;
@@ -67,9 +67,9 @@ int		ft_text_s(t_params *params, char *elements, t_pars *pars)
 
 	i = 1;
 	if (elements[i] == ' ')
-		return(ft_text_sprite(params, elements, pars));
+		return (ft_text_sprite(params, elements, pars));
 	else if (pars->text_s.img)
-		return(ft_error("texture already existing\n"));
+		return (ft_error("texture already existing\n"));
 	else if (elements[i] == 'O' && elements[i + 1] == ' ')
 	{
 		i += 1;
@@ -84,7 +84,7 @@ int		ft_text_s(t_params *params, char *elements, t_pars *pars)
 				&pars->text_s.endian);
 	}
 	else
-		return(ft_error("error texture\n"));
+		return (ft_error("error texture\n"));
 	return (1);
 }
 
@@ -95,7 +95,7 @@ int		ft_text_w(t_params *params, char *elements, t_pars *pars)
 
 	i = 1;
 	if (pars->text_w.img)
-		return(ft_error("texture already existing\n"));
+		return (ft_error("texture already existing\n"));
 	if (elements[i] == 'E' && elements[i + 1] == ' ')
 	{
 		pars->count += 1;
@@ -109,7 +109,7 @@ int		ft_text_w(t_params *params, char *elements, t_pars *pars)
 				&pars->text_w.endian);
 	}
 	else
-		return(ft_error("error texture\n"));
+		return (ft_error("error texture\n"));
 	return (1);
 }
 
@@ -120,7 +120,7 @@ int		ft_text_e(t_params *params, char *elements, t_pars *pars)
 
 	i = 1;
 	if (pars->text_e.img)
-		return(ft_error("texture already existing\n"));
+		return (ft_error("texture already existing\n"));
 	if (elements[i] == 'A' && elements[i + 1] == ' ')
 	{
 		pars->count += 1;
@@ -134,6 +134,6 @@ int		ft_text_e(t_params *params, char *elements, t_pars *pars)
 				&pars->text_e.endian);
 	}
 	else
-		return(ft_error("error texture\n"));
+		return (ft_error("error texture\n"));
 	return (1);
 }
