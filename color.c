@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:30:50 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/15 20:55:39 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/16 13:57:30 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ int		ft_rgb(char *elements)
 		i++;
 	}
 	i++;
-	i += ft_space(elements + i);
+	i += ft_space_and_plus(elements + i);
 	while (elements[i] && (elements[i] >= '0' && elements[i] <= '9'))
 	{
 		color.g = color.g * 10 + (elements[i] - '0');
 		i++;
 	}
 	i++;
-	i += ft_space(elements + i);
+	i += ft_space_and_plus(elements + i);
 	while (elements[i] && (elements[i] >= '0' && elements[i] <= '9'))
 	{
 		color.b = color.b * 10 + (elements[i] - '0');
@@ -41,7 +41,7 @@ int		ft_rgb(char *elements)
 	return (65536 * color.r + 256 * color.g + color.b);
 }
 
-void	ft_color(t_params *params, char *elements, t_pars *pars)
+int		ft_color(t_params *params, char *elements, t_pars *pars)
 {
 	int i;
 
@@ -59,7 +59,8 @@ void	ft_color(t_params *params, char *elements, t_pars *pars)
 		pars->color_c = ft_rgb(elements + i);
 	}
 	else
-		ft_error("error color\n");
+		return(ft_error("error color\n"));
+	return (1);
 }
 
 void	ft_put_px_in_image(t_data *data, int x, int y, int color)

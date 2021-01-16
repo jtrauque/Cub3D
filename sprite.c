@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:17:34 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/14 21:31:12 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/16 17:23:28 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ void	ft_print_sprite_column(t_sprite *s, t_pars *pars, t_params *params)
 
 void	ft_sprite_loop(t_pars *pars, t_sprite *s, t_params *params)
 {
-	s->sprite_x = pars->sprite[s->n].x - (pars->px);
-	s->sprite_y = pars->sprite[s->n].y - (pars->py);
+	s->sprite_x = pars->sprite[s->n].x - (pars->px - .5);
+	s->sprite_y = pars->sprite[s->n].y - (pars->py - .5);
 	ft_sprite_init(pars, s);
 	s->stripe = s->width_draw_start;
 	while (s->stripe < s->width_draw_end)

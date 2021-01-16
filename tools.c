@@ -6,11 +6,36 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:36:07 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/14 23:35:12 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/16 14:13:57 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int		ft_space_and_plus(char *elements)
+{
+	int i;
+	int count;
+
+	i = 0;
+	count = 0;
+	while (elements[i])
+	{
+		if (elements[i] == ' ')
+			i++;
+		else if (elements[i] == ',')
+		{
+			if (count < 2)
+				count++;
+			else
+				ft_error("too much ,\n");
+			i++;
+		}
+		else
+			return (i);
+	}
+	return (-1);
+}
 
 int		ft_space(char *elements)
 {
@@ -27,24 +52,16 @@ int		ft_space(char *elements)
 	return (-1);
 }
 
-void	ft_error(char *str)
+int		ft_error(char *str)
 {
 	ft_putstr("Error\n");
 	ft_putstr(str);
-	exit(1);
+	return (0);
 }
 
-void	ft_error_map(char *str, t_pars *pars)
+void	*ft_error_map(char *str)
 {
-	int i;
-
-	i = 0;
 	ft_putstr("Error\n");
 	ft_putstr(str);
-	while (pars->map[i])
-	{
-		free(pars->map[i]);
-		i++;
-	}
-	exit(1);
+	return (NULL);
 }

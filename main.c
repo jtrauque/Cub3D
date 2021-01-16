@@ -6,39 +6,39 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:38:44 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/16 11:25:42 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/16 15:08:36 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_check_ext(char *argv)
+static int	ft_check_ext(char *argv)
 {
 	char *tmp;
 
 	tmp = ft_strchr(argv, '.');
 	if (!tmp)
-		ft_error("Wrong extension - please use a .cub\n");
+		return(ft_error("Wrong extension - please use a .cub\n"));
 	if (ft_strlen(tmp) != ft_strlen(".cub"))
-		ft_error("Wrong extension - please use a .cub\n");
+		return(ft_error("Wrong extension - please use a .cub\n"));
 	if (ft_strncmp(".cub", tmp, 4) != 0)
-		ft_error("Wrong extension - please use a .cub\n");
+		return(ft_error("Wrong extension - please use a .cub\n"));
+	return (1);
 }
 
-void	ft_check_arg(int argc, char **argv, int fd, t_pars *pars)
+static int	ft_check_arg(int argc, char **argv, t_pars *pars)
 {
 	ft_memset(pars, 0, sizeof(t_pars));
 	if (argc > 3)
-		ft_error("To much arguments\n");
-	if (fd < 0)
-		ft_error("No arguments valid\n");
+		return(ft_error("To much arguments\n"));
+	if (ft_check_ext(argv[1]) == 0)
+		return (0);
 	if (argc == 3)
 	{
-		ft_check_ext(argv[1]);
-		ft_save_bmp(argv[2], pars);
+		if (ft_save_bmp(argv[2], pars) == 0)
+			return (0);
 	}
-	if (argc == 2)
-		ft_check_ext(argv[1]);
+	return (1);
 }
 
 int		main(int argc, char **argv)
@@ -50,18 +50,25 @@ int		main(int argc, char **argv)
 	ft_memset(&params, 0, sizeof(t_params));
 	params.mlx_ptr = mlx_init();
 	if (!argv[1])
-		ft_error("No arguments\n");
+		return(ft_error("No arguments\n"));
+	ft_check_arg(argc, argv, &pars);
 	fd = open(argv[1], O_RDONLY);
-	ft_check_arg(argc, argv, fd, &pars);
+	if (fd < 0)
+		return(ft_error("No arguments valid\n"));
 	pars.params = &params;
-	ft_parsing(fd, &pars, &params);
+	if (ft_parsing(fd, &pars, &params) == 0)
+		return (ft_free(&params, &pars));
 	if (pars.save != 1)
 		params.win_ptr = mlx_new_window(params.mlx_ptr, pars.width, pars.height,
 "Cub3D");
 	params.data.img = mlx_new_image(params.mlx_ptr, pars.width, pars.height);
 	params.data.data = (unsigned int *)mlx_get_data_addr(params.data.img,
 &params.data.bpp, &params.data.size_line, &params.data.endian);
-	ft_manage_mlx(&params, &pars);
+	if (ft_manage_mlx(&params, &pars) == 0)
+	{
+		ft_manage_mlx_destroy(&params, &pars);
+		return (0);
+	}
 	if (pars.save != 1)
 		mlx_loop(params.mlx_ptr);
 	else

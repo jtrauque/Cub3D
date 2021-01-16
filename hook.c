@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:52:39 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/15 13:14:59 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/16 15:58:02 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,12 @@ int		game_loop(t_pars *pars)
 	return (0);
 }
 
-void	ft_manage_mlx(t_params *params, t_pars *pars)
+int		ft_manage_mlx(t_params *params, t_pars *pars)
 {
-	ft_global_map_check(pars, params);
-	ft_location_player(pars);
+	if (!ft_global_map_check(pars, params))
+		return (ft_error("map error\n"));
+	if(ft_location_player(pars) == 0)
+		return (ft_error("player error\n"));
 	ft_look_at(pars, params);
 	if (pars->save != 1)
 	{
@@ -65,6 +67,7 @@ void	ft_manage_mlx(t_params *params, t_pars *pars)
 		mlx_do_key_autorepeatoff(params->mlx_ptr);
 		mlx_loop_hook(params->mlx_ptr, game_loop, pars);
 	}
+	return (1);
 }
 
 void	ft_manage_mlx_destroy(t_params *params, t_pars *pars)
@@ -93,4 +96,23 @@ void	ft_manage_mlx_destroy(t_params *params, t_pars *pars)
 	free(pars->map);
 	free(params->mlx_ptr);
 	free(pars->sprite);
+}
+
+int		ft_free(t_params *params, t_pars *pars)
+{	
+	if (params->data.img)
+		mlx_destroy_image(params->mlx_ptr, params->data.img);
+	if (pars->text_n.img)
+		mlx_destroy_image(params->mlx_ptr, pars->text_n.img);
+	if (pars->text_s.img)
+		mlx_destroy_image(params->mlx_ptr, pars->text_s.img);
+	if (pars->text_e.img)
+		mlx_destroy_image(params->mlx_ptr, pars->text_e.img);
+	if (pars->text_w.img)
+		mlx_destroy_image(params->mlx_ptr, pars->text_w.img);
+	if (pars->text_sprite.img)
+		mlx_destroy_image(params->mlx_ptr, pars->text_sprite.img);
+	free(pars->map_tmp);
+	free(params->mlx_ptr);
+	return (0);
 }

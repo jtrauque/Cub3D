@@ -6,21 +6,23 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:28:56 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/14 23:26:50 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/16 13:38:39 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_text_n(t_params *params, char *elements, t_pars *pars)
+int		ft_text_n(t_params *params, char *elements, t_pars *pars)
 {
 	char	*relative_path;
 	int		i;
 
-	pars->count += 1;
 	i = 1;
+	if (pars->text_n.img)
+		return(ft_error("texture already existing\n"));
 	if (elements[i] == 'O' && elements[i + 1] == ' ')
 	{
+		pars->count += 1;
 		i += 1;
 		i += ft_space(elements + i);
 		relative_path = elements + i;
@@ -32,15 +34,19 @@ void	ft_text_n(t_params *params, char *elements, t_pars *pars)
 				&pars->text_n.endian);
 	}
 	else
-		ft_error("error texture\n");
+		return(ft_error("error texture\n"));
+	return (1);
 }
 
-void	ft_text_sprite(t_params *params, char *elements, t_pars *pars)
+int		ft_text_sprite(t_params *params, char *elements, t_pars *pars)
 {
 	char	*relative_path;
 	int		i;
 
 	i = 1;
+	pars->count += 1;
+	if (pars->text_sprite.img)
+		return(ft_error("texture already existing\n"));
 	i += 1;
 	i += ft_space(elements + i);
 	relative_path = elements + i;
@@ -51,18 +57,23 @@ void	ft_text_sprite(t_params *params, char *elements, t_pars *pars)
 			pars->text_sprite.img, &pars->text_sprite.bpp,
 			&pars->text_sprite.size_line,
 			&pars->text_sprite.endian);
+	return (1);
 }
 
-void	ft_text_s(t_params *params, char *elements, t_pars *pars)
+int		ft_text_s(t_params *params, char *elements, t_pars *pars)
 {
 	char	*relative_path;
 	int		i;
 
-	pars->count += 1;
 	i = 1;
-	if (elements[i] == 'O' && elements[i + 1] == ' ')
+	if (elements[i] == ' ')
+		return(ft_text_sprite(params, elements, pars));
+	else if (pars->text_s.img)
+		return(ft_error("texture already existing\n"));
+	else if (elements[i] == 'O' && elements[i + 1] == ' ')
 	{
 		i += 1;
+		pars->count += 1;
 		i += ft_space(elements + i);
 		relative_path = elements + i;
 		pars->text_s.img = mlx_xpm_file_to_image(params->mlx_ptr,
@@ -72,21 +83,22 @@ void	ft_text_s(t_params *params, char *elements, t_pars *pars)
 				&pars->text_s.bpp, &pars->text_s.size_line,
 				&pars->text_s.endian);
 	}
-	else if (elements[i] == ' ')
-		ft_text_sprite(params, elements, pars);
 	else
-		ft_error("error texture\n");
+		return(ft_error("error texture\n"));
+	return (1);
 }
 
-void	ft_text_w(t_params *params, char *elements, t_pars *pars)
+int		ft_text_w(t_params *params, char *elements, t_pars *pars)
 {
 	char	*relative_path;
 	int		i;
 
-	pars->count += 1;
 	i = 1;
+	if (pars->text_w.img)
+		return(ft_error("texture already existing\n"));
 	if (elements[i] == 'E' && elements[i + 1] == ' ')
 	{
+		pars->count += 1;
 		i += 1;
 		i += ft_space(elements + i);
 		relative_path = elements + i;
@@ -97,18 +109,21 @@ void	ft_text_w(t_params *params, char *elements, t_pars *pars)
 				&pars->text_w.endian);
 	}
 	else
-		ft_error("error texture\n");
+		return(ft_error("error texture\n"));
+	return (1);
 }
 
-void	ft_text_e(t_params *params, char *elements, t_pars *pars)
+int		ft_text_e(t_params *params, char *elements, t_pars *pars)
 {
 	char	*relative_path;
 	int		i;
 
-	pars->count += 1;
 	i = 1;
+	if (pars->text_e.img)
+		return(ft_error("texture already existing\n"));
 	if (elements[i] == 'A' && elements[i + 1] == ' ')
 	{
+		pars->count += 1;
 		i += 1;
 		i += ft_space(elements + i);
 		relative_path = elements + i;
@@ -119,5 +134,6 @@ void	ft_text_e(t_params *params, char *elements, t_pars *pars)
 				&pars->text_e.endian);
 	}
 	else
-		ft_error("error texture\n");
+		return(ft_error("error texture\n"));
+	return (1);
 }

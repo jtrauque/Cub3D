@@ -6,13 +6,13 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:04:46 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/15 19:13:35 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/16 16:01:21 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-typedef void	(*t_fn_parsing_t)(t_params *params, char *str, t_pars *p);
+typedef int	(*t_fn_parsing_t)(t_params *params, char *str, t_pars *p);
 t_fn_parsing_t g_parsing[8] = {ft_resolution, ft_text_n, ft_text_s, ft_text_w,
 	ft_text_e, ft_color, ft_color, ft_map_save};
 
@@ -32,34 +32,40 @@ int		ft_identify_type(char c)
 	return (-1);
 }
 
-void	ft_parsing(int fd, t_pars *pars, t_params *params)
+int		ft_parsing(int fd, t_pars *pars, t_params *params)
 {
 	char	*elements;
 	int		i;
 	int		n;
+	int     r;
 
 	elements = NULL;
-	while ((get_next_line(fd, &elements)) > 0)
+	r = 1;
+	while (r == 1 && (get_next_line(fd, &elements)) > 0)
 	{
 		if ((n = ft_space(elements)) == -1)
 		{
 			if (pars->count > 8)
-				ft_error("Empty lines in the map\n");
+				return(ft_error("Empty lines in the map\n"));
 			free(elements);
 			continue;
 		}
 		i = ft_identify_type(elements[n]);
-		if (i == 7 && pars->count >= 8)
-			g_parsing[i](params, elements, pars);
-		else if (i != -1 && i != 7)
-			g_parsing[i](params, elements + n, pars);
+		if (i == 7 && pars->count >= 8 && r == 1)
+			r = g_parsing[i](params, elements, pars);
+		else if (i != -1 && i != 7 && r == 1)
+			r = g_parsing[i](params, elements + n, pars);
 		else
-			ft_error("error elements\n");
+		{
+			free(elements);
+			return(ft_error("error elements\n"));
+		}
 		free(elements);
 	}
+	return (r);
 }
 
-void	ft_resolution(t_params *params, char *elements, t_pars *pars)
+int		ft_resolution(t_params *params, char *elements, t_pars *pars)
 {
 	int i;
 	int width_max;
@@ -85,5 +91,6 @@ void	ft_resolution(t_params *params, char *elements, t_pars *pars)
 	if (pars->height > height_max)
 		pars->height = height_max;
 	if (pars->width == 0 || pars->height == 0)
-		ft_error("error resolution\n");
+		return(ft_error("error resolution\n"));
+	return (1);
 }

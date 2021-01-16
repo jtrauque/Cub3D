@@ -6,13 +6,12 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 13:19:07 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/15 14:34:29 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/16 12:39:20 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #define BUFFER_SIZE 1048
-#include <stdio.h>
 
 char	*ft_strndup(const char *s1, int n)
 {
@@ -22,7 +21,6 @@ char	*ft_strndup(const char *s1, int n)
 	i = 0;
 	if (!s1)
 		return (NULL);
-	printf("%d\n", n);
 	if (!(s2 = malloc(sizeof(char) * (n + 1))))
 		return (NULL);
 	while (i < n)
