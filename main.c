@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:38:44 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/15 13:17:12 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/16 11:25:42 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ void	ft_check_arg(int argc, char **argv, int fd, t_pars *pars)
 	if (fd < 0)
 		ft_error("No arguments valid\n");
 	if (argc == 3)
+	{
+		ft_check_ext(argv[1]);
 		ft_save_bmp(argv[2], pars);
+	}
 	if (argc == 2)
 		ft_check_ext(argv[1]);
 }
