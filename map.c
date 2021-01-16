@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 15:54:15 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/15 19:59:25 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/15 20:37:40 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ char		**ft_global_map_check(t_pars *pars, t_params *params)
 		j++;
 	}
 	if (count > 1 || count == 0)
-		ft_error_map("map error - too much or no players\n", pars);
+		ft_error("map error - too much or no players\n");
 	pars->map = ft_split_one(pars->map_tmp, '\n', params);
 	ft_check_walls(pars, params);
 	return (pars->map);

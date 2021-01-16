@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:12:59 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/15 13:03:36 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/15 20:56:20 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,9 @@ void	ft_distance_init(t_obs *obs, t_pars *pars)
 	obs->raydir_x = pars->dx + pars->plane_x * obs->camera;
 	obs->map_x = (int)pars->px;
 	obs->map_y = (int)pars->py;
-	obs->heigth_column_PJ = (int)(pars->height / obs->true_dist);
-	obs->draw_start = (-obs->heigth_column_PJ / 2) + (pars->height / 2);
-	obs->draw_end = (obs->heigth_column_PJ / 2) + (pars->height / 2);
+	obs->heigth_column_pj = (int)(pars->height / obs->true_dist);
+	obs->draw_start = (-obs->heigth_column_pj / 2) + (pars->height / 2);
+	obs->draw_end = (obs->heigth_column_pj / 2) + (pars->height / 2);
 	if (obs->draw_start < 0)
 		obs->draw_start = 0;
 	if (obs->draw_end >= pars->height)

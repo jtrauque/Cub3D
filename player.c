@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 22:04:22 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/14 22:10:14 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/15 20:34:58 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ void		ft_save_location(t_pars *pars, int x, int y, int i)
 	}
 	if (pars->map[y][x] == '2')
 	{
-		pars->sprite[i].y = y;
-		pars->sprite[i].x = x;
+		pars->sprite[i].y = (float)y + .5;
+		pars->sprite[i].x = (float)x + .5;
 	}
 }
 

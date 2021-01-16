@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:41:12 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/15 13:19:17 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/15 20:56:54 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,15 @@ void	ft_print_column(t_pars *pars, t_obs *obs, t_params *params)
 	ft_distance_init(obs, pars);
 	obs->line = obs->draw_start;
 	ft_side_pick(pars, obs);
-	if (obs->heigth_column_PJ > pars->height)
-		square_y = ((float)(obs->heigth_column_PJ - pars->height)) / 2. *
-			(64. / obs->heigth_column_PJ);
+	if (obs->heigth_column_pj > pars->height)
+		square_y = ((float)(obs->heigth_column_pj - pars->height)) / 2. *
+			(64. / obs->heigth_column_pj);
 	else
 		square_y = 0;
 	while (obs->line < obs->draw_end)
 	{
 		color = ft_get_px_from_image(obs->text, obs->text_x, (int)square_y);
-		square_y += 64. / obs->heigth_column_PJ;
+		square_y += 64. / obs->heigth_column_pj;
 		ft_put_px_in_image(&params->data, obs->pix, obs->line, color);
 		obs->line++;
 	}

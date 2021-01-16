@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:30:50 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/14 21:12:06 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/15 20:55:39 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,24 @@ int		ft_rgb(char *elements)
 	ft_memset(&color, 0, sizeof(t_color));
 	while (elements[i] && (elements[i] >= '0' && elements[i] <= '9'))
 	{
-		color.R = color.R * 10 + (elements[i] - '0');
+		color.r = color.r * 10 + (elements[i] - '0');
 		i++;
 	}
 	i++;
 	i += ft_space(elements + i);
 	while (elements[i] && (elements[i] >= '0' && elements[i] <= '9'))
 	{
-		color.G = color.G * 10 + (elements[i] - '0');
+		color.g = color.g * 10 + (elements[i] - '0');
 		i++;
 	}
 	i++;
 	i += ft_space(elements + i);
 	while (elements[i] && (elements[i] >= '0' && elements[i] <= '9'))
 	{
-		color.B = color.B * 10 + (elements[i] - '0');
+		color.b = color.b * 10 + (elements[i] - '0');
 		i++;
 	}
-	return (65536 * color.R + 256 * color.G + color.B);
+	return (65536 * color.r + 256 * color.g + color.b);
 }
 
 void	ft_color(t_params *params, char *elements, t_pars *pars)
