@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 15:54:15 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/17 15:27:25 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/17 21:39:45 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ char		*ft_map_valide(char *elements, t_pars *pars, t_params *params)
 		return (NULL);
 	while (temp[i])
 	{
-		if (temp[i] == '0' && temp[i + 1] == ' ')
+		if ((temp[i] == '0' || temp[i] == '2') && temp[i + 1] == ' ')
 			return (NULL);
-		if (temp[i] == ' ' && temp[i + 1] == '0')
+		if (temp[i] == ' ' && (temp[i + 1] == '0' || temp[i] == '2'))
 			return (NULL);
 		if (ft_find_orientation(temp[i], caracteres) == 0)
 			return (NULL);
@@ -120,6 +120,6 @@ char		**ft_global_map_check(t_pars *pars, t_params *params)
 		return (ft_error_map("map error - too much or no players\n"));
 	pars->map = ft_split_one(pars->map_tmp, '\n', params);
 	if (ft_check_column(pars, params) == 0)
-		return (NULL);
+		return (ft_error_map("map not valid - check the wall\n"));
 	return (pars->map);
 }

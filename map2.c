@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 19:58:18 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/17 15:28:44 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/17 21:40:03 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ int			ft_check_column(t_pars *pars, t_params *params)
 		j = 0;
 		while (j < params->map_h - 1)
 		{
-			if (pars->map[j][i] == '0' && pars->map[j + 1][i] == ' ')
+			if ((pars->map[j][i] == '0' || pars->map[j][i] == '2')
+				&& pars->map[j + 1][i] == ' ')
 				return (0);
-			if (pars->map[j][i] == ' ' && pars->map[j + 1][i] == '0')
+			if (pars->map[j][i] == ' ' && (pars->map[j + 1][i] == '0'
+				|| pars->map[j + 1][i] == '2'))
 				return (0);
 			if (pars->map[j][i] == ' ')
 				pars->map[j][i] = '1';

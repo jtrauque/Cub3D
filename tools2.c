@@ -6,13 +6,13 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 19:19:25 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/17 20:59:39 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/17 21:41:24 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char	*ft_path(char *elements)
+char		*ft_path(char *elements)
 {
 	int j;
 
@@ -37,7 +37,8 @@ static int	ft_check_ext_img(char *str)
 	return (1);
 }
 
-int			ft_extract_text(char *elements, t_data *text, t_params *params, int i)
+int			ft_extract_text(char *elements, t_data *text, t_params *params,
+		int i)
 {
 	char	*relative_path;
 
