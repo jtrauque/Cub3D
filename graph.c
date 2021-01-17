@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:41:12 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/17 13:15:33 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/17 20:22:13 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,15 @@ void	ft_look_at(t_pars *pars, t_params *params)
 
 	obs.pix = 0;
 	obs.line = 0;
+	if (!(pars->buffer = malloc(sizeof(double) * pars->width + 1)))
+		return ;
 	ft_background(pars, params);
 	while (obs.pix < pars->width)
 	{
 		ft_print_column(pars, &obs, params);
 		obs.pix++;
 	}
-	if (pars->is_a_sprite == 1)
+	if (pars->is_a_sprite != 0)
 	{
 		sprite.n = 0;
 		ft_sort_sprite(pars);
@@ -115,4 +117,5 @@ void	ft_look_at(t_pars *pars, t_params *params)
 	if (pars->save != 1)
 		mlx_put_image_to_window(params->mlx_ptr, params->win_ptr,
 				params->data.img, 0, 0);
+	free(pars->buffer);
 }

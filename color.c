@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:30:50 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/16 17:35:39 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/17 19:20:08 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,19 @@ int		ft_rgb(char *elements)
 	i = 0;
 	ft_memset(&color, 0, sizeof(t_color));
 	while (elements[i] && (elements[i] >= '0' && elements[i] <= '9'))
-	{
-		color.r = color.r * 10 + (elements[i] - '0');
-		i++;
-	}
+		color.r = color.r * 10 + (elements[i++] - '0');
 	i++;
+	if (ft_space_and_plus(elements + i) == -1)
+		return (-1);
 	i += ft_space_and_plus(elements + i);
 	while (elements[i] && (elements[i] >= '0' && elements[i] <= '9'))
-	{
-		color.g = color.g * 10 + (elements[i] - '0');
-		i++;
-	}
+		color.g = color.g * 10 + (elements[i++] - '0');
 	i++;
+	if (ft_space_and_plus(elements + i) == -1)
+		return (-1);
 	i += ft_space_and_plus(elements + i);
 	while (elements[i] && (elements[i] >= '0' && elements[i] <= '9'))
-	{
-		color.b = color.b * 10 + (elements[i] - '0');
-		i++;
-	}
+		color.b = color.b * 10 + (elements[i++] - '0');
 	return (65536 * color.r + 256 * color.g + color.b);
 }
 
@@ -60,6 +55,8 @@ int		ft_color(t_params *params, char *elements, t_pars *pars)
 	}
 	else
 		return (ft_error("error color\n"));
+	if (pars->color_f == -1 || pars->color_c == -1)
+		return (ft_error("error rgb\n"));
 	return (1);
 }
 

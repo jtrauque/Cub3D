@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 20:03:22 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/17 13:30:15 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/17 20:23:51 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct	s_pars
 {
 	t_params	*params;
 	t_vecteur	*sprite;
+	double		*buffer;
 	int			count;
 	int			width;
 	int			height;
@@ -152,7 +153,7 @@ int				ft_text_n(t_params *params, char *elements, t_pars *pars);
 int				ft_text_s(t_params *params, char *elements, t_pars *pars);
 int				ft_text_w(t_params *params, char *elements, t_pars *pars);
 int 			ft_text_e(t_params *params, char *elements, t_pars *pars);
-void	ft_extract_text(char *elements, t_data *text, t_params *params, int i);
+void			ft_extract_text(char *elements, t_data *text, t_params *params, int i);
 char 			*ft_path(char *elements);
 int				ft_color(t_params *params, char *elements, t_pars *pars);
 void			ft_putstr(char *str);

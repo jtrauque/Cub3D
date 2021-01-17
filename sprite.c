@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:17:34 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/17 13:18:26 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/17 20:19:57 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	ft_sprite_loop(t_pars *pars, t_sprite *s, t_params *params)
 					(-s->width_column / 2 + s->sprite_screen)) *
 				pars->text_sprite->img_width / s->width_column) /
 			pars->text_sprite->size_line;
-		if (s->next_y > 0 && s->stripe > 0 && s->stripe < pars->width)
+		if (s->next_y > 0 && s->stripe > 0 && s->stripe < pars->width && s->next_y < pars->buffer[s->stripe])
 		{
 			s->start = s->draw_start;
 			while (s->start < s->draw_end)

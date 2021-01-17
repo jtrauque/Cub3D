@@ -6,20 +6,11 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:12:59 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/15 20:56:20 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/17 20:23:04 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	ft_sprite_distance(t_obs *obs, t_pars *pars)
-{
-	pars->is_a_sprite = 1;
-	pars->is_a_sprite_x = obs->map_x;
-	pars->is_a_sprite_y = obs->map_y;
-	obs->sprite_true_dist = (obs->map_y - pars->py + (1 - obs->step_y) / 2)
-		/ obs->raydir_y;
-}
 
 int		ft_hit(t_obs *obs, t_pars *pars)
 {
@@ -44,7 +35,7 @@ int		ft_hit(t_obs *obs, t_pars *pars)
 	if (pars->map[obs->map_y][obs->map_x] == '1')
 		return (1);
 	if (pars->map[obs->map_y][obs->map_x] == '2')
-		ft_sprite_distance(obs, pars);
+		pars->is_a_sprite = 1;
 	return (0);
 }
 
@@ -88,6 +79,7 @@ void	ft_detect_obs(t_pars *pars, t_obs *obs)
 	else
 		obs->true_dist = (obs->map_y - pars->py + (1 - obs->step_y) / 2)
 			/ obs->raydir_y;
+	pars->buffer[obs->pix] = obs->true_dist;
 }
 
 void	ft_distance_init(t_obs *obs, t_pars *pars)
