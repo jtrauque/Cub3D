@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 15:54:15 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/16 17:39:07 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/17 15:27:25 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,14 @@ int			ft_check_walls(t_pars *pars, t_params *params)
 	j = 0;
 	while (pars->map[0][i])
 	{
-		if (pars->map[0][i] != '1')
+		if (pars->map[0][i] != '1' && pars->map[0][i] != ' ')
 			return (ft_error("map error - wall missing\n"));
 		i++;
 	}
 	while (pars->map[params->map_h - 1][j])
 	{
-		if (pars->map[params->map_h - 1][j] != '1')
+		if (pars->map[params->map_h - 1][j] != '1'
+			&& pars->map[params->map_h - 1][j] != ' ')
 			return (ft_error("map error - wall missing\n"));
 		j++;
 	}
@@ -118,7 +119,7 @@ char		**ft_global_map_check(t_pars *pars, t_params *params)
 	if (count > 1 || count == 0)
 		return (ft_error_map("map error - too much or no players\n"));
 	pars->map = ft_split_one(pars->map_tmp, '\n', params);
-	if (ft_check_walls(pars, params) == 0)
+	if (ft_check_column(pars, params) == 0)
 		return (NULL);
 	return (pars->map);
 }

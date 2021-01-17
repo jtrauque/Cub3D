@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 20:03:22 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/16 19:21:07 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/17 13:30:15 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ typedef struct	s_pars
 	int			width;
 	int			height;
 	char		**map;
-	t_data		text_n;
-	t_data		text_s;
-	t_data		text_w;
-	t_data		text_e;
-	t_data		text_sprite;
+	t_data		text_n[1];
+	t_data		text_s[1];
+	t_data		text_w[1];
+	t_data		text_e[1];
+	t_data		text_sprite[1];
 	int			color_f;
 	int			color_c;
 	char		*map_tmp;
@@ -152,6 +152,7 @@ int				ft_text_n(t_params *params, char *elements, t_pars *pars);
 int				ft_text_s(t_params *params, char *elements, t_pars *pars);
 int				ft_text_w(t_params *params, char *elements, t_pars *pars);
 int 			ft_text_e(t_params *params, char *elements, t_pars *pars);
+void	ft_extract_text(char *elements, t_data *text, t_params *params, int i);
 char 			*ft_path(char *elements);
 int				ft_color(t_params *params, char *elements, t_pars *pars);
 void			ft_putstr(char *str);
@@ -159,6 +160,8 @@ int				ft_space(char *elements);
 int				ft_space_and_plus(char *elements);
 int				ft_map_save(t_params *params, char *elements, t_pars *pars);
 int				ft_check_walls_column(t_pars *pars, t_params *params);
+int				ft_check_column(t_pars *pars, t_params *params);
+int				ft_check_walls(t_pars *pars, t_params *params);
 int				ft_error(char *str);
 void			*ft_error_map(char *str);
 int				ft_free(t_params *params, t_pars *pars);
@@ -167,7 +170,7 @@ void			ft_putchar(char c);
 void			ft_putnbr(int n);
 int				deal_key(int key, t_pars *pars);
 int				deal_key_release(int key, t_pars *pars);
-int				ft_manage_mlx(t_params *params, t_pars *pars);
+void			ft_manage_mlx(t_params *params, t_pars *pars);
 void			ft_manage_mlx_destroy(t_params *params, t_pars *pars);
 int				ft_identify_type(char c);
 char			**ft_split_one(char *s, char c, t_params *params);

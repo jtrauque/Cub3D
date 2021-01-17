@@ -6,13 +6,13 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 19:58:18 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/16 17:39:27 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/17 15:28:44 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	ft_check_column(t_pars *pars, t_params *params)
+int			ft_check_column(t_pars *pars, t_params *params)
 {
 	int		i;
 	int		j;
@@ -21,7 +21,7 @@ static int	ft_check_column(t_pars *pars, t_params *params)
 	while (i < params->map_w)
 	{
 		j = 0;
-		while (j < params->map_h)
+		while (j < params->map_h - 1)
 		{
 			if (pars->map[j][i] == '0' && pars->map[j + 1][i] == ' ')
 				return (0);
@@ -33,7 +33,7 @@ static int	ft_check_column(t_pars *pars, t_params *params)
 		}
 		i++;
 	}
-	return (1);
+	return (ft_check_walls(pars, params));
 }
 
 int			ft_check_walls_column(t_pars *pars, t_params *params)
@@ -45,15 +45,16 @@ int			ft_check_walls_column(t_pars *pars, t_params *params)
 	j = 0;
 	while (i < params->map_h)
 	{
-		if (pars->map[i][0] != '1')
+		if (pars->map[i][0] != '1' && pars->map[i][0] != ' ')
 			return (ft_error("map error - wall missing\n"));
 		i++;
 	}
 	while (j < params->map_h)
 	{
-		if (pars->map[j][params->map_w - 1] != '1')
+		if (pars->map[j][params->map_w - 1] != '1'
+			&& pars->map[j][params->map_w - 1] != ' ')
 			return (ft_error("map error - wall missing\n"));
 		j++;
 	}
-	return (ft_check_column(pars, params));
+	return (1);
 }

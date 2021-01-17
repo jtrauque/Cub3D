@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:38:44 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/16 18:25:07 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/17 12:30:15 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,7 @@ int			ft_window_put(t_params *params, t_pars *pars)
 			pars->height);
 	params->data.data = (unsigned int *)mlx_get_data_addr(params->data.img,
 			&params->data.bpp, &params->data.size_line, &params->data.endian);
-	if (ft_manage_mlx(params, pars) == 0)
-	{
-		ft_manage_mlx_destroy(params, pars);
-		return (0);
-	}
+	ft_manage_mlx(params, pars);
 	if (pars->save != 1)
 		mlx_loop(params->mlx_ptr);
 	else
@@ -76,7 +72,9 @@ int			main(int argc, char **argv)
 	if (fd < 0)
 		return (ft_error("No arguments valid\n"));
 	pars.params = &params;
-	if (ft_parsing(fd, &pars, &params) == 0)
+	if (ft_parsing(fd, &pars, &params) == 0
+			|| !ft_global_map_check(&pars, &params)
+			|| ft_location_player(&pars) == 0)
 		return (ft_free(&params, &pars));
 	if (pars.save != 1)
 		params.win_ptr = mlx_new_window(params.mlx_ptr, pars.width, pars.height,
