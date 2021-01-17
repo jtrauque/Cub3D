@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 19:19:25 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/17 13:19:48 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/17 20:59:39 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,21 @@ char	*ft_path(char *elements)
 	return (elements);
 }
 
-void	ft_extract_text(char *elements, t_data *text, t_params *params, int i)
+static int	ft_check_ext_img(char *str)
+{
+	char *tmp;
+
+	tmp = ft_strchr(str + 1, '.');
+	if (!tmp)
+		return (ft_error("Wrong extension - please use a .xpm\n"));
+	if (ft_strlen(tmp) != ft_strlen(".xpm"))
+		return (ft_error("Wrong extension - please use a .xpm\n"));
+	if (ft_strncmp(".xpm", tmp, 4) != 0)
+		return (ft_error("Wrong extension - please use a .xpm\n"));
+	return (1);
+}
+
+int			ft_extract_text(char *elements, t_data *text, t_params *params, int i)
 {
 	char	*relative_path;
 
@@ -31,10 +45,15 @@ void	ft_extract_text(char *elements, t_data *text, t_params *params, int i)
 	i += ft_space(elements + i);
 	elements = ft_path(elements);
 	relative_path = elements + i;
+	if (ft_check_ext_img(relative_path) == 0)
+		return (0);
 	text->img = mlx_xpm_file_to_image(params->mlx_ptr,
 			relative_path, &text->img_width,
 			&text->img_height);
+	if (!text->img)
+		return (ft_error("Wrong path to image or image missing\n"));
 	text->data = (unsigned int *)mlx_get_data_addr(text->img,
 			&text->bpp, &text->size_line,
 			&text->endian);
+	return (1);
 }
