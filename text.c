@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:28:56 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/17 20:57:55 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/17 21:19:51 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		ft_text_sprite(t_params *params, char *elements, t_pars *pars)
 	if (pars->text_sprite->img)
 		return (ft_error("texture already existing\n"));
 	pars->count += 1;
-	if (ft_extract_text(elements, pars->text_n, params, i) == 0)
+	if (ft_extract_text(elements, pars->text_sprite, params, i) == 0)
 		return (0);
 	if (!pars->text_sprite->img)
 		return (ft_error("texture not there\n"));
@@ -59,7 +59,7 @@ int		ft_text_s(t_params *params, char *elements, t_pars *pars)
 	else if (elements[i] == 'O' && elements[i + 1] == ' ')
 	{
 		pars->count += 1;
-		if (ft_extract_text(elements, pars->text_n, params, i) == 0)
+		if (ft_extract_text(elements, pars->text_s, params, i) == 0)
 			return (0);
 	}
 	else
@@ -79,7 +79,7 @@ int		ft_text_w(t_params *params, char *elements, t_pars *pars)
 	if (elements[i] == 'E' && elements[i + 1] == ' ')
 	{
 		pars->count += 1;
-		if (ft_extract_text(elements, pars->text_n, params, i) == 0)
+		if (ft_extract_text(elements, pars->text_w, params, i) == 0)
 			return (0);
 	}
 	else
@@ -99,7 +99,7 @@ int		ft_text_e(t_params *params, char *elements, t_pars *pars)
 	if (elements[i] == 'A' && elements[i + 1] == ' ')
 	{
 		pars->count += 1;
-		if (ft_extract_text(elements, pars->text_n, params, i) == 0)
+		if (ft_extract_text(elements, pars->text_e, params, i) == 0)
 			return (0);
 	}
 	else
