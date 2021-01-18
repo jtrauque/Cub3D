@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:38:44 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/17 12:30:15 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/18 11:39:45 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ int			main(int argc, char **argv)
 	if (argc > 3)
 		return (ft_error("To much arguments\n"));
 	ft_memset(&params, 0, sizeof(t_params));
-	params.mlx_ptr = mlx_init();
 	if (ft_check_arg(argc, argv, &pars) == 0)
 		return (0);
+	params.mlx_ptr = mlx_init();
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		return (ft_error("No arguments valid\n"));
