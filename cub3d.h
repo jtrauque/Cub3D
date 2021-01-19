@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 20:03:22 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/17 20:45:06 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/19 17:35:07 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,7 @@ void			ft_putchar(char c);
 void			ft_putnbr(int n);
 int				deal_key(int key, t_pars *pars);
 int				deal_key_release(int key, t_pars *pars);
+int				ft_release(t_pars *pars);
 void			ft_manage_mlx(t_params *params, t_pars *pars);
 void			ft_manage_mlx_destroy(t_params *params, t_pars *pars);
 int				ft_identify_type(char c);

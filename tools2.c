@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 19:19:25 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/19 13:24:09 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/19 17:38:38 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,15 @@ int			ft_extract_text(char *elements, t_data *text, t_params *params,
 	return (1);
 }
 
+int			ft_release(t_pars *pars)
+{
+	pars->forward = 0;
+	pars->backward = 0;
+	pars->right = 0;
+	pars->left = 0;
+	pars->move_right = 0;
+	pars->move_left = 0;
+	printf("FOCUS OFF\n");
+	return (0);
 
+}

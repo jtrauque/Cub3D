@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:52:39 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/17 13:13:51 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/19 17:39:55 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	ft_manage_mlx(t_params *params, t_pars *pars)
 		mlx_hook(params->win_ptr, 33, 1L << 0, cross_exit, pars);
 		mlx_do_key_autorepeatoff(params->mlx_ptr);
 		mlx_loop_hook(params->mlx_ptr, game_loop, pars);
+		mlx_hook(params->win_ptr, 10, 1L << 21, ft_release, pars);
 	}
 }
 
