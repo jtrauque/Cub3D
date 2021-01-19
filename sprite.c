@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:17:34 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/17 21:41:46 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/19 18:53:32 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,12 @@ void	ft_print_sprite_column(t_sprite *s, t_pars *pars, t_params *params)
 	int color;
 	int n;
 
-	n = s->start * pars->text_sprite->size_line - pars->height *
-		(pars->text_sprite->size_line / 2) +
-		s->heigth_column * (pars->text_sprite->size_line / 2);
-	s->draw_y = ((n * pars->text_sprite->img_height) /
-			s->heigth_column) / pars->text_sprite->size_line;
-	color = ft_get_px_from_image(pars->text_sprite, s->draw_x
+	n = s->start * pars->text[2].size_line - pars->height *
+		(pars->text[2].size_line / 2) +
+		s->heigth_column * (pars->text[2].size_line / 2);
+	s->draw_y = ((n * pars->text[2].img_height) /
+			s->heigth_column) / pars->text[2].size_line;
+	color = ft_get_px_from_image(&pars->text[2], s->draw_x
 			, s->draw_y);
 	if (color != 0)
 		ft_put_px_in_image(&params->data, s->stripe, s->start, color);
@@ -92,10 +92,10 @@ void	ft_sprite_loop(t_pars *pars, t_sprite *s, t_params *params)
 	s->stripe = s->width_draw_start;
 	while (s->stripe < s->width_draw_end)
 	{
-		s->draw_x = (int)(pars->text_sprite->size_line * (s->stripe -
+		s->draw_x = (int)(pars->text[2].size_line * (s->stripe -
 					(-s->width_column / 2 + s->sprite_screen)) *
-				pars->text_sprite->img_width / s->width_column) /
-			pars->text_sprite->size_line;
+				pars->text[2].img_width / s->width_column) /
+			pars->text[2].size_line;
 		if (s->next_y > 0 && s->stripe > 0 && s->stripe < pars->width &&
 			s->next_y < pars->buffer[s->stripe])
 		{

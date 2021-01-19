@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 11:51:26 by jtrauque          #+#    #+#             */
-/*   Updated: 2020/11/19 14:21:56 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/19 19:28:29 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int		ft_find_set(char c, char const *set)
 	return (0);
 }
 
-static int		ft_count(char const *s1, char const *set)
+static int		ft_count(char *s1, char const *set)
 {
 	int	i;
 	int j;
@@ -43,7 +43,7 @@ static int		ft_count(char const *s1, char const *set)
 	return (j - i);
 }
 
-char			*ft_strtrim(char const *s1, char const *set)
+char			*ft_strtrim(char *s1, char const *set)
 {
 	int		i;
 	int		j;

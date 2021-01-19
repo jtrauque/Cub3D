@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 20:03:22 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/19 17:35:07 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/19 20:04:01 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,10 @@ typedef struct	s_pars
 	int			width;
 	int			height;
 	char		**map;
-	t_data		text_n[1];
-	t_data		text_s[1];
-	t_data		text_w[1];
-	t_data		text_e[1];
-	t_data		text_sprite[1];
+//	t_data		text_s[1];
+//	t_data		text_w[1];
+//	t_data		text_e[1];
+//	t_data		text_sprite[1];
 	int			color_f;
 	int			color_c;
 	char		*map_tmp;
@@ -91,6 +90,7 @@ typedef struct	s_pars
 	int			move_right;
 	double		speed;
 	int			save;
+	t_data		text[5];
 }				t_pars;
 
 typedef struct	s_color
@@ -149,11 +149,11 @@ typedef struct	s_sprite
 int				ft_parsing(int fd, t_pars *pars, t_params *params);
 int				ft_find_orientation(char c, char *str);
 int				ft_resolution(t_params *params, char *elements, t_pars *pars);
-int				ft_text_n(t_params *params, char *elements, t_pars *pars);
-int				ft_text_s(t_params *params, char *elements, t_pars *pars);
-int				ft_text_w(t_params *params, char *elements, t_pars *pars);
-int 			ft_text_e(t_params *params, char *elements, t_pars *pars);
-int				ft_extract_text(char *elements, t_data *text, t_params *params, int i);
+int				ft_text(t_params *params, char *elements, t_pars *pars);
+//int				ft_text_s(t_params *params, char *elements, t_pars *pars);
+//int				ft_text_w(t_params *params, char *elements, t_pars *pars);
+//int 			ft_text_e(t_params *params, char *elements, t_pars *pars);
+int				ft_extract_text(char *elements, t_data *text, t_params *params);
 char 			*ft_path(char *elements);
 int				ft_color(t_params *params, char *elements, t_pars *pars);
 void			ft_putstr(char *str);

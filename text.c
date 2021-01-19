@@ -6,105 +6,77 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:28:56 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/17 21:19:51 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/19 20:18:10 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		ft_text_n(t_params *params, char *elements, t_pars *pars)
+int			ft_text(t_params *params, char *elements, t_pars *pars)
 {
-	int		i;
+	int			i;
+	static char	*str[] = {"NO ", "SO ", "S ", "WE ", "EA "};
 
-	i = 1;
-	if (pars->text_n->img)
-		return (ft_error("texture already existing\n"));
-	if (elements[i] == 'O' && elements[i + 1] == ' ')
+	i = 0;
+	while (i < 5)
 	{
-		pars->count += 1;
-		if (ft_extract_text(elements, pars->text_n, params, i) == 0)
-			return (0);
+		if (ft_strncmp(str[i], elements, ft_strlen(str[i]) - 1) == 0)
+			break ;
+		i++;
 	}
-	else
-		return (ft_error("error texture\n"));
-	if (!pars->text_n->img)
-		return (ft_error("texture not there\n"));
-	return (1);
-}
-
-int		ft_text_sprite(t_params *params, char *elements, t_pars *pars)
-{
-	int		i;
-
-	i = 1;
-	if (pars->text_sprite->img)
+	if (pars->text[i].img)
 		return (ft_error("texture already existing\n"));
-	pars->count += 1;
-	if (ft_extract_text(elements, pars->text_sprite, params, i) == 0)
+	else if (ft_extract_text(elements, &pars->text[i], params) == 0)
 		return (0);
-	if (!pars->text_sprite->img)
+	if (!pars->text[i].img)
 		return (ft_error("texture not there\n"));
+	pars->count += 1;
 	return (1);
 }
 
-int		ft_text_s(t_params *params, char *elements, t_pars *pars)
+static int	ft_check_ext_img(char *str)
 {
-	int		i;
+	char *tmp;
 
-	i = 1;
-	if (elements[i] == ' ')
-		return (ft_text_sprite(params, elements, pars));
-	else if (pars->text_s->img)
-		return (ft_error("texture already existing\n"));
-	else if (elements[i] == 'O' && elements[i + 1] == ' ')
-	{
-		pars->count += 1;
-		if (ft_extract_text(elements, pars->text_s, params, i) == 0)
-			return (0);
-	}
-	else
-		return (ft_error("error texture\n"));
-	if (!pars->text_s->img)
-		return (ft_error("texture not there\n"));
+	tmp = ft_strchr(str + 1, '.');
+	if (!tmp)
+		return (ft_error("Wrong extension - please use a .xpm\n"));
+	if (ft_strlen(tmp) != ft_strlen(".xpm"))
+		return (ft_error("Wrong extension - please use a .xpm\n"));
+	if (ft_strncmp(".xpm", tmp, 4) != 0)
+		return (ft_error("Wrong extension - please use a .xpm\n"));
 	return (1);
 }
 
-int		ft_text_w(t_params *params, char *elements, t_pars *pars)
+char		*ft_path(char *elements)
 {
-	int		i;
+	int j;
 
-	i = 1;
-	if (pars->text_w->img)
-		return (ft_error("texture already existing\n"));
-	if (elements[i] == 'E' && elements[i + 1] == ' ')
-	{
-		pars->count += 1;
-		if (ft_extract_text(elements, pars->text_w, params, i) == 0)
-			return (0);
-	}
-	else
-		return (ft_error("error texture\n"));
-	if (!pars->text_w->img)
-		return (ft_error("texture not there\n"));
-	return (1);
+	j = ft_strlen(elements);
+	while (elements[j - 1] == ' ')
+		j--;
+	elements[j] = '\0';
+	return (elements);
 }
 
-int		ft_text_e(t_params *params, char *elements, t_pars *pars)
+int			ft_extract_text(char *elements, t_data *text, t_params *params)
 {
+	char	*relative_path;
 	int		i;
 
-	i = 1;
-	if (pars->text_e->img)
-		return (ft_error("texture already existing\n"));
-	if (elements[i] == 'A' && elements[i + 1] == ' ')
-	{
-		pars->count += 1;
-		if (ft_extract_text(elements, pars->text_e, params, i) == 0)
-			return (0);
-	}
-	else
-		return (ft_error("error texture\n"));
-	if (!pars->text_e->img)
-		return (ft_error("texture not there\n"));
+	i = 2;
+	i += ft_space(elements + i);
+	elements = ft_path(elements);
+	relative_path = elements + i;
+	if (ft_check_ext_img(relative_path) == 0)
+		return (0);
+	text->img = mlx_xpm_file_to_image(params->mlx_ptr,
+			relative_path, &text->img_width,
+			&text->img_height);
+	if (!text->img)
+		return (ft_error("Wrong path to image or image missing\n"));
+	text->data = (unsigned int *)mlx_get_data_addr(text->img,
+			&text->bpp, &text->size_line,
+			&text->endian);
 	return (1);
 }

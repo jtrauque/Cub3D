@@ -6,13 +6,13 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 11:50:07 by jtrauque          #+#    #+#             */
-/*   Updated: 2020/11/19 15:53:00 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/19 19:19:55 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t		ft_size_strlen(char *str, size_t dstsize)
+static int		ft_size_strlen(char *str, size_t dstsize)
 {
 	size_t i;
 
@@ -22,11 +22,11 @@ static size_t		ft_size_strlen(char *str, size_t dstsize)
 	return (i);
 }
 
-size_t				ft_strlcat(char *dst, const char *src, size_t dstsize)
+int				ft_strlcat(char *dst, char *src, int dstsize)
 {
-	size_t	i;
-	size_t	j;
-	size_t	len;
+	int		i;
+	int 	j;
+	int		len;
 
 	i = ft_size_strlen(dst, dstsize);
 	j = 0;

@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:36:07 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/19 13:29:05 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/19 20:09:19 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,20 +71,18 @@ void	*ft_error_map(char *str)
 int		ft_free(t_params *params, t_pars *pars)
 {
 	int i;
+	int j;
 
 	i = 0;
+	j = 0;
 	if (params->data.img)
 		mlx_destroy_image(params->mlx_ptr, params->data.img);
-	if (pars->text_n->img)
-		mlx_destroy_image(params->mlx_ptr, pars->text_n->img);
-	if (pars->text_s->img)
-		mlx_destroy_image(params->mlx_ptr, pars->text_s->img);
-	if (pars->text_e->img)
-		mlx_destroy_image(params->mlx_ptr, pars->text_e->img);
-	if (pars->text_w->img)
-		mlx_destroy_image(params->mlx_ptr, pars->text_w->img);
-	if (pars->text_sprite->img)
-		mlx_destroy_image(params->mlx_ptr, pars->text_sprite->img);
+	while (j < 5)
+	{
+		if (pars->text[j].img)
+			mlx_destroy_image(params->mlx_ptr, pars->text[j].img);
+		j++;
+	}
 	if (pars->map)
 		while (pars->map[i])
 			free(pars->map[i++]);

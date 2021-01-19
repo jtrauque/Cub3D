@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:41:12 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/19 11:50:06 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/19 18:50:05 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ void	ft_apply_text_on_wall(t_pars *pars, t_obs *obs, t_data *text)
 void	ft_side_pick(t_pars *pars, t_obs *obs)
 {
 	if (obs->side == 1)
-		obs->text = pars->text_w;
+		obs->text = &pars->text[3];
 	if (obs->side == 3)
-		obs->text = pars->text_n;
+		obs->text = &pars->text[0];
 	if (obs->side == 0)
-		obs->text = pars->text_e;
+		obs->text = &pars->text[4];
 	if (obs->side == 2)
-		obs->text = pars->text_s;
+		obs->text = &pars->text[1];
 	ft_apply_text_on_wall(pars, obs, obs->text);
 }
 

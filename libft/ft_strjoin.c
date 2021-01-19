@@ -6,18 +6,18 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 11:49:57 by jtrauque          #+#    #+#             */
-/*   Updated: 2020/11/18 13:45:30 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/19 19:26:40 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
-	size_t	i;
-	size_t	j;
-	size_t	len;
+	int		i;
+	int		j;
+	int		len;
 
 	i = 0;
 	j = 0;

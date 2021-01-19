@@ -6,19 +6,19 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 11:51:34 by jtrauque          #+#    #+#             */
-/*   Updated: 2020/11/18 14:07:19 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/19 19:24:51 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char *s, int start, int len)
 {
 	char	*s2;
-	size_t	i;
-	size_t	j;
+	int		i;
+	int		j;
 
-	i = (size_t)start;
+	i = (int)start;
 	j = 0;
 	if (!s)
 	{

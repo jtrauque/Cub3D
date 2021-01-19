@@ -6,15 +6,15 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:04:46 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/19 13:55:06 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/19 18:53:58 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 typedef int	(*t_fn_parsing_t)(t_params *params, char *str, t_pars *p);
-t_fn_parsing_t g_parsing[8] = {ft_resolution, ft_text_n, ft_text_s, ft_text_w,
-	ft_text_e, ft_color, ft_color, ft_map_save};
+t_fn_parsing_t g_parsing[8] = {ft_resolution, ft_text, ft_text, ft_text,
+	ft_text, ft_color, ft_color, ft_map_save};
 
 int		ft_identify_type(char c)
 {
