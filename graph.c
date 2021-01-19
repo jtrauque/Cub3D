@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:41:12 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/17 21:43:43 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/19 11:50:06 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_background(t_pars *pars, t_params *params)
 	while (f < pars->width)
 	{
 		y2 = 0;
-		while (y2 < pars->height / 2)
+		while (y2 <= pars->height / 2)
 		{
 			ft_put_px_in_image(&params->data, f, middle_screen + y2,
 					pars->color_f);

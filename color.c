@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:30:50 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/17 19:20:08 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/19 12:00:47 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ int		ft_rgb(char *elements)
 	i += ft_space_and_plus(elements + i);
 	while (elements[i] && (elements[i] >= '0' && elements[i] <= '9'))
 		color.b = color.b * 10 + (elements[i++] - '0');
+	if (color.r > 255 || color.r < 0 || color.g > 255 || color.g < 0 ||
+			color.b > 255 || color.b < 0)
+		return (-1);
 	return (65536 * color.r + 256 * color.g + color.b);
 }
 
