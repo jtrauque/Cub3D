@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:04:46 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/16 19:01:23 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/19 13:55:06 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,12 @@ int		ft_resolution(t_params *params, char *elements, t_pars *pars)
 	while (elements[i] && (elements[i] >= '0' && elements[i] <= '9'))
 		pars->height = pars->height * 10 + (elements[i++] - '0');
 	mlx_get_screen_size(params->mlx_ptr, &width_max, &height_max);
-	if (pars->width > width_max)
+	if (pars->save != 1 && pars->width > width_max)
 		pars->width = width_max;
-	if (pars->height > height_max)
+	if (pars->save != 1 && pars->height > height_max)
 		pars->height = height_max;
-	if (pars->width == 0 || pars->height == 0)
+	if (ft_space(elements + i) != -1 || pars->width <= 0 ||
+		pars->height <= 0)
 		return (ft_error("error resolution\n"));
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:36:07 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/17 19:19:11 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/19 13:29:05 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int		ft_space_and_plus(char *elements)
 				ft_error("too much ,\n");
 			i++;
 		}
+		else if (!(elements[i] >= '0' && elements[i] <= '9'))
+			return (-1);
 		else
 			return (i);
 	}

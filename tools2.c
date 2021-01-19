@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 19:19:25 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/17 21:41:24 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/19 13:24:09 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,3 +58,5 @@ int			ft_extract_text(char *elements, t_data *text, t_params *params,
 			&text->endian);
 	return (1);
 }
+
+
