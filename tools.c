@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:36:07 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/19 20:09:19 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/20 13:30:24 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		ft_space_and_plus(char *elements)
 	count = 0;
 	while (elements[i])
 	{
-		if (elements[i] == ' ')
+		if (elements[i] == ' ' || elements[i] == '\t')
 			i++;
 		else if (elements[i] == ',')
 		{
@@ -46,7 +46,7 @@ int		ft_space(char *elements)
 	i = 0;
 	while (elements[i])
 	{
-		if (elements[i] == ' ')
+		if (elements[i] == ' ' || elements[i] == '\t')
 			i++;
 		else
 			return (i);

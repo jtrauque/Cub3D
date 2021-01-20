@@ -6,40 +6,49 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:30:50 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/19 13:57:12 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/20 17:10:15 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		ft_rgb(char *elements)
+static int	ft_arg_nbr(char **str)
 {
-	int		i;
-	t_color	color;
+	int i;
 
 	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+int			ft_rgb(char *elements)
+{
+	char	**str;
+	t_color	color;
+
 	ft_memset(&color, 0, sizeof(t_color));
-	while (elements[i] && (elements[i] >= '0' && elements[i] <= '9'))
-		color.r = color.r * 10 + (elements[i++] - '0');
-	i++;
-	if (ft_space_and_plus(elements + i) == -1)
+	str = ft_split(elements, ',');
+	if (ft_arg_nbr(str) != 3 || ft_check_str(str[0]) != 1
+			|| ft_check_str(str[1]) != 1 || ft_check_str(str[2]) != 1)
+	{
+		ft_free_tab(str);
 		return (-1);
-	i += ft_space_and_plus(elements + i);
-	while (elements[i] && (elements[i] >= '0' && elements[i] <= '9'))
-		color.g = color.g * 10 + (elements[i++] - '0');
-	i++;
-	if (ft_space_and_plus(elements + i) == -1)
-		return (-1);
-	i += ft_space_and_plus(elements + i);
-	while (elements[i] && (elements[i] >= '0' && elements[i] <= '9'))
-		color.b = color.b * 10 + (elements[i++] - '0');
+	}
+	color.r = ft_atoi(str[0]);
+	color.g = ft_atoi(str[1]);
+	color.b = ft_atoi(str[2]);
 	if (color.r > 255 || color.r < 0 || color.g > 255 || color.g < 0 ||
-			color.b > 255 || color.b < 0 || ft_space(elements + i) != -1)
+			color.b > 255 || color.b < 0)
+	{
+		ft_free_tab(str);
 		return (-1);
+	}
+	ft_free_tab(str);
 	return (65536 * color.r + 256 * color.g + color.b);
 }
 
-int		ft_color(t_params *params, char *elements, t_pars *pars)
+int			ft_color(t_params *params, char *elements, t_pars *pars)
 {
 	int i;
 
@@ -63,7 +72,7 @@ int		ft_color(t_params *params, char *elements, t_pars *pars)
 	return (1);
 }
 
-void	ft_put_px_in_image(t_data *data, int x, int y, int color)
+void		ft_put_px_in_image(t_data *data, int x, int y, int color)
 {
 	int pos;
 
@@ -71,7 +80,7 @@ void	ft_put_px_in_image(t_data *data, int x, int y, int color)
 	data->data[pos] = color;
 }
 
-int		ft_get_px_from_image(t_data *data, int x, int y)
+int			ft_get_px_from_image(t_data *data, int x, int y)
 {
 	int pos;
 
