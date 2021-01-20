@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 11:50:07 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/19 19:19:55 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/20 20:40:21 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int		ft_size_strlen(char *str, size_t dstsize)
 int				ft_strlcat(char *dst, char *src, int dstsize)
 {
 	int		i;
-	int 	j;
+	int		j;
 	int		len;
 
 	i = ft_size_strlen(dst, dstsize);

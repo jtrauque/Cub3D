@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 13:19:07 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/16 18:04:25 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/20 20:40:57 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_strndup(const char *s1, int n)
 	return (s2);
 }
 
- char	*ft_strnjoin(char *s1, char *s2, int n)
+char	*ft_strnjoin(char *s1, char *s2, int n)
 {
 	char	*str;
 	size_t	i;
@@ -77,7 +77,6 @@ int		ft_patch(char **line, char **save, char **tmp)
 	return (1);
 }
 
-#include <stdio.h>
 int		ft_line(int fd, char *buffer, char **line)
 {
 	static char *tmp = NULL;

@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 19:19:25 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/20 17:10:54 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/20 20:35:12 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int			ft_release(t_pars *pars)
 	pars->left = 0;
 	pars->move_right = 0;
 	pars->move_left = 0;
-	printf("FOCUS OFF\n");
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 20:03:22 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/20 17:10:02 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/20 19:54:55 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,7 @@ void			ft_side_move(t_pars *pars);
 void			ft_rotate(t_pars *pars, float n);
 void			ft_detect_obs(t_pars *pars, t_obs *obs);
 void			ft_distance_init(t_obs *obs, t_pars *pars);
-int				ft_get_px_from_image(t_data *data, int x, int y);
+int				ft_get_px_from_image(t_data *data, unsigned int x, unsigned int y);
 void			ft_put_px_in_image(t_data *data, int x, int y, int color);
 void			ft_sprite_init(t_pars *pars, t_sprite *sprite);
 void			ft_apply_text_on_wall(t_pars *pars, t_obs *obs, t_data *text);

@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:30:50 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/20 17:10:15 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/20 20:34:43 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,11 @@ void		ft_put_px_in_image(t_data *data, int x, int y, int color)
 	data->data[pos] = color;
 }
 
-int			ft_get_px_from_image(t_data *data, int x, int y)
+int			ft_get_px_from_image(t_data *data, unsigned int x, unsigned int y)
 {
 	int pos;
-
+	if (y > (unsigned int)data->img_height || x > (unsigned int)data->img_width)
+		return (0);
 	pos = (y * data->size_line + x * data->bpp / 8) / sizeof(int);
 	return (data->data[pos]);
 }
