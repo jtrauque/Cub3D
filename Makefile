@@ -6,13 +6,13 @@
 #    By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/20 18:37:16 by jtrauque          #+#    #+#              #
-#    Updated: 2021/01/20 18:37:24 by jtrauque         ###   ########.fr        #
+#    Updated: 2021/01/21 20:47:17 by jtrauque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME      = Cub3D
 
-SRCS      = main.c color.c map.c parsing.c text.c tools.c graph.c key.c ft_split.c raycasting.c sprite.c hook.c bitmap.c player.c map2.c tools2.c
+SRCS      = main.c color.c map.c parsing.c text.c tools.c graph.c key.c ft_split.c raycasting.c sprite.c hook.c bitmap.c player.c map2.c tools2.c mini_map.c
 
 OBJS      = ${SRCS:.c=.o}
 

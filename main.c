@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:38:44 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/20 19:06:23 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/21 14:37:02 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ int			main(int argc, char **argv)
 	ft_memset(&params, 0, sizeof(t_params));
 	if (ft_check_arg(argc, argv, &pars) == 0)
 		return (0);
-	params.mlx_ptr = mlx_init();
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		return (ft_error("No arguments valid\n"));
+	params.mlx_ptr = mlx_init();
 	pars.params = &params;
 	if (ft_parsing(fd, &pars, &params) == 0
 			|| !ft_global_map_check(&pars, &params)

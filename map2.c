@@ -6,13 +6,13 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 19:58:18 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/20 19:39:13 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/21 22:03:19 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int			ft_find(char c, char *str)
+static int	ft_find(char c, char *str)
 {
 	int i;
 
@@ -26,7 +26,7 @@ static int			ft_find(char c, char *str)
 	return (0);
 }
 
-static int			ft_check_orient(t_pars *pars)
+static int	ft_check_orient(t_pars *pars)
 {
 	char	*str;
 	int		i;
@@ -38,13 +38,13 @@ static int			ft_check_orient(t_pars *pars)
 	while (pars->map[j])
 	{
 		i = 0;
-		while (pars->map[j][i])	
+		while (pars->map[j][i])
 		{
 			if (ft_find(pars->map[j][i], str) == 1)
 			{
 				if (pars->map[j + 1][i] == ' ' || pars->map[j - 1][i] == ' '
-							|| pars->map[j][i + 1] == ' '
-							|| pars->map[j][i - 1] == ' ')
+						|| pars->map[j][i + 1] == ' '
+						|| pars->map[j][i - 1] == ' ')
 					return (0);
 			}
 			i++;
@@ -65,13 +65,13 @@ int			ft_check_column(t_pars *pars, t_params *params)
 	while (i < params->map_w)
 	{
 		j = 0;
-		while (j < params->map_h - 1)
+		while (j < params->map_h)
 		{
-			if ((pars->map[j][i] == '0' || pars->map[j][i] == '2')
-					&& pars->map[j + 1][i] == ' ')
+			if (j < params->map_h - 1 && (pars->map[j][i] == '0' ||
+					pars->map[j][i] == '2') && pars->map[j + 1][i] == ' ')
 				return (0);
-			if (pars->map[j][i] == ' ' && (pars->map[j + 1][i] == '0'
-						|| pars->map[j + 1][i] == '2'))
+			if (j < params->map_h - 1 && pars->map[j][i] == ' ' &&
+					(pars->map[j + 1][i] == '0' || pars->map[j + 1][i] == '2'))
 				return (0);
 			if (pars->map[j][i] == ' ')
 				pars->map[j][i] = '1';

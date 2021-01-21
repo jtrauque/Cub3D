@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 20:03:22 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/20 19:54:55 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/21 22:10:23 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 
 # define GO_FORWARD 119
 # define GO_BACKWARD 115
-# define TURN_LEFT 97
-# define TURN_RIGHT 100
-# define GO_LEFT 113
-# define GO_RIGHT 101
+# define TURN_LEFT 65361 
+# define TURN_RIGHT 65363
+# define GO_LEFT 97
+# define GO_RIGHT 100
 
 typedef struct	s_data
 {
@@ -55,6 +55,16 @@ typedef struct	s_vecteur
 	int x;
 	int y;
 }				t_vecteur;
+
+typedef struct	s_mini
+{
+	int x;
+	int y;
+	int size_x;
+	int size_y;
+	int x_max;
+	int y_max;
+}				t_mini;
 
 typedef struct	s_pars
 {
@@ -190,5 +200,6 @@ void			ft_sprite_loop(t_pars *pars, t_sprite *sprite,
 void			ft_sort_sprite(t_pars *pars);
 int				ft_save_bmp(char *argv, t_pars *pars);
 void			ft_create_bmp(t_pars *pars);
+void  	ft_mini_map(t_pars *pars, t_params *params);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:17:34 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/20 19:50:08 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/21 15:41:32 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_sort_sprite(t_pars *pars)
 	t_vecteur	tmp;
 
 	i = 0;
-	while (i < pars->sprite_nbr)
+	while (i < pars->sprite_nbr - 1)
 	{
 		first = ((pars->px - pars->sprite[i].x) * (pars->px -
 					pars->sprite[i].x) + (pars->py - pars->sprite[i].y) *
