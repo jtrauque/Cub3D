@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:28:56 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/19 20:18:10 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/22 18:38:42 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 int			ft_text(t_params *params, char *elements, t_pars *pars)
 {
 	int			i;
-	static char	*str[] = {"NO ", "SO ", "S ", "WE ", "EA "};
+	static char	*str[] = {"NO ", "SO ", "S ", "WE ", "EA ", "SB "};
 
 	i = 0;
-	while (i < 5)
+	while (i < 6)
 	{
-		if (ft_strncmp(str[i], elements, ft_strlen(str[i]) - 1) == 0)
+		if (ft_strncmp(str[i], elements, ft_strlen(str[i])) == 0)
 			break ;
 		i++;
 	}
@@ -30,7 +30,8 @@ int			ft_text(t_params *params, char *elements, t_pars *pars)
 		return (0);
 	if (!pars->text[i].img)
 		return (ft_error("texture not there\n"));
-	pars->count += 1;
+	if (i != 5)
+		pars->count += 1;
 	return (1);
 }
 

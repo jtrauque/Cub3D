@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 20:03:22 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/21 22:10:23 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/22 18:56:15 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct	s_vecteur
 {
 	int x;
 	int y;
+	int text;
 }				t_vecteur;
 
 typedef struct	s_mini
@@ -70,6 +71,8 @@ typedef struct	s_pars
 {
 	t_params	*params;
 	t_vecteur	*sprite;
+	t_vecteur	*sprite_bonus;
+	t_vecteur	*all_sprite;
 	double		*buffer;
 	int			count;
 	int			width;
@@ -85,9 +88,10 @@ typedef struct	s_pars
 	double		plane_x;
 	double		plane_y;
 	int			sprite_nbr;
+	int			sprite_bonus_nbr;
+	int			n_spriteb;
 	int			is_a_sprite;
-	int			is_a_sprite_x;
-	int			is_a_sprite_y;
+	int			is_a_sprite_b;
 	int			forward;
 	int			backward;
 	int			left;
@@ -96,7 +100,7 @@ typedef struct	s_pars
 	int			move_right;
 	double		speed;
 	int			save;
-	t_data		text[5];
+	t_data		text[6];
 }				t_pars;
 
 typedef struct	s_color
@@ -195,11 +199,12 @@ int				ft_get_px_from_image(t_data *data, unsigned int x, unsigned int y);
 void			ft_put_px_in_image(t_data *data, int x, int y, int color);
 void			ft_sprite_init(t_pars *pars, t_sprite *sprite);
 void			ft_apply_text_on_wall(t_pars *pars, t_obs *obs, t_data *text);
-void			ft_sprite_loop(t_pars *pars, t_sprite *sprite,
-		t_params *params);
-void			ft_sort_sprite(t_pars *pars);
+void			ft_sprite_loop(t_pars *pars, t_sprite *s, t_vecteur *sprite, int n);
+void			ft_sort_sprite(t_pars *pars, t_vecteur *sprite, int nbr);
 int				ft_save_bmp(char *argv, t_pars *pars);
 void			ft_create_bmp(t_pars *pars);
-void  	ft_mini_map(t_pars *pars, t_params *params);
+void  			ft_mini_map(t_pars *pars, t_params *params);
+void			ft_join_sprite_bonus(t_pars *pars);
+void			ft_is_a_sprite(t_pars *pars, t_sprite *sprite);
 
 #endif

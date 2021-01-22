@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 22:04:22 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/17 19:35:00 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/22 18:51:01 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		ft_direction(t_pars *pars, char c)
 	}
 }
 
-void		ft_count_sprite(t_pars *pars)
+void		ft_count_sprite(t_pars *pars, char c)
 {
 	int x;
 	int y;
@@ -49,7 +49,7 @@ void		ft_count_sprite(t_pars *pars)
 		x = 0;
 		while (pars->map[y][x])
 		{
-			if (pars->map[y][x] == '2')
+			if (pars->map[y][x] == c)
 			{
 				i++;
 			}
@@ -57,7 +57,10 @@ void		ft_count_sprite(t_pars *pars)
 		}
 		y++;
 	}
-	pars->sprite_nbr = i;
+	if (c == '2')
+		pars->sprite_nbr = i;
+	if (c == '3')
+		pars->sprite_bonus_nbr = i;
 }
 
 void		ft_save_location(t_pars *pars, int x, int y, int i)
@@ -75,6 +78,35 @@ void		ft_save_location(t_pars *pars, int x, int y, int i)
 	}
 }
 
+int			ft_loc_sprite_bonus(t_pars *pars)
+{
+	t_vecteur	s;
+	int			i;
+
+	i = 0;
+	ft_memset(&s, 0, sizeof(t_vecteur));
+	ft_count_sprite(pars, '3');
+	if (!(pars->sprite_bonus = malloc(sizeof(t_vecteur) *
+					(pars->sprite_bonus_nbr))))
+		return (0);
+	while (pars->map[s.y])
+	{
+		s.x = 0;
+		while (pars->map[s.y][s.x])
+		{
+			if (pars->map[s.y][s.x] == '3')
+			{
+				pars->sprite_bonus[i].y = (float)s.y + .5;
+				pars->sprite_bonus[i].x = (float)s.x + .5;
+				i++;
+			}
+			s.x++;
+		}
+		s.y++;
+	}
+	return (1);
+}
+
 int			ft_location_player(t_pars *pars)
 {
 	int x;
@@ -83,8 +115,8 @@ int			ft_location_player(t_pars *pars)
 
 	i = 0;
 	y = 0;
-	ft_count_sprite(pars);
-	if (!(pars->sprite = malloc(sizeof(t_vecteur) * (pars->sprite_nbr + 1))))
+	ft_count_sprite(pars, '2');
+	if (!(pars->sprite = malloc(sizeof(t_vecteur) * (pars->sprite_nbr))))
 		return (0);
 	while (pars->map[y])
 	{
@@ -98,5 +130,8 @@ int			ft_location_player(t_pars *pars)
 		}
 		y++;
 	}
+	ft_loc_sprite_bonus(pars);
+	if (pars->sprite_bonus_nbr != 0)
+		ft_join_sprite_bonus(pars);
 	return (1);
 }

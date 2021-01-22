@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 19:19:25 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/20 20:35:12 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/22 18:57:45 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,23 @@ int			ft_check_str(char *str)
 	if (n > 0 && i + n < len)
 		return (-1);
 	return (1);
+}
+
+void		ft_is_a_sprite(t_pars *pars, t_sprite *sprite)
+{
+	if (pars->is_a_sprite_b != 0)
+	{
+		pars->n_spriteb = -1;
+		ft_sort_sprite(pars, pars->all_sprite, (pars->sprite_nbr +
+					pars->sprite_bonus_nbr));
+		while (++pars->n_spriteb < (pars->sprite_bonus_nbr + pars->sprite_nbr))
+			ft_sprite_loop(pars, sprite, pars->all_sprite, pars->n_spriteb);
+	}
+	else if (pars->is_a_sprite != 0 && pars->is_a_sprite_b == 0)
+	{
+		sprite->n = -1;
+		ft_sort_sprite(pars, pars->sprite, pars->sprite_nbr);
+		while (++sprite->n < pars->sprite_nbr)
+			ft_sprite_loop(pars, sprite, pars->sprite, sprite->n);
+	}
 }

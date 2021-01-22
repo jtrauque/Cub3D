@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:52:39 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/21 21:59:48 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/22 18:36:26 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,19 @@ int		game_loop(t_pars *pars)
 	if (pars->forward == 1)
 	{
 		if ((c = pars->map[(int)pars->py][(int)(pars->px + pars->dx *
-						pars->speed * 2)]) != '1' && c != '2')
+						pars->speed * 2)]) != '1' && c != '2' && c != '3')
 			pars->px += pars->dx * pars->speed;
 		if ((c = pars->map[(int)(pars->py + pars->dy * pars->speed * 2)]
-					[(int)pars->px]) != '1' && c != '2')
+					[(int)pars->px]) != '1' && c != '2' && c != '3')
 			pars->py += pars->dy * pars->speed;
 	}
 	if (pars->backward == 1)
 	{
 		if ((c = pars->map[(int)pars->py][(int)(pars->px - pars->dx *
-						pars->speed * 2)]) != '1' && c != '2')
+						pars->speed * 2)]) != '1' && c != '2' && c != '3')
 			pars->px -= pars->dx * pars->speed;
 		if ((c = pars->map[(int)(pars->py - pars->dy * pars->speed * 2)]
-					[(int)pars->px]) != '1' && c != '2')
+					[(int)pars->px]) != '1' && c != '2' && c != '3')
 			pars->py -= pars->dy * pars->speed;
 	}
 	ft_side_move(pars);
@@ -77,8 +77,9 @@ void	ft_manage_mlx_destroy(t_params *params, t_pars *pars)
 	i = 0;
 	j = 0;
 	mlx_destroy_image(params->mlx_ptr, params->data.img);
-	while (j < 5)
-		mlx_destroy_image(params->mlx_ptr, pars->text[j++].img);
+	while (j < 6)
+		if (pars->text[j].img)
+			mlx_destroy_image(params->mlx_ptr, pars->text[j++].img);
 	if (pars->save != 1)
 	{
 		mlx_do_key_autorepeaton(params->mlx_ptr);
@@ -92,4 +93,6 @@ void	ft_manage_mlx_destroy(t_params *params, t_pars *pars)
 	free(pars->map);
 	free(params->mlx_ptr);
 	free(pars->sprite);
+	free(pars->sprite_bonus);
+	free(pars->all_sprite);
 }

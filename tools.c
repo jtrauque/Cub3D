@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:36:07 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/20 13:30:24 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/22 18:40:28 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int		ft_free(t_params *params, t_pars *pars)
 	j = 0;
 	if (params->data.img)
 		mlx_destroy_image(params->mlx_ptr, params->data.img);
-	while (j < 5)
+	while (j < 6)
 	{
 		if (pars->text[j].img)
 			mlx_destroy_image(params->mlx_ptr, pars->text[j].img);
@@ -89,5 +89,7 @@ int		ft_free(t_params *params, t_pars *pars)
 	free(pars->map);
 	free(pars->map_tmp);
 	free(params->mlx_ptr);
+	free(pars->sprite);
+	free(pars->sprite_bonus);
 	return (0);
 }

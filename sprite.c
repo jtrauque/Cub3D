@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:17:34 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/21 15:41:32 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/22 18:39:45 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_sprite_init(t_pars *pars, t_sprite *sprite)
 		sprite->width_draw_end = pars->width - 1;
 }
 
-void	ft_sort_sprite(t_pars *pars)
+void	ft_sort_sprite(t_pars *pars, t_vecteur *sprite, int nbr)
 {
 	int			i;
 	int			first;
@@ -47,20 +47,19 @@ void	ft_sort_sprite(t_pars *pars)
 	t_vecteur	tmp;
 
 	i = 0;
-	while (i < pars->sprite_nbr - 1)
+	while (i < nbr - 1)
 	{
-		first = ((pars->px - pars->sprite[i].x) * (pars->px -
-					pars->sprite[i].x) + (pars->py - pars->sprite[i].y) *
-				(pars->py - pars->sprite[i].y));
-		second = ((pars->px - pars->sprite[i + 1].x) * (pars->px -
-					pars->sprite[i + 1].x) + (pars->py - pars->sprite[i + 1].y)
-				* (pars->py -
-					pars->sprite[i + 1].y));
+		first = ((pars->px - sprite[i].x) * (pars->px -
+					sprite[i].x) + (pars->py - sprite[i].y) *
+				(pars->py - sprite[i].y));
+		second = ((pars->px - sprite[i + 1].x) * (pars->px -
+					sprite[i + 1].x) + (pars->py - sprite[i + 1].y)
+				* (pars->py - sprite[i + 1].y));
 		if (first < second)
 		{
-			tmp = pars->sprite[i];
-			pars->sprite[i] = pars->sprite[i + 1];
-			pars->sprite[i + 1] = tmp;
+			tmp = sprite[i];
+			sprite[i] = sprite[i + 1];
+			sprite[i + 1] = tmp;
 			i = 0;
 		}
 		else
@@ -68,26 +67,52 @@ void	ft_sort_sprite(t_pars *pars)
 	}
 }
 
-void	ft_print_sprite_column(t_sprite *s, t_pars *pars, t_params *params)
+void	ft_join_sprite_bonus(t_pars *pars)
+{
+	int			i;
+	int			j;
+
+	i = 0;
+	j = 0;
+	if (!(pars->all_sprite = malloc(sizeof(t_vecteur) * (pars->sprite_nbr +
+						pars->sprite_bonus_nbr))))
+		return ;
+	while (i < pars->sprite_nbr)
+	{
+		pars->all_sprite[i] = pars->sprite[i];
+		pars->all_sprite[i].text = 2;
+		i++;
+	}
+	while (j < pars->sprite_bonus_nbr)
+	{
+		pars->all_sprite[i] = pars->sprite_bonus[j];
+		pars->all_sprite[i].text = 5;
+		i++;
+		j++;
+	}
+}
+
+void	ft_print_sprite_column(t_sprite *s, t_pars *pars, t_params *params,
+		int i)
 {
 	int color;
 	int n;
 
-	n = s->start * pars->text[2].size_line - pars->height *
-		(pars->text[2].size_line / 2) +
-		s->heigth_column * (pars->text[2].size_line / 2);
-	s->draw_y = ((n * pars->text[2].img_height) /
-			s->heigth_column) / pars->text[2].size_line;
-	color = ft_get_px_from_image(&pars->text[2], s->draw_x
+	n = s->start * pars->text[i].size_line - pars->height *
+		(pars->text[i].size_line / 2) +
+		s->heigth_column * (pars->text[i].size_line / 2);
+	s->draw_y = ((n * pars->text[i].img_height) /
+			s->heigth_column) / pars->text[i].size_line;
+	color = ft_get_px_from_image(&pars->text[i], s->draw_x
 			, s->draw_y);
 	if (color != 0)
 		ft_put_px_in_image(&params->data, s->stripe, s->start, color);
 }
 
-void	ft_sprite_loop(t_pars *pars, t_sprite *s, t_params *params)
+void	ft_sprite_loop(t_pars *pars, t_sprite *s, t_vecteur *sprite, int n)
 {
-	s->sprite_x = pars->sprite[s->n].x - (pars->px - .5);
-	s->sprite_y = pars->sprite[s->n].y - (pars->py - .5);
+	s->sprite_x = sprite[n].x - (pars->px - .5);
+	s->sprite_y = sprite[n].y - (pars->py - .5);
 	ft_sprite_init(pars, s);
 	s->stripe = s->width_draw_start;
 	while (s->stripe < s->width_draw_end)
@@ -97,12 +122,12 @@ void	ft_sprite_loop(t_pars *pars, t_sprite *s, t_params *params)
 				pars->text[2].img_width / s->width_column) /
 			pars->text[2].size_line;
 		if (s->next_y > 0 && s->stripe > 0 && s->stripe < pars->width &&
-			s->next_y < pars->buffer[s->stripe])
+				s->next_y < pars->buffer[s->stripe])
 		{
 			s->start = s->draw_start;
 			while (s->start < s->draw_end)
 			{
-				ft_print_sprite_column(s, pars, params);
+				ft_print_sprite_column(s, pars, pars->params, sprite[n].text);
 				s->start++;
 			}
 		}

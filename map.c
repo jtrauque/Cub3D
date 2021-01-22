@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 15:54:15 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/17 21:39:45 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/22 15:30:57 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char		*ft_map_valide(char *elements, t_pars *pars, t_params *params)
 	char	*caracteres;
 	char	*temp;
 
-	caracteres = "012NSEW ";
+	caracteres = "0123NSEW ";
 	temp = elements;
 	(void)pars;
 	i = 0;

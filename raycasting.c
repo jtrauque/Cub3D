@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:12:59 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/17 20:23:04 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/22 14:48:50 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int		ft_hit(t_obs *obs, t_pars *pars)
 		return (1);
 	if (pars->map[obs->map_y][obs->map_x] == '2')
 		pars->is_a_sprite = 1;
+	if (pars->map[obs->map_y][obs->map_x] == '3')
+		pars->is_a_sprite_b = 1;
 	return (0);
 }
 
