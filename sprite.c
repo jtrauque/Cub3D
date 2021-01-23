@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:17:34 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/23 15:52:01 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/23 22:15:55 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	ft_print_sprite_column(t_sprite *s, t_pars *pars, t_params *params,
 {
 	int color;
 	int n;
-	
+
 	n = s->start * pars->text[i].size_line - pars->height *
 		(pars->text[i].size_line / 2) +
 		s->heigth_column * (pars->text[i].size_line / 2);

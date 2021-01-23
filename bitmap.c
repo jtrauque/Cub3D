@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:17:11 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/19 19:30:27 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/23 22:12:28 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	ft_generate_image(t_pars *pars, int fd)
 	int		color;
 
 	i = pars->height;
+	pars->params->data.img_height = pars->height;
+	pars->params->data.img_width = pars->width;
 	while (--i >= 0)
 	{
 		j = 0;

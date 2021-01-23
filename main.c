@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:38:44 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/23 17:08:14 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/23 22:16:21 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int			main(int argc, char **argv)
 	params.mlx_ptr = mlx_init();
 	pars.params = &params;
 	if (ft_parsing(fd, &pars, &params) == 0 || !ft_global_map_check(&pars,
-				&params)|| ft_location_player(&pars) == 0 
+				&params) || ft_location_player(&pars) == 0
 			|| ft_extract_gun(&pars.gun, &params) == 0)
 		return (ft_free(&params, &pars));
 	if (pars.save != 1)

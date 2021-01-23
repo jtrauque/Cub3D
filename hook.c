@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:52:39 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/23 17:07:48 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/23 22:25:56 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,32 +71,11 @@ void	ft_manage_mlx(t_params *params, t_pars *pars)
 
 void	ft_manage_mlx_destroy(t_params *params, t_pars *pars)
 {
-	int i;
-	int j;
-
-	i = 0;
-	j = 0;
-	mlx_destroy_image(params->mlx_ptr, params->data.img);
-	mlx_destroy_image(params->mlx_ptr, pars->gun.img);
-	while (j < 6)
-	{
-		if (pars->text[j].img)
-			mlx_destroy_image(params->mlx_ptr, pars->text[j].img);
-		j++;
-	}
 	if (pars->save != 1)
 	{
 		mlx_do_key_autorepeaton(params->mlx_ptr);
 		mlx_do_sync(params->mlx_ptr);
 		mlx_destroy_window(params->mlx_ptr, params->win_ptr);
 	}
-	free(pars->map_tmp);
-	if (pars->map)
-		while (pars->map[i])
-			free(pars->map[i++]);
-	free(pars->map);
-	free(params->mlx_ptr);
-	free(pars->sprite);
-	free(pars->sprite_bonus);
-	free(pars->all_sprite);
+	ft_free(params, pars);
 }
