@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 14:55:33 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/22 18:34:29 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/23 21:20:17 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_mini_map(t_pars *pars, t_params *params)
 			else if (pars->map[y][x] == '2')
 				ft_cadre(pars, x, y, 0x900C3F);
 			else if (pars->map[y][x] == '3')
-				ft_cadre(pars, x, y, 0xFF5733);
+				ft_cadre(pars, x, y, 0x10A522);
 			else
 				ft_cadre(pars, x, y, 0xB0A4AB);
 			x++;

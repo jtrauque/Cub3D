@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:36:07 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/22 18:40:28 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/23 17:10:31 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ int		ft_free(t_params *params, t_pars *pars)
 	free(params->mlx_ptr);
 	free(pars->sprite);
 	free(pars->sprite_bonus);
+	free(pars->all_sprite);
 	return (0);
 }

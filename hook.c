@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:52:39 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/23 16:32:13 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/23 17:07:48 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int		game_loop(t_pars *pars)
 
 void	ft_manage_mlx(t_params *params, t_pars *pars)
 {
-	ft_extract_gun(&pars->gun, params);
 	ft_look_at(pars, params);
 	if (pars->save != 1)
 	{

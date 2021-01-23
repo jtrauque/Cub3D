@@ -14,7 +14,7 @@ SO             ./textures/wood.xpm
 C 34,192,208
 F          17,    155,     59
 S ./textures/barrel.xpm   
-SB ./textures/pillar.xpm
+SB ./textures/tree.xpm
  
 
 1111111111
