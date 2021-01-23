@@ -6,14 +6,11 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:41:12 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/22 20:19:24 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/23 16:34:09 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	ft_gun(t_params *params, t_pars *pars, t_data *gun);
-int			ft_extract_gun(t_data *text, t_params *params);
 
 void	ft_apply_text_on_wall(t_pars *pars, t_obs *obs, t_data *text)
 {
@@ -96,11 +93,9 @@ void	ft_look_at(t_pars *pars, t_params *params)
 {
 	t_obs		obs;
 	t_sprite	sprite;
-	/* t_data gun; */
 
 	obs.pix = 0;
 	obs.line = 0;
-	/* ft_extract_gun(&gun, params); */
 	if (!(pars->buffer = malloc(sizeof(double) * pars->width + 1)))
 		return ;
 	ft_background(pars, params);
@@ -111,7 +106,7 @@ void	ft_look_at(t_pars *pars, t_params *params)
 	}
 	ft_is_a_sprite(pars, &sprite);
 	ft_mini_map(pars, params);
-	/* ft_gun(params, pars, &gun); */
+	ft_gun(params, pars, &pars->gun);
 	if (pars->save != 1)
 		mlx_put_image_to_window(params->mlx_ptr, params->win_ptr,
 				params->data.img, 0, 0);

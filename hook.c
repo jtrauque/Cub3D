@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:52:39 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/22 18:36:26 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/23 16:32:13 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int		game_loop(t_pars *pars)
 
 void	ft_manage_mlx(t_params *params, t_pars *pars)
 {
+	ft_extract_gun(&pars->gun, params);
 	ft_look_at(pars, params);
 	if (pars->save != 1)
 	{
@@ -77,9 +78,13 @@ void	ft_manage_mlx_destroy(t_params *params, t_pars *pars)
 	i = 0;
 	j = 0;
 	mlx_destroy_image(params->mlx_ptr, params->data.img);
+	mlx_destroy_image(params->mlx_ptr, pars->gun.img);
 	while (j < 6)
+	{
 		if (pars->text[j].img)
-			mlx_destroy_image(params->mlx_ptr, pars->text[j++].img);
+			mlx_destroy_image(params->mlx_ptr, pars->text[j].img);
+		j++;
+	}
 	if (pars->save != 1)
 	{
 		mlx_do_key_autorepeaton(params->mlx_ptr);

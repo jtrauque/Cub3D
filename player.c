@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 22:04:22 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/22 18:51:01 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/23 15:51:16 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void		ft_save_location(t_pars *pars, int x, int y, int i)
 	{
 		pars->sprite[i].y = (float)y + .5;
 		pars->sprite[i].x = (float)x + .5;
+		pars->sprite[i].text = 2;
 	}
 }
 

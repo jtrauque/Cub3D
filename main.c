@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:38:44 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/21 14:37:02 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/23 16:34:46 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ int			ft_window_put(t_params *params, t_pars *pars)
 			&params->data.bpp, &params->data.size_line, &params->data.endian);
 	ft_manage_mlx(params, pars);
 	if (pars->save != 1)
+	{
 		mlx_loop(params->mlx_ptr);
+	}
 	else
 		ft_create_bmp(pars);
 	ft_manage_mlx_destroy(params, pars);

@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 20:03:22 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/22 18:56:15 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/23 15:28:19 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 # define GO_FORWARD 119
 # define GO_BACKWARD 115
-# define TURN_LEFT 65361 
+# define TURN_LEFT 65361
 # define TURN_RIGHT 65363
 # define GO_LEFT 97
 # define GO_RIGHT 100
@@ -101,6 +101,7 @@ typedef struct	s_pars
 	double		speed;
 	int			save;
 	t_data		text[6];
+	t_data		gun;
 }				t_pars;
 
 typedef struct	s_color
@@ -161,10 +162,10 @@ int				ft_find_orientation(char c, char *str);
 int				ft_resolution(t_params *params, char *elements, t_pars *pars);
 int				ft_text(t_params *params, char *elements, t_pars *pars);
 int				ft_extract_text(char *elements, t_data *text, t_params *params);
-char 			*ft_path(char *elements);
+char			*ft_path(char *elements);
 int				ft_color(t_params *params, char *elements, t_pars *pars);
 int				ft_check_str(char *str);
-void 			ft_free_tab(char **str);
+void			ft_free_tab(char **str);
 void			ft_putstr(char *str);
 int				ft_space(char *elements);
 int				ft_space_and_plus(char *elements);
@@ -195,16 +196,20 @@ void			ft_side_move(t_pars *pars);
 void			ft_rotate(t_pars *pars, float n);
 void			ft_detect_obs(t_pars *pars, t_obs *obs);
 void			ft_distance_init(t_obs *obs, t_pars *pars);
-int				ft_get_px_from_image(t_data *data, unsigned int x, unsigned int y);
+int				ft_get_px_from_image(t_data *data, unsigned int x,
+		unsigned int y);
 void			ft_put_px_in_image(t_data *data, int x, int y, int color);
 void			ft_sprite_init(t_pars *pars, t_sprite *sprite);
 void			ft_apply_text_on_wall(t_pars *pars, t_obs *obs, t_data *text);
-void			ft_sprite_loop(t_pars *pars, t_sprite *s, t_vecteur *sprite, int n);
+void			ft_sprite_loop(t_pars *pars, t_sprite *s, t_vecteur *sprite,
+		int n);
 void			ft_sort_sprite(t_pars *pars, t_vecteur *sprite, int nbr);
 int				ft_save_bmp(char *argv, t_pars *pars);
 void			ft_create_bmp(t_pars *pars);
-void  			ft_mini_map(t_pars *pars, t_params *params);
+void			ft_mini_map(t_pars *pars, t_params *params);
 void			ft_join_sprite_bonus(t_pars *pars);
 void			ft_is_a_sprite(t_pars *pars, t_sprite *sprite);
+void			ft_gun(t_params *params, t_pars *pars, t_data *gun);
+int				ft_extract_gun(t_data *text, t_params *params);
 
 #endif

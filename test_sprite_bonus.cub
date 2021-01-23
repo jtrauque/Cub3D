@@ -1,0 +1,29 @@
+R 1000       800
+
+
+
+
+
+NO ./textures/redbrick.xpm    
+
+
+WE ./textures/greystone.xpm
+   EA ./textures/jungle-1.xpm
+SO             ./textures/wood.xpm
+
+C 34,192,208
+F          17,    155,     59
+S ./textures/barrel.xpm   
+SB ./textures/pillar.xpm
+ 
+
+1111111111
+1100000001
+1000200201
+1000000001
+1000200001
+1000000301
+1010000001
+1000000001
+1003000N01
+1111111111
