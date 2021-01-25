@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 15:54:15 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/22 15:30:57 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/25 11:40:44 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ char		**ft_global_map_check(t_pars *pars, t_params *params)
 		if (ft_find_orientation(obs[j], pars->map_tmp) == 1)
 			count++;
 		if (ft_find_orientation(obs[j], pars->map_tmp) > 1)
-			return (ft_error_map("map error\n"));
+			return (ft_error_map("map error - too much players\n"));
 		j++;
 	}
 	if (count > 1 || count == 0)

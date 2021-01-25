@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:28:56 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/22 18:38:42 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/25 11:35:15 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,19 @@ int			ft_text(t_params *params, char *elements, t_pars *pars)
 static int	ft_check_ext_img(char *str)
 {
 	char *tmp;
+	int  i;
 
 	tmp = ft_strchr(str + 1, '.');
 	if (!tmp)
 		return (ft_error("Wrong extension - please use a .xpm\n"));
-	if (ft_strlen(tmp) != ft_strlen(".xpm"))
+	if (ft_strlen(tmp) < ft_strlen(".xpm"))
 		return (ft_error("Wrong extension - please use a .xpm\n"));
 	if (ft_strncmp(".xpm", tmp, 4) != 0)
 		return (ft_error("Wrong extension - please use a .xpm\n"));
+	if (tmp[4] && (i = ft_space(tmp + 4)) == 0)  
+		return (ft_error("too much arguments - please use only a .xpm\n"));
+	if (i > 0 && 4 + i < ft_strlen(tmp))  
+		return (ft_error("too much arguments - please use only a .xpm\n"));
 	return (1);
 }
 
@@ -54,7 +59,7 @@ char		*ft_path(char *elements)
 	int j;
 
 	j = ft_strlen(elements);
-	while (elements[j - 1] == ' ')
+	while (elements[j - 1] == ' ' || elements[j - 1] == '\t')
 		j--;
 	elements[j] = '\0';
 	return (elements);
