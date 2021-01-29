@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 20:03:22 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/23 15:28:19 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/29 20:13:10 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,5 +211,6 @@ void			ft_join_sprite_bonus(t_pars *pars);
 void			ft_is_a_sprite(t_pars *pars, t_sprite *sprite);
 void			ft_gun(t_params *params, t_pars *pars, t_data *gun);
 int				ft_extract_gun(t_data *text, t_params *params);
+int				ft_check_commas(char *str);
 
 #endif

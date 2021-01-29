@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:41:12 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/23 16:34:09 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/29 20:19:35 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,7 @@ void	ft_look_at(t_pars *pars, t_params *params)
 	t_obs		obs;
 	t_sprite	sprite;
 
-	obs.pix = 0;
-	obs.line = 0;
+	ft_memset(&obs, 0, sizeof(t_obs));
 	if (!(pars->buffer = malloc(sizeof(double) * pars->width + 1)))
 		return ;
 	ft_background(pars, params);

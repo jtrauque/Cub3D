@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:30:50 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/23 22:14:50 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/29 20:18:18 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ int			ft_rgb(char *elements)
 
 	ft_memset(&color, 0, sizeof(t_color));
 	str = ft_split(elements, ',');
-	if (ft_arg_nbr(str) != 3 || ft_check_str(str[0]) != 1
-			|| ft_check_str(str[1]) != 1 || ft_check_str(str[2]) != 1)
+	if (ft_check_commas(elements) != 2 || ft_arg_nbr(str) != 3 ||
+			ft_check_str(str[0]) != 1 || ft_check_str(str[1]) != 1 ||
+			ft_check_str(str[2]) != 1)
 	{
 		ft_free_tab(str);
 		return (-1);

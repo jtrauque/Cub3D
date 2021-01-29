@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:28:56 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/25 11:35:15 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/29 20:16:07 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ static int	ft_check_ext_img(char *str)
 	char *tmp;
 	int  i;
 
+	i = 0;
 	tmp = ft_strchr(str + 1, '.');
 	if (!tmp)
-		return (ft_error("Wrong extension - please use a .xpm\n"));
+		return (ft_error("Please check your texture path\n"));
 	if (ft_strlen(tmp) < ft_strlen(".xpm"))
 		return (ft_error("Wrong extension - please use a .xpm\n"));
 	if (ft_strncmp(".xpm", tmp, 4) != 0)

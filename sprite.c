@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:17:34 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/23 22:15:55 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/29 20:17:22 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,10 @@ void	ft_sprite_loop(t_pars *pars, t_sprite *s, t_vecteur *sprite, int n)
 	s->stripe = s->width_draw_start;
 	while (s->stripe < s->width_draw_end)
 	{
-		s->draw_x = (int)(pars->text[2].size_line * (s->stripe -
+		s->draw_x = (int)(pars->text[sprite[n].text].size_line * (s->stripe -
 					(-s->width_column / 2 + s->sprite_screen)) *
-				pars->text[2].img_width / s->width_column) /
-			pars->text[2].size_line;
+				pars->text[sprite[n].text].img_width / s->width_column) /
+			pars->text[sprite[n].text].size_line;
 		if (s->next_y > 0 && s->stripe > 0 && s->stripe < pars->width &&
 				s->next_y < pars->buffer[s->stripe])
 		{

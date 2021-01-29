@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 19:19:25 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/22 18:57:45 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/29 20:14:46 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,25 @@ int			ft_check_str(char *str)
 		i++;
 	if (i < len && (n = ft_space(str + i)) == 0)
 		return (-1);
-	if (n > 0 && i + n < len)
+	if (n > 0 && str[i + n])
 		return (-1);
 	return (1);
+}
+
+int			ft_check_commas(char *str)
+{
+	int i;
+	int count;
+
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		if (str[i] == ',')
+			count++;
+		i++;
+	}
+	return (count);
 }
 
 void		ft_is_a_sprite(t_pars *pars, t_sprite *sprite)
