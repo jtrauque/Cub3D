@@ -6,7 +6,7 @@
 /*   By: jtrauque <jtrauque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 16:36:07 by jtrauque          #+#    #+#             */
-/*   Updated: 2021/01/29 20:11:28 by jtrauque         ###   ########.fr       */
+/*   Updated: 2021/01/29 20:26:50 by jtrauque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,10 @@ int		ft_free(t_params *params, t_pars *pars)
 			free(pars->map[i++]);
 	free(pars->map);
 	free(pars->map_tmp);
+	mlx_destroy_display(params->mlx_ptr);
 	free(params->mlx_ptr);
 	free(pars->sprite);
 	free(pars->sprite_bonus);
 	free(pars->all_sprite);
-	mlx_destroy_display(params->mlx_ptr);
 	return (0);
 }
